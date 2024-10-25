@@ -79,6 +79,13 @@ fun AboutUs() {
 
         addImageAle()
 
+        Image(
+            painter = painterResource(R.drawable.dani),
+            contentDescription = null
+        )
+        addImageDani()
+
+
     }
 
 }
@@ -109,4 +116,15 @@ fun addImageAle() {
 }
 
 
+@Composable
+fun addImageDani() {
+
+    val image = painterResource(R.drawable.dani)
+
+    Image(
+        painter = image,
+        contentDescription = null
+    )
+
+}
 
