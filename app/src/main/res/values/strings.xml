@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">GymApp</string>
-    <string name="about_us">Sobre Nosotros</string>
+    <string name="about_us_title">Sobre Nosotros</string>
+    <string name="about_us_text">Somos una aplicación creada para llevar tu experiencia de entrenamiento al siguiente nivel. Nos apasiona ayudarte a alcanzar tus metas de fitness, desde perder peso, ganar músculo o simplemente mejorar tu salud y bienestar. Nuestra plataforma te conecta con entrenadores certificados, programas personalizados y un conjunto de herramientas avanzadas para que optimices cada minuto que dediques a entrenar</string>
+    <string name="collaborators_title">Colaboradores</string>
 </resources>
