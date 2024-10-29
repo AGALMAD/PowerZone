@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GymApp</string>
+    <string name="about_us_title">About Us</string>
+    <string name="about_us_text">We are an application created for bring your training experience to the next level. we are passionate about help you to reach your fitness goals, from lose weight, gain muscles or simply improve your health y well-being. Our platform conect you with trainers</string>
+    <string name="collaborators_title">Collaborators</string>
+</resources>
