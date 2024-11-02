@@ -1,11 +1,15 @@
 package com.example.gymapp
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -57,18 +61,30 @@ fun AboutUsContent() {
             text = context.getString(R.string.about_us_title),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.scrim,
-            style = MaterialTheme.typography.displayMedium,
+            style = MaterialTheme.typography.displayLarge,
             modifier =  Modifier.padding(30.dp)
 
 
         )
 
-        //Imagen del logo principal
-        Image(
-            painter = painterResource(R.drawable.logo_sin_fondo_negro),
-            contentDescription = "Imagen Logo principal",
-            modifier = Modifier.size(300.dp)
-        )
+        //Cambia la imagen según si está en modo claro u oscuro
+        if(isSystemInDarkTheme()){
+            Image(
+                painter = painterResource(R.drawable.logo_sin_fondo_blanco),
+                contentDescription = "Imagen Logo principal",
+                modifier = Modifier.size(300.dp)
+            )
+        }
+        else
+        {
+            Image(
+                painter = painterResource(R.drawable.logo_sin_fondo_negro),
+                contentDescription = "Imagen Logo principal",
+                modifier = Modifier.size(300.dp)
+            )
+        }
+
+
 
 
         //Texto sobre nosotros
@@ -79,7 +95,7 @@ fun AboutUsContent() {
             style = MaterialTheme.typography.bodyLarge,
             modifier =  Modifier.padding(30.dp)
 
-            )
+        )
 
 
         //Contacto
@@ -87,7 +103,17 @@ fun AboutUsContent() {
             Image(
                 painter = painterResource(R.drawable.instagram_logo),
                 contentDescription = "Instagram logo",
-                modifier = Modifier.size(50.dp)
+                modifier = Modifier
+                    .size(50.dp)
+                    .clickable {
+                        // Intent para abrir Instagram en el navegador
+                        val instagramIntent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://www.instagram.com/")
+                        )
+                        context.startActivity(instagramIntent)
+                    }
+
 
             )
             Image(
