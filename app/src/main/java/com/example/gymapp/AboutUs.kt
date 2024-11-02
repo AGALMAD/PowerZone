@@ -67,23 +67,19 @@ fun AboutUsContent() {
 
         )
 
-        //Cambia la imagen según si está en modo claro u oscuro
-        if(isSystemInDarkTheme()){
-            Image(
-                painter = painterResource(R.drawable.logo_sin_fondo_blanco),
-                contentDescription = "Imagen Logo principal",
-                modifier = Modifier.size(300.dp)
-            )
-        }
-        else
-        {
-            Image(
-                painter = painterResource(R.drawable.logo_sin_fondo_negro),
-                contentDescription = "Imagen Logo principal",
-                modifier = Modifier.size(300.dp)
-            )
-        }
 
+
+
+
+        //Cambia la imagen según si está en modo claro u oscuro
+        Image(
+            painter = if(isSystemInDarkTheme() )
+                painterResource(R.drawable.logo_sin_fondo_blanco)
+            else
+                painterResource(R.drawable.logo_sin_fondo_negro),
+            contentDescription = "Imagen Logo principal",
+            modifier = Modifier.size(300.dp)
+        )
 
 
 
@@ -101,7 +97,10 @@ fun AboutUsContent() {
         //Contacto
         Row {
             Image(
-                painter = painterResource(R.drawable.instagram_logo),
+                painter = if(isSystemInDarkTheme() )
+                    painterResource(R.drawable.instagram_logo_blanco)
+                else
+                    painterResource(R.drawable.instagram_logo_negro),
                 contentDescription = "Instagram logo",
                 modifier = Modifier
                     .size(50.dp)
@@ -117,13 +116,19 @@ fun AboutUsContent() {
 
             )
             Image(
-                painter = painterResource(R.drawable.x_logo),
+                painter = if(isSystemInDarkTheme() )
+                    painterResource(R.drawable.x_logo_blanco)
+                else
+                    painterResource(R.drawable.x_logo_negro),
                 contentDescription = "Instagram logo",
                 modifier = Modifier.size(50.dp)
 
             )
             Image(
-                painter = painterResource(R.drawable.yt_logo),
+                painter = if(isSystemInDarkTheme() )
+                    painterResource(R.drawable.yt_logo_blanco)
+                else
+                    painterResource(R.drawable.yt_logo_negro),
                 contentDescription = "Instagram logo",
                 modifier = Modifier.size(50.dp),
 
