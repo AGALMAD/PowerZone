@@ -60,7 +60,7 @@ fun AboutUsContent() {
         Text(
             text = context.getString(R.string.about_us_title),
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.scrim,
+            color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.displayLarge,
             modifier =  Modifier.padding(30.dp)
 
@@ -91,7 +91,7 @@ fun AboutUsContent() {
         Text(
             text = context.getString(R.string.about_us_text),
             textAlign = TextAlign.Justify,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.secondary,
             style = MaterialTheme.typography.bodyLarge,
             modifier =  Modifier.padding(30.dp)
 
