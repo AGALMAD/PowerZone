@@ -1,14 +1,20 @@
 package com.example.gymapp
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -55,16 +61,26 @@ fun AboutUsContent() {
             text = context.getString(R.string.about_us_title),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.primary,
-            style = MaterialTheme.typography.displayLarge
+            style = MaterialTheme.typography.displayLarge,
+            modifier =  Modifier.padding(30.dp)
+
 
         )
 
-        //Imagen del logo principal
+
+
+
+
+        //Cambia la imagen según si está en modo claro u oscuro
         Image(
-            painter = painterResource(R.drawable.logo_sin_fondo),
+            painter = if(isSystemInDarkTheme() )
+                painterResource(R.drawable.logo_sin_fondo_blanco)
+            else
+                painterResource(R.drawable.logo_sin_fondo_negro),
             contentDescription = "Imagen Logo principal",
-            modifier = Modifier.size(400.dp)
+            modifier = Modifier.size(300.dp)
         )
+
 
 
         //Texto sobre nosotros
@@ -72,11 +88,56 @@ fun AboutUsContent() {
             text = context.getString(R.string.about_us_text),
             textAlign = TextAlign.Justify,
             color = MaterialTheme.colorScheme.secondary,
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier =  Modifier.padding(30.dp)
+
+        )
+
+
+        //Contacto
+        Row {
+            Image(
+                painter = if(isSystemInDarkTheme() )
+                    painterResource(R.drawable.instagram_logo_blanco)
+                else
+                    painterResource(R.drawable.instagram_logo_negro),
+                contentDescription = "Instagram logo",
+                modifier = Modifier
+                    .size(50.dp)
+                    .clickable {
+                        // Intent para abrir Instagram en el navegador
+                        val instagramIntent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://www.instagram.com/")
+                        )
+                        context.startActivity(instagramIntent)
+                    }
+
+
+            )
+            Image(
+                painter = if(isSystemInDarkTheme() )
+                    painterResource(R.drawable.x_logo_blanco)
+                else
+                    painterResource(R.drawable.x_logo_negro),
+                contentDescription = "Instagram logo",
+                modifier = Modifier.size(50.dp)
+
+            )
+            Image(
+                painter = if(isSystemInDarkTheme() )
+                    painterResource(R.drawable.yt_logo_blanco)
+                else
+                    painterResource(R.drawable.yt_logo_negro),
+                contentDescription = "Instagram logo",
+                modifier = Modifier.size(50.dp),
+
 
             )
 
 
+
+        }
 
     }
 
