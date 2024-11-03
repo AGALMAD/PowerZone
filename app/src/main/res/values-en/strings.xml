@@ -4,4 +4,8 @@
     <string name="about_us_title">About Us</string>
     <string name="about_us_text">We are an application created for bring your training experience to the next level. we are passionate about help you to reach your fitness goals, from lose weight, gain muscles or simply improve your health y well-being. Our platform connect you with certificated trainers,  personalized programs and an advanced tools group for optimize your minutes that you spend training</string>
     <string name="collaborators_title">Collaborators</string>
+    <string name="about_app_title">About App</string>
+    <string name="authors_text">Authors:</string>
+    <string name="description_Ale">Hello my name is Ale</string>
+    <string name="description_Daniel">Hello my name is Daniel</string>
 </resources>
