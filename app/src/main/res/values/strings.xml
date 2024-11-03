@@ -4,7 +4,8 @@
     <string name="about_us_text">Somos una aplicación creada para llevar tu experiencia de entrenamiento al siguiente nivel. Nos apasiona ayudarte a alcanzar tus metas de fitness, desde perder peso, ganar músculo o simplemente mejorar tu salud y bienestar. Nuestra plataforma te conecta con entrenadores certificados, programas personalizados y un conjunto de herramientas avanzadas para que optimices cada minuto que dediques a entrenar</string>
     <string name="collaborators_title">Colaboradores</string>
     <string name="about_app_title">Sobre la App</string>
-    <string name="authors_text">Autores:</string>
-    <string name="description_Ale">Hola soy Ale</string>
-    <string name="description_Daniel">Hola soy Daniel</string>
+    <string name="authors_text">Autores</string>
+    <string name="description_Ale">Hola yo soy Ale</string>
+    <string name="description_Daniel">Hola yo soy Daniel</string>
+    <string name="licence_text">Licencia</string>
 </resources>

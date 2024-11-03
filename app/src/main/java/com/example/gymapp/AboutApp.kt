@@ -95,7 +95,13 @@ fun AboutAppContent() {
                 modifier = Modifier.padding(15.dp)
 
             )
-
+            Text(
+                text = context.getString(R.string.licence_text),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(30.dp)
+            )
 
     }
 }
