@@ -51,6 +51,12 @@ val AppTypography = Typography(
         fontFamily = bodyFontFamily,
         fontSize = 16.sp,
         fontWeight = FontWeight.Normal
+    ),
+    // Tamaño para textos
+    bodySmall = TextStyle(
+        fontFamily = bodyFontFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal
     )
 )
 
