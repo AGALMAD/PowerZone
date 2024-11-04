@@ -7,5 +7,5 @@
     <string name="authors_text">Autores</string>
     <string name="description_Ale">Hola yo soy Ale</string>
     <string name="description_Daniel">Hola yo soy Daniel</string>
-    <string name="licence_text">Licencia</string>
+    <string name="licence_text">Se permite el uso, copia y modificación de esta aplicación sin costo, tanto para uso personal como comercial, siempre que se mantenga este aviso de licencia. No se permite la venta directa de la aplicación, pero puede incluirse como parte de otros servicios.</string>
 </resources>

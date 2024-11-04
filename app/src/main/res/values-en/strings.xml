@@ -8,5 +8,5 @@
     <string name="authors_text">Authors</string>
     <string name="description_Ale">Hello my name is Ale</string>
     <string name="description_Daniel">Hello my name is Daniel</string>
-    <string name="licence_text">Licence</string>
+    <string name="licence_text">Permission is granted to use, copy, and modify this application at no cost for personal or commercial purposes, as long as this license notice is included. Direct resale of the application is not allowed, but it may be included as part of other services.</string>
 </resources>
