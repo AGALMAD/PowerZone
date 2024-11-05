@@ -1,5 +1,6 @@
 package com.example.gymapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,6 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
+import com.example.gymapp.ui.theme.misFormas
 
 class AboutApp : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +74,16 @@ fun AboutAppContent() {
 
         )
 
+        //Cambia la imagen según si está en modo claro u oscuro
+        Image(
+            painter = if(isSystemInDarkTheme() )
+                painterResource(R.drawable.logo_sin_fondo_blanco)
+            else
+                painterResource(R.drawable.logo_sin_fondo_negro),
+            contentDescription = "Imagen Logo principal",
+            modifier = Modifier.size(150.dp)
+        )
+
         Text(
             text = context.getString(R.string.authors_text),
             textAlign = TextAlign.Center,
@@ -106,6 +119,17 @@ fun AboutAppContent() {
                 modifier = Modifier.padding(15.dp)
 
             )
+
+            // Botón para ir a AboutUs
+            Button(onClick = {
+                val intent = Intent(context, MainActivity::class.java)
+                context.startActivity(intent)
+            },
+                shape = misFormas.small
+            ) {
+                Text(text = context.getString(R.string.about_us_title))
+            }
+
             // Línea divisoria
             HorizontalDivider(
                 color = Color.Gray,
@@ -119,5 +143,8 @@ fun AboutAppContent() {
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(30.dp)
             )
+
+
+
     }
 }
