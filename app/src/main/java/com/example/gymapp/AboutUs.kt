@@ -31,20 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.setPadding
 import com.example.compose.AppTheme
-
-class AboutUs : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            AppTheme {
-                AboutUsContent()
-
-            }
-        }
-    }
-}
-
+import com.example.gymapp.ui.theme.misFormas
 
 
 @Composable
@@ -101,7 +88,9 @@ fun AboutUsContent() {
         Button(onClick = {
             val intent = Intent(context, AboutApp::class.java)
             context.startActivity(intent)
-        }) {
+        },
+            shape = misFormas.small
+        ) {
             Text(text = context.getString(R.string.about_app_title))
         }
 
@@ -117,10 +106,9 @@ fun AboutUsContent() {
                 modifier = Modifier
                     .size(50.dp)
                     .clickable {
-                        // Intent para abrir Instagram en el navegador
                         val instagramIntent = Intent(
                             Intent.ACTION_VIEW,
-                            Uri.parse("https://www.instagram.com/")
+                            Uri.parse("https://www.instagram.com/") //pasa de estring a Uri
                         )
                         context.startActivity(instagramIntent)
                     }
@@ -133,7 +121,15 @@ fun AboutUsContent() {
                 else
                     painterResource(R.drawable.x_logo_negro),
                 contentDescription = "Instagram logo",
-                modifier = Modifier.size(50.dp)
+                modifier = Modifier
+                    .size(50.dp)
+                    .clickable {
+                        val instagramIntent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://x.com/")
+                        )
+                        context.startActivity(instagramIntent)
+                    }
 
             )
             Image(
@@ -142,7 +138,15 @@ fun AboutUsContent() {
                 else
                     painterResource(R.drawable.yt_logo_negro),
                 contentDescription = "Instagram logo",
-                modifier = Modifier.size(50.dp),
+                modifier = Modifier
+                    .size(50.dp)
+                    .clickable {
+                        val instagramIntent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://www.youtube.com/")
+                        )
+                        context.startActivity(instagramIntent)
+                    }
 
 
             )
