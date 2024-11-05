@@ -3,4 +3,9 @@
     <string name="about_us_title">Sobre Nosotros</string>
     <string name="about_us_text">Somos una aplicación creada para llevar tu experiencia de entrenamiento al siguiente nivel. Nos apasiona ayudarte a alcanzar tus metas de fitness, desde perder peso, ganar músculo o simplemente mejorar tu salud y bienestar. Nuestra plataforma te conecta con entrenadores certificados, programas personalizados y un conjunto de herramientas avanzadas para que optimices cada minuto que dediques a entrenar</string>
     <string name="collaborators_title">Colaboradores</string>
+    <string name="about_app_title">Sobre la App</string>
+    <string name="authors_text">Autores</string>
+    <string name="description_Ale">Como desarrollador full-stack, Alejandro ha construido la estructura técnica de Power Zone, asegurando que la app sea rápida, segura y confiable en todo momento.</string>
+    <string name="description_Daniel">Especialista en desarrollo móvil y diseño de interfaz, Daniel ha creado una experiencia intuitiva y atractiva en Power Zone para que los usuarios naveguen fácilmente y se motiven en su entrenamiento.</string>
+    <string name="licence_text">Se permite el uso, copia y modificación de esta aplicación sin costo, tanto para uso personal como comercial, siempre que se mantenga este aviso de licencia. No se permite la venta directa de la aplicación, pero puede incluirse como parte de otros servicios.</string>
 </resources>

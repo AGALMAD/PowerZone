@@ -3,6 +3,7 @@ package com.example.gymapp
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +28,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.setPadding
 import com.example.compose.AppTheme
 
 
@@ -78,6 +82,14 @@ fun AboutUsContent() {
             modifier =  Modifier.padding(30.dp)
 
         )
+
+        // Botón para ir a AboutApp
+        Button(onClick = {
+            val intent = Intent(context, AboutApp::class.java)
+            context.startActivity(intent)
+        }) {
+            Text(text = context.getString(R.string.about_app_title))
+        }
 
 
         //Contacto
