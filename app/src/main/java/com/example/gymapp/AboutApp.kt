@@ -74,6 +74,16 @@ fun AboutAppContent() {
 
         )
 
+        //Cambia la imagen según si está en modo claro u oscuro
+        Image(
+            painter = if(isSystemInDarkTheme() )
+                painterResource(R.drawable.logo_sin_fondo_blanco)
+            else
+                painterResource(R.drawable.logo_sin_fondo_negro),
+            contentDescription = "Imagen Logo principal",
+            modifier = Modifier.size(150.dp)
+        )
+
         Text(
             text = context.getString(R.string.authors_text),
             textAlign = TextAlign.Center,
