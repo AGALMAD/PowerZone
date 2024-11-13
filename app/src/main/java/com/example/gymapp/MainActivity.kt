@@ -1,5 +1,7 @@
 package com.example.gymapp
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,10 +23,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.compose.AppTheme
-import com.example.gymapp.ui.Model.navigateToAboutUs
+import com.example.gymapp.ui.theme.misFormas
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Main()
+                Principal()
             }
         }
     }
@@ -39,19 +40,4 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Composable
-fun Main(){
-    val navController = rememberNavController()
 
-    NavigateAboutUs(navController = navController)
-}
-
-
-
-
-@Composable
-fun NavigateAboutUs(navController: NavController) {
-    Button(onClick = { navController.navigateToAboutUs() }) {
-        Text(text = "Go to About Us")
-    }
-}
