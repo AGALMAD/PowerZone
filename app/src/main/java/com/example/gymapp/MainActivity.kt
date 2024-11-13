@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.example.compose.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,9 +28,24 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                AboutUsContent()
+                Main()
             }
         }
     }
 }
 
+
+
+@Composable
+fun Main(){
+
+}
+
+
+
+
+@Composable
+fun setButtons(){
+
+
+}
