@@ -86,6 +86,8 @@ fun SettingsContent(){
     var switchCheck by remember { mutableStateOf(false)}
     var dropDownCheck by remember { mutableStateOf(context.getString(R.string.select_time_text))}
 
+
+    //Obtiene todos los datos guardados en el Data Store
     LaunchedEffect(Unit) {
         dataStore.getRadioButtonPartOfBody.collect { value ->
             radioButtonCheck = value ?: 1
@@ -142,6 +144,7 @@ fun SettingsContent(){
         }
     }
 
+
     val scrollState = rememberScrollState()
 
     Column(
@@ -185,6 +188,7 @@ fun SettingsContent(){
             modifier = Modifier.padding(15.dp)
         )
         Column() {
+            //Muestra los musculos a entrenar según la parte del cuerpo seleccionada en los radio buttons
             if(radioButtonCheck == 1 || radioButtonCheck == 2){
                 Row(horizontalArrangement = Arrangement.spacedBy(40.dp)) {
                     GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
@@ -214,6 +218,7 @@ fun SettingsContent(){
             modifier = Modifier.padding(15.dp)
         )
 
+        //Switch junto a dropdown
         Row(Modifier.padding(6.dp), verticalAlignment = Alignment.CenterVertically) {
             GenerateSwitch("Cardio", switchCheck) {state -> switchCheck = state}
             if(switchCheck){
@@ -221,6 +226,7 @@ fun SettingsContent(){
             }
         }
 
+        //Guarda los datos cuando se le da al botón Guardar
         Button(onClick = {
             scope.launch {
                 dataStore.setSwitchCardioTime(dropDownCheck)
@@ -265,6 +271,8 @@ fun SettingsContent(){
 
     }
 }
+
+
 
 @Composable
 fun GenerateRadioButton(
@@ -408,6 +416,15 @@ fun GenerateDropDown(mutable:String,lambda: (String)->Unit) {
                 },
                 onClick = {
                     lambda("50m")
+                    expanded = false
+                }
+            )
+            DropdownMenuItem(
+                text = {
+                    Text("60m")
+                },
+                onClick = {
+                    lambda("60m")
                     expanded = false
                 }
             )
