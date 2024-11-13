@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.gymapp.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -28,8 +29,7 @@ class SettingsDataStore(private val context: Context) {
         val checkBoxPecho = booleanPreferencesKey("checkBoxPecho")
         val checkBoxEspalda = booleanPreferencesKey("checkBoxEspalda")
         val checkBoxHombro = booleanPreferencesKey("checkBoxHombro")
-        val checkBoxBiceps = booleanPreferencesKey("checkBoxBiceps")
-        val checkBoxTriceps = booleanPreferencesKey("checkBoxTriceps")
+        val checkBoxBrazo = booleanPreferencesKey("checkBoxBrazo")
 
         //Tren Inferior
         val checkBoxCuadriceps = booleanPreferencesKey("checkBoxCuadriceps")
@@ -40,7 +40,7 @@ class SettingsDataStore(private val context: Context) {
         //Cardio
         val switchCardio = booleanPreferencesKey("switchCardio")
         //Tiempo de cardio que quiere hacer el usuario (minutos)
-        val cardioTime = intPreferencesKey("cardioTime")
+        val cardioTime = stringPreferencesKey("cardioTime")
 
     }
 
@@ -95,27 +95,15 @@ class SettingsDataStore(private val context: Context) {
         }
     }
 
-    //Check box de biceps
-    val getCheckBoxBiceps: Flow<Boolean?> = context.dataStoreSettings.data
+    //Check box de brazo
+    val getCheckBoxBrazo: Flow<Boolean?> = context.dataStoreSettings.data
         .map { preferences ->
-            preferences[checkBoxBiceps] ?: false
+            preferences[checkBoxBrazo] ?: false
         }
 
-    suspend fun setCheckBoxBiceps(selected : Boolean) {
+    suspend fun setCheckBoxBrazo(selected : Boolean) {
         context.dataStoreSettings.edit { preferences ->
-            preferences[checkBoxBiceps] = selected
-        }
-    }
-
-    //Check box de triceps
-    val getCheckBoxTriceps: Flow<Boolean?> = context.dataStoreSettings.data
-        .map { preferences ->
-            preferences[checkBoxTriceps] ?: false
-        }
-
-    suspend fun setCheckBoxTriceps(selected : Boolean) {
-        context.dataStoreSettings.edit { preferences ->
-            preferences[checkBoxTriceps] = selected
+            preferences[checkBoxBrazo] = selected
         }
     }
 
@@ -179,12 +167,12 @@ class SettingsDataStore(private val context: Context) {
     }
 
     //Tiempo de cardio en minutos
-    val getSwitchCardioTime: Flow<Int?> = context.dataStoreSettings.data
+    val getSwitchCardioTime: Flow<String?> = context.dataStoreSettings.data
         .map { preferences ->
-            preferences[cardioTime] ?: 30
+            preferences[cardioTime] ?: context.getString(R.string.select_time_text)
         }
 
-    suspend fun setSwitchCardio(time : Int) {
+    suspend fun setSwitchCardioTime(time : String) {
         context.dataStoreSettings.edit { preferences ->
             preferences[cardioTime] = time
         }

@@ -93,6 +93,14 @@ fun AboutUsContent() {
         ) {
             Text(text = context.getString(R.string.about_app_title))
         }
+        Button(onClick = {
+            val intent = Intent(context, Settings::class.java)
+            context.startActivity(intent)
+        },
+            shape = misFormas.small
+        ) {
+            Text(text = "settings")
+        }
 
 
         //Contacto

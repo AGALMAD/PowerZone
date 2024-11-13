@@ -9,4 +9,21 @@
     <string name="description_Ale">As a full-stack developer, Alejandro built the technical foundation of Power Zone, ensuring the app is fast, secure, and reliable at all times.</string>
     <string name="description_Daniel">A mobile development and UI specialist, Daniel has crafted an intuitive, engaging experience in Power Zone to help users easily navigate and stay motivated in their workouts.</string>
     <string name="licence_text">Permission is granted to use, copy, and modify this application at no cost for personal or commercial purposes, as long as this license notice is included. Direct resale of the application is not allowed, but it may be included as part of other services.</string>
+    <string name="configuration_title">Rutine configuration</string>
+    <string name="fullbody_text">Full Body</string>
+    <string name="select_zone_text">Select train zone:</string>
+    <string name="upperbody_text">Upper body</string>
+    <string name="legs_text">Legs</string>
+    <string name="select_muscles_text">Select train muscles:</string>
+    <string name="chest_text">Chest</string>
+    <string name="back_text">Back</string>
+    <string name="shoulder_text">Shoulder</string>
+    <string name="quadriceps_text">Quadriceps</string>
+    <string name="calf_text">Calfs</string>
+    <string name="arm_text">Arm</string>
+    <string name="hamstrings_text">hamstrings</string>
+    <string name="glute_text">Glute</string>
+    <string name="select_cardio_text">Select if you want cardio</string>
+    <string name="select_time_text">Select time</string>
+    <string name="save_button_text">Save</string>
 </resources>
