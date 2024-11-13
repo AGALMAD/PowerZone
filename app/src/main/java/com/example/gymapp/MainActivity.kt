@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                Main()
+                Principal()
             }
         }
     }
@@ -40,66 +40,4 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Composable
-fun Main(){
-    val context = LocalContext.current
-
-
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background), //!!!!!! Importante para que cambie el color de fondo
-        verticalArrangement = Arrangement.spacedBy(18.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        //Titulo sobre nosotros
-        Text(
-            text = context.getString(R.string.appTitle),
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.primary,
-            style = MaterialTheme.typography.displayLarge,
-            modifier = Modifier.padding(30.dp)
-        )
-
-        insertButtos(context)
-
-    }
-
-}
-
-
-@Composable
-fun insertButtos(context : Context){
-
-    // Botón para ir a AboutApp
-    Button(onClick = {
-        val intent = Intent(context, AboutApp::class.java)
-        context.startActivity(intent)
-    },
-        shape = misFormas.small
-    ) {
-        Text(text = context.getString(R.string.about_app_title))
-    }
-
-    // Botón para ir a AboutApp
-    Button(onClick = {
-        val intent = Intent(context, AboutApp::class.java)
-        context.startActivity(intent)
-    },
-        shape = misFormas.small
-    ) {
-        Text(text = context.getString(R.string.about_app_title))
-    }
-
-    // Botón para ir a AboutApp
-    Button(onClick = {
-        val intent = Intent(context, AboutApp::class.java)
-        context.startActivity(intent)
-    },
-        shape = misFormas.small
-    ) {
-        Text(text = context.getString(R.string.settingsTitle))
-    }
-
-}
 
