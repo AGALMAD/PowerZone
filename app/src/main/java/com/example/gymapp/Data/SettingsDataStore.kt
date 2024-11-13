@@ -16,8 +16,7 @@ class SettingsDataStore(private val context: Context) {
 
     // to make sure there's only one instance
     companion object {
-        private val Context.dataStoreSettings: DataStore<Preferences> by preferencesDataStore(
-            dataStoreName)
+        private val Context.dataStoreSettings: DataStore<Preferences> by preferencesDataStore( dataStoreName)
 
         //Radio Buttons
         val radioButtonPartOfBody = intPreferencesKey("radioButtonPartOfBody")
@@ -197,3 +196,4 @@ class SettingsDataStore(private val context: Context) {
 
 
 }
+
