@@ -36,7 +36,7 @@ fun Principal(){
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background), //!!!!!! Importante para que cambie el color de fondo
+            .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         InsertTitle(context)
@@ -67,13 +67,13 @@ fun InsertTitle(context: Context){
 @Composable
 fun InsertButtos(context : Context){
 
-    // Botón para ir a AboutApp
+    // Botón para ir a About Us
     Button(onClick = {
-        val intent = Intent(context, AboutApp::class.java)
+        val intent = Intent(context, AboutUs::class.java)
         context.startActivity(intent)
     },
         shape = misFormas.small,
-        modifier = Modifier.width(250.dp) // Controla el ancho del botón
+        modifier = Modifier.width(250.dp)
 
     ) {
         Text(text = context.getString(R.string.about_us_title),
@@ -82,16 +82,16 @@ fun InsertButtos(context : Context){
     }
 
 
-    Spacer(modifier = Modifier.height(20.dp)) // Espacio entre los componentes
+    Spacer(modifier = Modifier.height(20.dp))
 
 
-    // Botón para ir a AboutApp
+    // Botón para ir a About App
     Button(onClick = {
         val intent = Intent(context, AboutApp::class.java)
         context.startActivity(intent)
     },
         shape = misFormas.small,
-        modifier = Modifier.width(250.dp) // Controla el ancho del botón
+        modifier = Modifier.width(250.dp)
 
     ) {
         Text(text = context.getString(R.string.about_app_title),
@@ -99,16 +99,16 @@ fun InsertButtos(context : Context){
         )
     }
 
-    Spacer(modifier = Modifier.height(20.dp)) // Espacio entre los componentes
+    Spacer(modifier = Modifier.height(20.dp))
 
 
-    // Botón para ir a AboutApp
+    // Botón para ir a Settings
     Button(onClick = {
-        val intent = Intent(context, AboutApp::class.java)
+        val intent = Intent(context, Settings::class.java)
         context.startActivity(intent)
     },
         shape = misFormas.small,
-        modifier = Modifier.width(250.dp) // Controla el ancho del botón
+        modifier = Modifier.width(250.dp)
 
     ) {
         Text(text = context.getString(R.string.settingsTitle),

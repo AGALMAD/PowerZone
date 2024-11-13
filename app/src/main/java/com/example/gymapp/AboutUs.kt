@@ -33,11 +33,21 @@ import androidx.core.view.setPadding
 import com.example.compose.AppTheme
 import com.example.gymapp.ui.theme.misFormas
 
+class AboutUs : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AppTheme {
+                AboutUsContent()
+            }
+        }
+    }
+}
 
 @Composable
 fun AboutUsContent() {
     val context = LocalContext.current
-
 
 
     Column (
