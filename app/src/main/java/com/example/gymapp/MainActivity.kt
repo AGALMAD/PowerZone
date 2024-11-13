@@ -1,5 +1,7 @@
 package com.example.gymapp
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
+import com.example.gymapp.ui.theme.misFormas
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,14 +54,51 @@ fun Main(){
     ) {
         //Titulo sobre nosotros
         Text(
-            text = context.getString(R.string.about_us_title),
+            text = context.getString(R.string.appTitle),
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.displayLarge,
             modifier = Modifier.padding(30.dp)
-
-
         )
+
+        insertButtos(context)
+
+    }
+
+}
+
+
+@Composable
+fun insertButtos(context : Context){
+
+    // Botón para ir a AboutApp
+    Button(onClick = {
+        val intent = Intent(context, AboutApp::class.java)
+        context.startActivity(intent)
+    },
+        shape = misFormas.small
+    ) {
+        Text(text = context.getString(R.string.about_app_title))
+    }
+
+    // Botón para ir a AboutApp
+    Button(onClick = {
+        val intent = Intent(context, AboutApp::class.java)
+        context.startActivity(intent)
+    },
+        shape = misFormas.small
+    ) {
+        Text(text = context.getString(R.string.about_app_title))
+    }
+
+    // Botón para ir a AboutApp
+    Button(onClick = {
+        val intent = Intent(context, AboutApp::class.java)
+        context.startActivity(intent)
+    },
+        shape = misFormas.small
+    ) {
+        Text(text = context.getString(R.string.settingsTitle))
     }
 
 }

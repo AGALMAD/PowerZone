@@ -9,4 +9,6 @@
     <string name="description_Ale">As a full-stack developer, Alejandro built the technical foundation of Power Zone, ensuring the app is fast, secure, and reliable at all times.</string>
     <string name="description_Daniel">A mobile development and UI specialist, Daniel has crafted an intuitive, engaging experience in Power Zone to help users easily navigate and stay motivated in their workouts.</string>
     <string name="licence_text">Permission is granted to use, copy, and modify this application at no cost for personal or commercial purposes, as long as this license notice is included. Direct resale of the application is not allowed, but it may be included as part of other services.</string>
+    <string name="appTitle">Power Zone</string>
+    <string name="settingsTitle">Settings</string>
 </resources>
