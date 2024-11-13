@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutApp" />
+        <activity android:name=".Settings" />
+        <activity android:name=".AboutUs" />
+
     </application>
 
 </manifest>
