@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,7 +20,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.compose.AppTheme
+import com.example.gymapp.ui.Model.navigateToAboutUs
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +31,27 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppTheme {
-                AboutUsContent()
+                Main()
             }
         }
     }
 }
 
+
+
+@Composable
+fun Main(){
+    val navController = rememberNavController()
+
+    NavigateAboutUs(navController = navController)
+}
+
+
+
+
+@Composable
+fun NavigateAboutUs(navController: NavController) {
+    Button(onClick = { navController.navigateToAboutUs() }) {
+        Text(text = "Go to About Us")
+    }
+}
