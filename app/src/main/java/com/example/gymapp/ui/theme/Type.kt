@@ -1,34 +1,62 @@
-package com.example.gymapp.ui.theme
+package com.example.ui.theme
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.googlefonts.GoogleFont
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.font.FontWeight
+import com.example.gymapp.R
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
+val provider = GoogleFont.Provider(
+    providerAuthority = "com.google.android.gms.fonts",
+    providerPackage = "com.google.android.gms",
+    certificates = R.array.com_google_android_gms_fonts_certs
 )
+
+val bodyFontFamily = FontFamily(
+    Font(
+        googleFont = GoogleFont("ABeeZee"),
+        fontProvider = provider,
+    )
+)
+
+val displayFontFamily = FontFamily(
+    Font(
+        googleFont = GoogleFont("Abril Fatface"),
+        fontProvider = provider,
+    )
+)
+
+// Default Material 3 typography values
+val baseline = Typography()
+
+val AppTypography = Typography(
+    // Tamaño para Títulos
+    displayLarge = TextStyle(
+        fontFamily = displayFontFamily,
+        fontSize = 40.sp,
+        fontWeight = FontWeight.Bold,
+    ),
+    // Tamaño Subtítulos
+    headlineSmall = TextStyle(
+        fontFamily = displayFontFamily,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Medium
+    ),
+    // Tamaño para textos
+    bodyLarge = TextStyle(
+        fontFamily = bodyFontFamily,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Normal
+    ),
+    // Tamaño para textos
+    bodySmall = TextStyle(
+        fontFamily = bodyFontFamily,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Normal
+    )
+)
+
