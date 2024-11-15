@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.gymapp.Model.Routes
 import com.example.gymapp.ui.theme.misFormas
 
 
@@ -70,7 +71,7 @@ fun InsertButtos(context : Context, navController: NavHostController){
 
     // Botón para ir a About Us
     Button(
-        onClick = {navController.navigate(Destination.AboutUs.route)},
+        onClick = {navController.navigate(Routes.AboutUs.route)},
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
@@ -85,7 +86,7 @@ fun InsertButtos(context : Context, navController: NavHostController){
 
 
     // Botón para ir a About App
-    Button(onClick = {navController.navigate(Destination.AboutApp.route)},
+    Button(onClick = {navController.navigate(Routes.AboutApp.route)},
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
@@ -100,7 +101,7 @@ fun InsertButtos(context : Context, navController: NavHostController){
 
     // Botón para ir a Settings
     Button(onClick =
-        {navController.navigate(Destination.Settings.route)}
+        {navController.navigate(Routes.Settings.route)}
     ,
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
