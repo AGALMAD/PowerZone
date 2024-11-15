@@ -29,4 +29,6 @@
     <string name="select_cardio_text">Seleccione si quiere cardio:</string>
     <string name="select_time_text">Seleccionar tiempo</string>
     <string name="save_button_text">Guardar</string>
+    <string name="text_error">No te recomiendo hacer pierna y cardio el mismo día</string>
+    <string name="text_save">¡Los datos han sido guardados con exito!</string>
 </resources>

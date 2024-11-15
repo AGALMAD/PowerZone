@@ -2,6 +2,7 @@ package com.example.gymapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -63,6 +64,8 @@ fun SettingsContent(navController: NavHostController){
     val scope = rememberCoroutineScope()
 
     val dataStore = SettingsDataStore(context)
+
+    val contextForToast = LocalContext.current.applicationContext
 
     var radioButtonCheck by remember { mutableIntStateOf(1) }
     var checkBox1Check by remember {mutableStateOf(false)}
@@ -250,41 +253,48 @@ fun SettingsContent(navController: NavHostController){
 
         //Guarda los datos cuando se le da al botón Guardar
         Button(onClick = {
-            scope.launch {
-                dataStore.setSwitchCardioTime(dropDownCheck)
+
+            if(radioButtonCheck == 3 && switchCheck){
+                Toast.makeText(contextForToast, context.getString(R.string.text_error), Toast.LENGTH_SHORT).show()
             }
-            scope.launch {
-                dataStore.setSwitchCardio(switchCheck)
-            }
-            scope.launch {
-                dataStore.setCheckBoxBrazo(checkBox4Check)
-            }
-            scope.launch {
-                dataStore.setCheckBoxPecho(checkBox1Check)
-            }
-            scope.launch {
-                dataStore.setCheckBoxEspalda(checkBox2Check)
-            }
-            scope.launch {
-                dataStore.setCheckBoxHombro(checkBox3Check)
-            }
-            scope.launch {
-                dataStore.setCheckBoxCuadriceps(checkBox5Check)
-            }
-            scope.launch {
-                dataStore.setCheckBoxFemoral(checkBox6Check)
-            }
-            scope.launch {
-                dataStore.setCheckBoxGemelos(checkBox7Check)
-            }
-            scope.launch {
-                dataStore.setCheckBoxGluteo(checkBox8Check)
-            }
-            scope.launch {
-                dataStore.setRadioButtonPartOfBody(radioButtonCheck)
+            else{
+                scope.launch {
+                    dataStore.setSwitchCardioTime(dropDownCheck)
+                }
+                scope.launch {
+                    dataStore.setSwitchCardio(switchCheck)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxBrazo(checkBox4Check)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxPecho(checkBox1Check)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxEspalda(checkBox2Check)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxHombro(checkBox3Check)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxCuadriceps(checkBox5Check)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxFemoral(checkBox6Check)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxGemelos(checkBox7Check)
+                }
+                scope.launch {
+                    dataStore.setCheckBoxGluteo(checkBox8Check)
+                }
+                scope.launch {
+                    dataStore.setRadioButtonPartOfBody(radioButtonCheck)
+                }
+                Toast.makeText(contextForToast, context.getString(R.string.text_save), Toast.LENGTH_LONG).show()
+                navController.navigate(com.example.gymapp.Model.Routes.Principal.route)
             }
 
-            navController.navigate(com.example.gymapp.Model.Routes.Principal.route)
         },
             shape = misFormas.large
         ) {
