@@ -8,7 +8,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +23,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -31,11 +31,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -48,25 +48,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.compose.AppTheme
 import com.example.gymapp.data.SettingsDataStore
 import com.example.gymapp.ui.theme.misFormas
 import kotlinx.coroutines.launch
 
-class Settings : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            AppTheme {
-                SettingsContent()
-            }
-        }
-    }
-}
 
 @Composable
-fun SettingsContent(){
+fun SettingsContent(navController: NavHostController){
 
     val context = LocalContext.current
 
@@ -156,67 +146,99 @@ fun SettingsContent(){
         horizontalAlignment = Alignment.CenterHorizontally
 
     ){
-        Text(
-            text = context.getString(R.string.configuration_title),
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.primary,
-            style = MaterialTheme.typography.displayLarge,
-            modifier = Modifier.padding(30.dp)
-        )
+        GenerateTitle(context.getString(R.string.configuration_title))
+
+
         Image(
             painter = painterResource(R.drawable.configuracion),
             contentDescription = "Imagen Configuración",
             modifier = Modifier.size(250.dp)
         )
-        Text(
-            text = context.getString(R.string.select_zone_text),
-            textAlign = TextAlign.Justify,
-            color = MaterialTheme.colorScheme.secondary,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(15.dp)
-        )
+
+        GenerateText(context.getString(R.string.select_zone_text))
+
         Column(verticalArrangement = Arrangement.spacedBy(-18.dp, Alignment.CenterVertically)){
             GenerateRadioButton(context.getString(R.string.fullbody_text), 1, radioButtonCheck){state -> radioButtonCheck = state}
             GenerateRadioButton(context.getString(R.string.upperbody_text), 2, radioButtonCheck) {state -> radioButtonCheck = state}
             GenerateRadioButton(context.getString(R.string.legs_text), 3, radioButtonCheck) {state -> radioButtonCheck = state}
         }
-        Text(
-            text = context.getString(R.string.select_muscles_text),
-            textAlign = TextAlign.Justify,
-            color = MaterialTheme.colorScheme.secondary,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(15.dp)
-        )
+
+        GenerateText(context.getString(R.string.select_muscles_text))
+
+
         Column() {
-            //Muestra los musculos a entrenar según la parte del cuerpo seleccionada en los radio buttons
-            if(radioButtonCheck == 1 || radioButtonCheck == 2){
+
+            if(radioButtonCheck == 1){
+
                 Row(horizontalArrangement = Arrangement.spacedBy(40.dp)) {
-                    GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
-                    GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) {state -> checkBox2Check = state}
+                    Column {
+
+                        GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
+                        GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) {state -> checkBox2Check = state}
+                        GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) {state -> checkBox5Check = state}
+                        GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) {state -> checkBox6Check = state}
+                    }
+
+                    Column {
+
+                        GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) {state -> checkBox3Check = state}
+                        GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) {state -> checkBox4Check = state}
+                        GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) {state -> checkBox7Check = state}
+                        GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) {state -> checkBox8Check = state}
+                    }
+
+
+
                 }
-                Row(horizontalArrangement = Arrangement.spacedBy(23.dp)) {
-                    GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) {state -> checkBox3Check = state}
-                    GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) {state -> checkBox4Check = state}
-                }
+
+
+
             }
-            if(radioButtonCheck == 1 || radioButtonCheck == 3){
-                Row() {
-                    GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) {state -> checkBox5Check = state}
-                    GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) {state -> checkBox6Check = state}
+
+            //Muestra los musculos a entrenar según la parte del cuerpo seleccionada en los radio buttons
+            if(radioButtonCheck == 2){
+
+                Row(horizontalArrangement = Arrangement.spacedBy(40.dp)) {
+                    Column {
+
+                        GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
+                        GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) {state -> checkBox2Check = state}
+                    }
+
+                    Column {
+                        GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) {state -> checkBox3Check = state}
+                        GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) {state -> checkBox4Check = state}
+
+                    }
+
                 }
-                Row(horizontalArrangement = Arrangement.spacedBy(17.dp)) {
-                    GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) {state -> checkBox7Check = state}
-                    GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) {state -> checkBox8Check = state}
+
+
+
+            }
+            if(radioButtonCheck == 3){
+
+                Row(horizontalArrangement = Arrangement.spacedBy(0.dp)){
+                    Column {
+
+                        GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) {state -> checkBox5Check = state}
+                        GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) {state -> checkBox6Check = state}
+                    }
+
+                    Column {
+                        GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) {state -> checkBox7Check = state}
+                        GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) {state -> checkBox8Check = state}
+
+                    }
+
                 }
+
+
             }
         }
-        Text(
-            text = context.getString(R.string.select_cardio_text),
-            textAlign = TextAlign.Justify,
-            color = MaterialTheme.colorScheme.secondary,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(15.dp)
-        )
+
+        GenerateText(context.getString(R.string.select_cardio_text))
+
 
         //Switch junto a dropdown
         Row(Modifier.padding(6.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -264,7 +286,7 @@ fun SettingsContent(){
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         },
-            shape = misFormas.small
+            shape = misFormas.large
         ) {
             Text(text = context.getString(R.string.save_button_text))
         }
@@ -272,6 +294,58 @@ fun SettingsContent(){
     }
 }
 
+
+/*
+@Composable
+fun GenerateFullBody(context: Context, checkBox1Check){
+    Row(horizontalArrangement = Arrangement.spacedBy(40.dp)) {
+        Column {
+
+            GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
+            GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) {state -> checkBox2Check = state}
+        }
+
+        Column {
+            GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) {state -> checkBox3Check = state}
+            GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) {state -> checkBox4Check = state}
+
+        }
+
+        Column {
+
+            GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) {state -> checkBox5Check = state}
+            GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) {state -> checkBox6Check = state}
+        }
+
+        Column {
+            GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) {state -> checkBox7Check = state}
+            GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) {state -> checkBox8Check = state}
+
+        }
+
+    }
+}
+*/
+
+@Composable
+fun GenerateTitle(title : String){
+    Text(
+        text = title,
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.colorScheme.secondary,
+        style = MaterialTheme.typography.displayLarge,
+    )
+}
+
+@Composable
+fun GenerateText(text : String){
+    Text(
+        text = text,
+        textAlign = TextAlign.Justify,
+        color = MaterialTheme.colorScheme.secondary,
+        style = MaterialTheme.typography.headlineSmall,
+    )
+}
 
 
 @Composable
@@ -284,7 +358,11 @@ fun GenerateRadioButton(
     Row(Modifier.padding(6.dp), verticalAlignment = Alignment.CenterVertically){
         RadioButton(
             selected = mutable == id,
-            onClick = {lambda(id)}
+            onClick = {lambda(id)},
+            colors = RadioButtonDefaults.colors(
+                selectedColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                unselectedColor = MaterialTheme.colorScheme.primary
+            ),
         )
         Text(
             text = textContent,
@@ -303,7 +381,11 @@ fun GenerateCheckBox(
     Row(Modifier.padding(6.dp), verticalAlignment = Alignment.CenterVertically) {
         Checkbox(
             checked = mutable,
-            onCheckedChange = {lambda(!mutable)}
+            onCheckedChange = {lambda(!mutable)},
+            colors = CheckboxDefaults.colors(
+                checkedColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                uncheckedColor = MaterialTheme.colorScheme.primary
+            ),
         )
         Text(
             text = textContent,

@@ -26,11 +26,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.gymapp.ui.theme.misFormas
 
 
 @Composable
-fun Principal(){
+fun Principal(navController: NavHostController){
     val context = LocalContext.current
 
     Column (
@@ -45,7 +46,7 @@ fun Principal(){
         InsertLogoImage()
         Spacer(modifier = Modifier.height(100.dp))
 
-        InsertButtos(context)
+        InsertButtos(context, navController)
 
     }
 
@@ -65,13 +66,11 @@ fun InsertTitle(context: Context){
 
 
 @Composable
-fun InsertButtos(context : Context){
+fun InsertButtos(context : Context, navController: NavHostController){
 
     // Botón para ir a About Us
-    Button(onClick = {
-        val intent = Intent(context, AboutUs::class.java)
-        context.startActivity(intent)
-    },
+    Button(
+        onClick = {navController.navigate(Destination.AboutUs.route)},
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
@@ -86,10 +85,7 @@ fun InsertButtos(context : Context){
 
 
     // Botón para ir a About App
-    Button(onClick = {
-        val intent = Intent(context, AboutApp::class.java)
-        context.startActivity(intent)
-    },
+    Button(onClick = {navController.navigate(Destination.AboutApp.route)},
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
@@ -103,10 +99,9 @@ fun InsertButtos(context : Context){
 
 
     // Botón para ir a Settings
-    Button(onClick = {
-        val intent = Intent(context, Settings::class.java)
-        context.startActivity(intent)
-    },
+    Button(onClick =
+        {navController.navigate(Destination.Settings.route)}
+    ,
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
