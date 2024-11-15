@@ -283,8 +283,8 @@ fun SettingsContent(navController: NavHostController){
             scope.launch {
                 dataStore.setRadioButtonPartOfBody(radioButtonCheck)
             }
-            val intent = Intent(context, MainActivity::class.java)
-            context.startActivity(intent)
+
+            navController.navigate(com.example.gymapp.Model.Routes.Principal.route)
         },
             shape = misFormas.large
         ) {
@@ -295,37 +295,6 @@ fun SettingsContent(navController: NavHostController){
 }
 
 
-/*
-@Composable
-fun GenerateFullBody(context: Context, checkBox1Check){
-    Row(horizontalArrangement = Arrangement.spacedBy(40.dp)) {
-        Column {
-
-            GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
-            GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) {state -> checkBox2Check = state}
-        }
-
-        Column {
-            GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) {state -> checkBox3Check = state}
-            GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) {state -> checkBox4Check = state}
-
-        }
-
-        Column {
-
-            GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) {state -> checkBox5Check = state}
-            GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) {state -> checkBox6Check = state}
-        }
-
-        Column {
-            GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) {state -> checkBox7Check = state}
-            GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) {state -> checkBox8Check = state}
-
-        }
-
-    }
-}
-*/
 
 @Composable
 fun GenerateTitle(title : String){
