@@ -30,23 +30,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.setPadding
+import androidx.navigation.NavHostController
 import com.example.compose.AppTheme
 import com.example.gymapp.ui.theme.misFormas
 
-class AboutUs : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            AppTheme {
-                AboutUsContent()
-            }
-        }
-    }
-}
 
 @Composable
-fun AboutUsContent() {
+fun AboutUsContent(navController: NavHostController) {
     val context = LocalContext.current
 
 
@@ -93,16 +83,6 @@ fun AboutUsContent() {
             modifier =  Modifier.padding(30.dp)
 
         )
-
-        // Botón para ir a AboutApp
-        Button(onClick = {
-            val intent = Intent(context, AboutApp::class.java)
-            context.startActivity(intent)
-        },
-            shape = misFormas.small
-        ) {
-            Text(text = context.getString(R.string.about_app_title))
-        }
 
 
         //Contacto
