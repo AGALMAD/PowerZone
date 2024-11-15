@@ -29,4 +29,6 @@
     <string name="select_cardio_text">Select if you want cardio</string>
     <string name="select_time_text">Select time</string>
     <string name="save_button_text">Save</string>
+    <string name="text_error">I don\'t recommend you doing leg and cardio on the same day</string>
+    <string name="text_save">Data has been saved successfully!</string>
 </resources>
