@@ -33,23 +33,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.compose.AppTheme
 import com.example.gymapp.ui.theme.misFormas
 
-class AboutApp : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            AppTheme {
-                AboutAppContent()
-            }
-        }
-    }
-}
-
 @Composable
-fun AboutAppContent() {
+fun AboutAppContent(navController: NavHostController) {
     val context = LocalContext.current
 
     // Barra de scroll que recuerda por donde está
@@ -120,15 +109,6 @@ fun AboutAppContent() {
 
             )
 
-            // Botón para ir a AboutUs
-            Button(onClick = {
-                val intent = Intent(context, MainActivity::class.java)
-                context.startActivity(intent)
-            },
-                shape = misFormas.small
-            ) {
-                Text(text = context.getString(R.string.about_us_title))
-            }
 
             // Línea divisoria
             HorizontalDivider(
