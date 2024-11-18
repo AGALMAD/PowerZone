@@ -31,4 +31,9 @@
     <string name="save_button_text">Save</string>
     <string name="text_error">I don\'t recommend you doing leg and cardio on the same day</string>
     <string name="text_save">Data has been saved successfully!</string>
+    <string name="exit_button_title">Exit</string>
+    <string name="exit_title">Are you sure you want to close the app?</string>
+    <string name="exit_description">Any unsaved changes will be lost.</string>
+    <string name="exit_confirm">Confirm</string>
+    <string name="exit_cancel">Cancel</string>
 </resources>
