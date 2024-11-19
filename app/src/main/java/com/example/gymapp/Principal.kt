@@ -157,6 +157,8 @@ fun InsertButtos(context: Context, navController: NavHostController) {
 }
 
 
+//Hacer dialogo general ????
+
 @Composable
 fun ExitAlertDialogDoc(showDialog: MutableState<Boolean>, context: Context) {
 
