@@ -1,9 +1,10 @@
 package com.example.gymapp.Model
 
 sealed class Routes(val route : String) {
-    object Principal : Routes("Principal");
-    object AboutUs : Routes("AboutUs");
-    object AboutApp : Routes("AboutApp");
-    object Settings : Routes("Settings");
-
+    data object Principal : Routes("Principal");
+    data object AboutUs : Routes("AboutUs");
+    data object AboutApp : Routes("AboutApp");
+    data object Settings : Routes("Settings");
+    data object Login : Routes("Login");
+    data object Register : Routes("Register");
 }
