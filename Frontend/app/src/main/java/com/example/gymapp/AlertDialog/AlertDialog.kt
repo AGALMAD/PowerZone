@@ -12,7 +12,7 @@ fun AlertDialog(title : String,
                 description : String,
                 icon : ImageBitmap,
                 confirmText : String,
-                dismisText : String,
+                dismissText : String,
                 confirm: () -> Unit,
                 dismiss: () -> Unit)
 {
@@ -44,7 +44,7 @@ fun AlertDialog(title : String,
                     dismiss()
                 }
             ) {
-                Text(dismisText)
+                Text(dismissText)
             }
         },
     )

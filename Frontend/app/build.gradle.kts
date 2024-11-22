@@ -70,10 +70,19 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-
+    //Data Store
     implementation("androidx.datastore:datastore-preferences:1.1.1")
-
+    //Navegación
     implementation("androidx.navigation:navigation-compose:2.8.4")
+
+    //Consumo de APIs con Retrofit 2
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")
+
+    //para Retrofit2 y Converter-Gson para cargar imágenes desde Internet de forma asíncrona
+    implementation("io.coil-kt.coil3:coil-compose:3.0.2")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.2")
 
 
 }

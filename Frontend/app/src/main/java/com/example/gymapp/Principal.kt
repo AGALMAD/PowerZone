@@ -158,7 +158,7 @@ fun InsertButtos(context: Context, navController: NavHostController) {
             description =  context.getString(R.string.exit_description),
             icon = imageBitmap,
             confirmText =  context.getString(R.string.exit_confirm),
-            dismisText = context.getString(R.string.exit_cancel),
+            dismissText = context.getString(R.string.exit_cancel),
             confirm = {
                 activity?.finish()
                 showDialog.value = false
