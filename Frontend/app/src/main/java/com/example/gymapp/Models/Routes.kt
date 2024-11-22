@@ -1,4 +1,4 @@
-package com.example.gymapp.Model
+package com.example.gymapp.Models
 
 sealed class Routes(val route : String) {
     data object Principal : Routes("Principal");

@@ -1,9 +1,9 @@
-package com.example.gymapp
+package com.example.gymapp.Login
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 
 @Composable
-fun Login(navController: NavHostController){
+fun Register(navController: NavHostController){
 
 }

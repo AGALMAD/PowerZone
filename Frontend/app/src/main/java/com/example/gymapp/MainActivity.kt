@@ -8,7 +8,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.AppTheme
-import com.example.gymapp.Model.Routes
+import com.example.gymapp.AppInformation.AboutAppContent
+import com.example.gymapp.AppInformation.AboutUsContent
+import com.example.gymapp.Models.Routes
+import com.example.gymapp.Settings.SettingsContent
 
 
 class MainActivity : ComponentActivity() {

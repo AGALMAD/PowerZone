@@ -1,11 +1,6 @@
-package com.example.gymapp
+package com.example.gymapp.Settings
 
-import android.content.Intent
-import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -50,7 +45,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.compose.AppTheme
+import com.example.gymapp.R
 import com.example.gymapp.data.SettingsDataStore
 import com.example.gymapp.ui.theme.misFormas
 import kotlinx.coroutines.launch
@@ -161,9 +156,9 @@ fun SettingsContent(navController: NavHostController){
         GenerateText(context.getString(R.string.select_zone_text))
 
         Column(verticalArrangement = Arrangement.spacedBy(-18.dp, Alignment.CenterVertically)){
-            GenerateRadioButton(context.getString(R.string.fullbody_text), 1, radioButtonCheck){state -> radioButtonCheck = state}
-            GenerateRadioButton(context.getString(R.string.upperbody_text), 2, radioButtonCheck) {state -> radioButtonCheck = state}
-            GenerateRadioButton(context.getString(R.string.legs_text), 3, radioButtonCheck) {state -> radioButtonCheck = state}
+            GenerateRadioButton(context.getString(R.string.fullbody_text), 1, radioButtonCheck){ state -> radioButtonCheck = state}
+            GenerateRadioButton(context.getString(R.string.upperbody_text), 2, radioButtonCheck) { state -> radioButtonCheck = state}
+            GenerateRadioButton(context.getString(R.string.legs_text), 3, radioButtonCheck) { state -> radioButtonCheck = state}
         }
 
         GenerateText(context.getString(R.string.select_muscles_text))
@@ -176,18 +171,18 @@ fun SettingsContent(navController: NavHostController){
                 Row(horizontalArrangement = Arrangement.spacedBy(40.dp)) {
                     Column {
 
-                        GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
-                        GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) {state -> checkBox2Check = state}
-                        GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) {state -> checkBox5Check = state}
-                        GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) {state -> checkBox6Check = state}
+                        GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) { state -> checkBox1Check = state}
+                        GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) { state -> checkBox2Check = state}
+                        GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) { state -> checkBox5Check = state}
+                        GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) { state -> checkBox6Check = state}
                     }
 
                     Column {
 
-                        GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) {state -> checkBox3Check = state}
-                        GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) {state -> checkBox4Check = state}
-                        GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) {state -> checkBox7Check = state}
-                        GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) {state -> checkBox8Check = state}
+                        GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) { state -> checkBox3Check = state}
+                        GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) { state -> checkBox4Check = state}
+                        GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) { state -> checkBox7Check = state}
+                        GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) { state -> checkBox8Check = state}
                     }
 
 
@@ -204,13 +199,13 @@ fun SettingsContent(navController: NavHostController){
                 Row(horizontalArrangement = Arrangement.spacedBy(40.dp)) {
                     Column {
 
-                        GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) {state -> checkBox1Check = state}
-                        GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) {state -> checkBox2Check = state}
+                        GenerateCheckBox(context.getString(R.string.chest_text), checkBox1Check) { state -> checkBox1Check = state}
+                        GenerateCheckBox(context.getString(R.string.back_text), checkBox2Check) { state -> checkBox2Check = state}
                     }
 
                     Column {
-                        GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) {state -> checkBox3Check = state}
-                        GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) {state -> checkBox4Check = state}
+                        GenerateCheckBox(context.getString(R.string.shoulder_text), checkBox3Check) { state -> checkBox3Check = state}
+                        GenerateCheckBox(context.getString(R.string.arm_text), checkBox4Check) { state -> checkBox4Check = state}
 
                     }
 
@@ -224,13 +219,13 @@ fun SettingsContent(navController: NavHostController){
                 Row(horizontalArrangement = Arrangement.spacedBy(0.dp)){
                     Column {
 
-                        GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) {state -> checkBox5Check = state}
-                        GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) {state -> checkBox6Check = state}
+                        GenerateCheckBox(context.getString(R.string.quadriceps_text), checkBox5Check) { state -> checkBox5Check = state}
+                        GenerateCheckBox(context.getString(R.string.hamstrings_text), checkBox6Check) { state -> checkBox6Check = state}
                     }
 
                     Column {
-                        GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) {state -> checkBox7Check = state}
-                        GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) {state -> checkBox8Check = state}
+                        GenerateCheckBox(context.getString(R.string.calf_text), checkBox7Check) { state -> checkBox7Check = state}
+                        GenerateCheckBox(context.getString(R.string.glute_text), checkBox8Check) { state -> checkBox8Check = state}
 
                     }
 
@@ -292,7 +287,7 @@ fun SettingsContent(navController: NavHostController){
                     dataStore.setRadioButtonPartOfBody(radioButtonCheck)
                 }
                 Toast.makeText(contextForToast, context.getString(R.string.text_save), Toast.LENGTH_LONG).show()
-                navController.navigate(com.example.gymapp.Model.Routes.Principal.route)
+                navController.navigate(com.example.gymapp.Models.Routes.Principal.route)
             }
 
         },
