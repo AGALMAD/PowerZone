@@ -1,4 +1,4 @@
-package com.example.gymapp.data
+package com.example.gymapp.Data
 
 import android.content.Context
 import androidx.datastore.core.DataStore

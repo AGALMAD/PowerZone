@@ -27,7 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.gymapp.Models.Routes
+import com.example.gymapp.Data.Routes
 import com.example.gymapp.ui.theme.misFormas
 import com.example.gymapp.AlertDialog.AlertDialog
 
@@ -171,6 +171,29 @@ fun InsertButtos(context: Context, navController: NavHostController) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+foreach
+textos.mapIndexed { index, item -> */
+
+//List<() -> Unit>
 
 
 

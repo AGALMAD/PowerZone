@@ -46,7 +46,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.gymapp.R
-import com.example.gymapp.data.SettingsDataStore
+import com.example.gymapp.Data.Routes
+import com.example.gymapp.Data.SettingsDataStore
 import com.example.gymapp.ui.theme.misFormas
 import kotlinx.coroutines.launch
 
@@ -287,7 +288,7 @@ fun SettingsContent(navController: NavHostController){
                     dataStore.setRadioButtonPartOfBody(radioButtonCheck)
                 }
                 Toast.makeText(contextForToast, context.getString(R.string.text_save), Toast.LENGTH_LONG).show()
-                navController.navigate(com.example.gymapp.Models.Routes.Principal.route)
+                navController.navigate(Routes.Principal.route)
             }
 
         },
