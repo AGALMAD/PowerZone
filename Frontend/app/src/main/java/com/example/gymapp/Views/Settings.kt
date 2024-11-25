@@ -1,4 +1,4 @@
-package com.example.gymapp.Settings
+package com.example.gymapp.Views
 
 import android.widget.Toast
 import androidx.compose.foundation.Image

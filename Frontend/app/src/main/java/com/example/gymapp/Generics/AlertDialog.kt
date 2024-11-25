@@ -1,4 +1,4 @@
-package com.example.gymapp.AlertDialog
+package com.example.gymapp.Generics
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text

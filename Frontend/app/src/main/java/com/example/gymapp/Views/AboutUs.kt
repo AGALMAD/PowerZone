@@ -1,4 +1,4 @@
-package com.example.gymapp.AppInformation
+package com.example.gymapp.Views
 
 import android.content.Intent
 import android.net.Uri

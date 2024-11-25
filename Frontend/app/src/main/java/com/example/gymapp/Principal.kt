@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.gymapp.Data.Routes
 import com.example.gymapp.ui.theme.misFormas
-import com.example.gymapp.AlertDialog.AlertDialog
+import com.example.gymapp.Generics.AlertDialog
 
 
 
