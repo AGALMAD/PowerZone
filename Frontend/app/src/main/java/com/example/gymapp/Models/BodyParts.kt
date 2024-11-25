@@ -4,5 +4,6 @@ package com.example.gymapp.Models
 
 data class BodyParts(
     val id: String,
-
+    val title: String,
+    val imageUrl: String
 )
