@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface BodyPartsService {
     @GET("bodyParts")
-    suspend fun getCreditCards(): List<BodyParts>
+    suspend fun getBodyParts(): List<BodyParts>
 }

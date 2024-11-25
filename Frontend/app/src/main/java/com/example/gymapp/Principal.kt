@@ -116,6 +116,20 @@ fun InsertButtos(context: Context, navController: NavHostController) {
 
     Spacer(modifier = Modifier.height(20.dp))
 
+    // Botón para ir al apartado para aprender la tecnica de los ejercicios
+    Button(onClick =
+    { navController.navigate(Routes.BodyPartsScreen.route) },
+        shape = misFormas.small,
+        modifier = Modifier.width(250.dp)
+
+    ) {
+        Text(
+            text = context.getString(R.string.bodyPartsButtonTitle),
+            style = MaterialTheme.typography.headlineSmall,
+        )
+    }
+
+    Spacer(modifier = Modifier.height(20.dp))
 
     // Botón para ir a Settings
     Button(onClick =
