@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "title": "Pecho",
+        "imageUrl": "https://entrenadorpersonalsevilla.es/wp-content/uploads/2024/08/ejercicios-rutina-pecho-gimnasio.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Espalda",
+        "imageUrl": "https://www.ericfavre.com/lifestyle/es/wp-content/uploads/sites/8/2021/09/iStock-155244530-1024x836-1.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Biceps",
+        "imageUrl": "https://st2.depositphotos.com/1909187/10981/i/950/depositphotos_109810972-stock-photo-biceps-muscles-anatomy-muscles-isolated.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Triceps",
+        "imageUrl": "https://www.hola.com/horizon/original_aspect_ratio/4d8ac4079c2e-ejercicios-triceps5-a.jpg" 
+    },
+    {
+        "id": 5,
+        "title": "Hombros",
+        "imageUrl": "https://media.istockphoto.com/id/533845828/es/foto/deltoris-m%C3%BAsculos-anterior-de-la-anatom%C3%ADa-m%C3%BAsculos-aislado-sobre-blanco.jpg?s=612x612&w=0&k=20&c=08Szy-9VJSciUsSk3U95EcE_QU88gw-7tqRaBwrxid0="
+    },
+    {
+        "id": 6,
+        "title": "Abdominales",
+        "imageUrl": "https://www.ericfavre.com/lifestyle/es/wp-content/uploads/sites/8/2021/09/approche-biomecanique-1024x1024-1.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Cuadriceps",
+        "imageUrl": "https://www.escuelaculturismonatural.com/wp-content/uploads/2022/08/Quadriceps-muscles-e1660481667161.png"
+    },
+    {
+        "id": 8,
+        "title": "Isquios",
+        "imageUrl": "https://fisioterapiaenforma.com/wp-content/uploads/2018/05/450_1000.jpg"
+    },
+    {
+        "id": 9,
+        "title": "Gluteo",
+        "imageUrl": "https://media.istockphoto.com/id/531791950/es/foto/los-m%C3%BAsculos-gl%C3%BAteos-gl%C3%BAteo-maximus-de-anatom%C3%ADa-m%C3%BAsculos-aislado.jpg?s=612x612&w=0&k=20&c=1A8R89LrOsVuAEMwstVl_A9-s_lU_2G5U2yFLaM4pPU="
+    },
+    {
+        "id": 10,
+        "title": "Gemelos",
+        "imageUrl": "https://porunavidaactiva.es/wp-content/uploads/2021/11/3.-1024x1024.jpg"
+    }
+]

@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">GymApp</string>
+    <string name="about_us_title">Sobre Nosotros</string>
+    <string name="about_us_text">Somos una aplicación creada para llevar tu experiencia de entrenamiento al siguiente nivel. Nos apasiona ayudarte a alcanzar tus metas de fitness, desde perder peso, ganar músculo o simplemente mejorar tu salud y bienestar. Nuestra plataforma te conecta con entrenadores certificados, programas personalizados y un conjunto de herramientas avanzadas para que optimices cada minuto que dediques a entrenar</string>
+    <string name="collaborators_title">Colaboradores</string>
+    <string name="about_app_title">Sobre la App</string>
+    <string name="authors_text">Autores</string>
+    <string name="description_Ale">Como desarrollador full-stack, Alejandro ha construido la estructura técnica de Power Zone, asegurando que la app sea rápida, segura y confiable en todo momento.</string>
+    <string name="description_Daniel">Especialista en desarrollo móvil y diseño de interfaz, Daniel ha creado una experiencia intuitiva y atractiva en Power Zone para que los usuarios naveguen fácilmente y se motiven en su entrenamiento.</string>
+    <string name="licence_text">Se permite el uso, copia y modificación de esta aplicación sin costo, tanto para uso personal como comercial, siempre que se mantenga este aviso de licencia. No se permite la venta directa de la aplicación, pero puede incluirse como parte de otros servicios.</string>
+    <string name="appTitle">Crea tu rutina a medida</string>
+    <string name="settingsTitle">Ajustes</string>
+
+
+    <string name="configuration_title">Configuración de rutina</string>
+    <string name="fullbody_text">Cuerpo completo</string>
+    <string name="select_zone_text">Seleccione la zona a entrenar:</string>
+    <string name="upperbody_text">Tren superior</string>
+    <string name="legs_text">Piernas</string>
+    <string name="select_muscles_text">Seleccione los musculos a entrenar:</string>
+    <string name="chest_text">Pecho</string>
+    <string name="back_text">Espalda</string>
+    <string name="shoulder_text">Hombro</string>
+    <string name="quadriceps_text">Cuadriceps</string>
+    <string name="calf_text">Gemelos</string>
+    <string name="arm_text">Brazo</string>
+    <string name="hamstrings_text">Femoral</string>
+    <string name="glute_text">Gluteo</string>
+    <string name="select_cardio_text">Seleccione si quiere cardio:</string>
+    <string name="select_time_text">Seleccionar tiempo</string>
+    <string name="save_button_text">Guardar</string>
+    <string name="text_error">No te recomiendo hacer pierna y cardio el mismo día</string>
+    <string name="text_save">¡Los datos han sido guardados con exito!</string>
+    <string name="exit_button_title">Salir</string>
+    <string name="exit_title">¿Seguro que deseas cerrar la aplicación?</string>
+    <string name="exit_description">Todos los cambios no guardados se perderán.</string>
+    <string name="exit_confirm">Aceptar</string>
+    <string name="exit_cancel">Cancelar</string>
+    <string name="bodyPartsButtonTitle">Aprender</string>
+</resources>
