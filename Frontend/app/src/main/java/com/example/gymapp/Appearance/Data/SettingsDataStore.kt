@@ -1,4 +1,4 @@
-package com.example.gymapp.Data
+package com.example.gymapp.Appearance.Data
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -19,7 +19,8 @@ class SettingsDataStore(private val context: Context) {
     // to make sure there's only one instance
     companion object {
         private val Context.dataStoreSettings: DataStore<Preferences> by preferencesDataStore(
-            dataStoreName)
+            dataStoreName
+        )
 
         //Radio Buttons
         val radioButtonPartOfBody = intPreferencesKey("radioButtonPartOfBody")

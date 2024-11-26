@@ -1,11 +1,11 @@
-package com.example.ViewModels
+package com.example.gymapp.GymApi.ViewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gymapp.Models.BodyParts
-import com.example.gymapp.Repositories.BodyPartsRepository
+import com.example.gymapp.GymApi.Models.BodyParts
+import com.example.gymapp.GymApi.Repositories.BodyPartsRepository
 import kotlinx.coroutines.launch
 
 class BodyPartsViewModel : ViewModel() {

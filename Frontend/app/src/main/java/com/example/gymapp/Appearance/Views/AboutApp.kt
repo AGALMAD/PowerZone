@@ -1,4 +1,4 @@
-package com.example.gymapp.Views
+package com.example.gymapp.Appearance.Views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

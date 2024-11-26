@@ -1,4 +1,4 @@
-package com.example.gymapp.ui.theme
+package com.example.gymapp.Appearance.Themes
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

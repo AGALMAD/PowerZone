@@ -1,7 +1,7 @@
-package com.example.gymapp.Repositories
+package com.example.gymapp.GymApi.Repositories
 
-import com.example.gymapp.Models.BodyParts
-import com.example.gymapp.Models.RetrofitInstance
+import com.example.gymapp.GymApi.Models.BodyParts
+import com.example.gymapp.GymApi.Models.RetrofitInstance
 
 class BodyPartsRepository {
     private val bodyPartsService = RetrofitInstance.bodyPartsService

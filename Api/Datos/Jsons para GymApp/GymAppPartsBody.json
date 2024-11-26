@@ -46,6 +46,11 @@
     },
     {
         "id": 10,
+        "title": "Abductor",
+        "imageUrl": "https://dkniberica.es/wp-content/uploads/2017/09/MP-U218_muscles-1.jpg"
+    },
+    {
+        "id": 11,
         "title": "Gemelos",
         "imageUrl": "https://porunavidaactiva.es/wp-content/uploads/2021/11/3.-1024x1024.jpg"
     }

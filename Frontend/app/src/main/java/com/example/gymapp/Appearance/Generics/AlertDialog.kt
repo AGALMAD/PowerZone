@@ -1,4 +1,4 @@
-package com.example.gymapp.Generics
+package com.example.gymapp.Appearance.Generics
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
