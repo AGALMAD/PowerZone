@@ -1,0 +1,765 @@
+[
+    {
+        "id": 1,
+        "title": "Press Banca",
+        "bodyPartsId": [
+            1,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/e7oz2OHA_8U"
+    },
+    {
+        "id": 2,
+        "title": "Press banca en multipower",
+        "bodyPartsId": [
+            1,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=2zXqt08top8"
+    },
+    {
+        "id": 3,
+        "title": "Press plano con mancuernas",
+        "bodyPartsId": [
+            1,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=GCT0ieKgYcA"
+    },
+    {
+        "id": 4,
+        "title": "Press inclinado barra libre",
+        "bodyPartsId": [
+            1,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/SqT0lZDPm-Y"
+    },
+    {
+        "id": 5,
+        "title": "Press inclinado con mancuernas",
+        "bodyPartsId": [
+            1,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=XbTgnX2vRhw"
+    },
+    {
+        "id": 6,
+        "title": "Press inclinado en multipower",
+        "bodyPartsId": [
+            1,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/mUz3jOGyN_c"
+    },
+    {
+        "id": 7,
+        "title": "Fondos en paralelas",
+        "bodyPartsId": [
+            1,
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=mn_sF2GHgdA"
+    },
+    {
+        "id": 8,
+        "title": "Aperturas con mancuernas",
+        "bodyPartsId": [
+            1,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=AYWpCfLcYYg"
+    },
+    {
+        "id": 9,
+        "title": "Aperturas con poleas",
+        "bodyPartsId": [
+            1
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/_imudhDDzeE"
+    },
+    {
+        "id": 10,
+        "title": "Aperturas en Peck Deck",
+        "bodyPartsId": [
+            1
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/HL88KYqhzQI"
+    },
+    {
+        "id": 11,
+        "title": "Press de pecho en maquina",
+        "bodyPartsId": [
+            1
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/GdBPBEKASZc"
+    },
+    {
+        "id": 12,
+        "title": "Flexiones",
+        "bodyPartsId": [
+            1,
+            3,
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/WjdE5DLGDdo"
+    },
+    {
+        "id": 13,
+        "title": "Peso Muerto Convencional",
+        "bodyPartsId": [
+            2,
+            8,
+            9
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=kancsOn7CJY"
+    },
+    {
+        "id": 14,
+        "title": "Dominadas",
+        "bodyPartsId": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/P2_vQVkhNe8"
+    },
+    {
+        "id": 15,
+        "title": "Remo con barra",
+        "bodyPartsId": [
+            2
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/VSdKfoQxj5o"
+    },
+    {
+        "id": 16,
+        "title": "Remo con mancuernas",
+        "bodyPartsId": [
+            2
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/LqABL2XAaDU"
+    },
+    {
+        "id": 17,
+        "title": "Jalon al pecho abierto",
+        "bodyPartsId": [
+            1,
+            2
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/27w6LI1SOVw"
+    },
+    {
+        "id": 18,
+        "title": "Jalon al pecho cerrado",
+        "bodyPartsId": [
+            1,
+            2
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/YR4Ytkhtihs"
+    },
+    {
+        "id": 19,
+        "title": "Pull over polea",
+        "bodyPartsId": [
+            2,
+            3,
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/E7CiaycXvXU"
+    },
+    {
+        "id": 20,
+        "title": "Remo dorian",
+        "bodyPartsId": [
+            2
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/ByXkoF4bUzE"
+    },
+    {
+        "id": 21,
+        "title": "Remo en punta",
+        "bodyPartsId": [
+            2
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/yDmHuJiww7s"
+    },
+    {
+        "id": 22,
+        "title": "Remo gironda",
+        "bodyPartsId": [
+            2
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=zw61pfKk2QA"
+    },
+    {
+        "id": 23,
+        "title": "Hiperextensiones ",
+        "bodyPartsId": [
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/-2ZGvGo-gxU"
+    },
+    {
+        "id": 24,
+        "title": "Curl con mancuernas ",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/yc4vQ_SZHZo"
+    },
+    {
+        "id": 25,
+        "title": "Curl mancuernas banco inclinado ",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=m2VZFlcJsaM"
+    },
+    {
+        "id": 26,
+        "title": "Curl martillo ",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/F9NYetV2598"
+    },
+    {
+        "id": 27,
+        "title": "Curl predicador",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/DexXfhFfk1w"
+    },
+    {
+        "id": 28,
+        "title": "Curl con barra Z",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/vTS_jOPZRnQ"
+    },
+    {
+        "id": 29,
+        "title": "Curl martillo con cuerda en polea ",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=fx9VW2lDx_s"
+    },
+    {
+        "id": 30,
+        "title": "Curl en polea",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/ABLyVJ-TrWw"
+    },
+    {
+        "id": 31,
+        "title": "Curl arana",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/kJgdbUad2J4"
+    },
+    {
+        "id": 32,
+        "title": "Fondos cerrados",
+        "bodyPartsId": [
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=mn_sF2GHgdA"
+    },
+    {
+        "id": 33,
+        "title": "Extensiones de triceps con cuerda en polea alta ",
+        "bodyPartsId": [
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/FELcywKlkqE"
+    },
+    {
+        "id": 34,
+        "title": "Extensiones de triceps con barra en polea alta",
+        "bodyPartsId": [
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/smLEQsRMnc8"
+    },
+    {
+        "id": 35,
+        "title": "Press frances",
+        "bodyPartsId": [
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/DFFD1LU_iXw"
+    },
+    {
+        "id": 36,
+        "title": "Extensiones por encima de la cabeza con mancuerna ",
+        "bodyPartsId": [
+            4
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/tx-TgvQCJpQ"
+    },
+    {
+        "id": 37,
+        "title": "Press militar con mancuernas",
+        "bodyPartsId": [
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/PWtkHROaH3Y"
+    },
+    {
+        "id": 38,
+        "title": "Press militar con barra",
+        "bodyPartsId": [
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=WMybdygbx70"
+    },
+    {
+        "id": 39,
+        "title": "Press militar en multipower",
+        "bodyPartsId": [
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/PWtkHROaH3Y"
+    },
+    {
+        "id": 40,
+        "title": "Laterales con mancuernas",
+        "bodyPartsId": [
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=x-Mvtdu8vGE"
+    },
+    {
+        "id": 41,
+        "title": "Laterales en polea",
+        "bodyPartsId": [
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/1ja3aMk0EBY"
+    },
+    {
+        "id": 42,
+        "title": "Face pull",
+        "bodyPartsId": [
+            4,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=X-xCQ1gh-kA"
+    },
+    {
+        "id": 43,
+        "title": "Pajaros con mancuernas ",
+        "bodyPartsId": [
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/4MqI-dhHP5E"
+    },
+    {
+        "id": 44,
+        "title": "Posterior en peck deck",
+        "bodyPartsId": [
+            2,
+            5
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/JyPNDIXjHsw"
+    },
+    {
+        "id": 45,
+        "title": "Abdominales basicos ",
+        "bodyPartsId": [
+            6
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/dkre_BgX9lo"
+    },
+    {
+        "id": 46,
+        "title": "Abdominales con cuerda en polea alta",
+        "bodyPartsId": [
+            6
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/GtLSlLQIIEg"
+    },
+    {
+        "id": 47,
+        "title": "Elevaciones de piernas colgado ",
+        "bodyPartsId": [
+            6
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/Dk0mwpAYUwo"
+    },
+    {
+        "id": 48,
+        "title": "Rodillo abdominal ",
+        "bodyPartsId": [
+            6
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/pTOsnzYMiXc"
+    },
+    {
+        "id": 49,
+        "title": "Sentadilla libre",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=ynHkL5QoO1U"
+    },
+    {
+        "id": 50,
+        "title": "Sentadilla frontal ",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=ynHkL5QoO1U"
+    },
+    {
+        "id": 51,
+        "title": "Sentadilla en multipower",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/1y3D2I1cquU"
+    },
+    {
+        "id": 52,
+        "title": "Sentadilla bulgara",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/QuKHDwIocyg"
+    },
+    {
+        "id": 53,
+        "title": "Sentadilla hack",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/itmlCUc0P3k"
+    },
+    {
+        "id": 54,
+        "title": "Prensa Inclinada",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=SBynQ6-DyKo"
+    },
+    {
+        "id": 56,
+        "title": "Extensiones de cuadriceps",
+        "bodyPartsId": [
+            4,
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/eLpq_JDXEyM"
+    },
+    {
+        "id": 57,
+        "title": "Zancadas",
+        "bodyPartsId": [
+            7,
+            9
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/KQqsS39XC5w"
+    },
+    {
+        "id": 58,
+        "title": "Peso muerto convencional",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=kancsOn7CJY"
+    },
+    {
+        "id": 59,
+        "title": "Peso muerto rumano",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=rjvlSfZ-PQw"
+    },
+    {
+        "id": 60,
+        "title": "Peso muerto piernas rigidas",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/k3Bz0Bfpf7Q"
+    },
+    {
+        "id": 61,
+        "title": "Peso muerto con mancuernas",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/H0_gj6e4sEk"
+    },
+    {
+        "id": 62,
+        "title": "Buenos dias con barra",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=dpfRXzAh7OE"
+    },
+    {
+        "id": 63,
+        "title": "Femoral Sentado en maquina",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/zM0KBAKdJsU"
+    },
+    {
+        "id": 64,
+        "title": "Femoral Tumbado en maquina",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=locj9zuXya0"
+    },
+    {
+        "id": 65,
+        "title": "Curl Femoral en polea baja unilateral",
+        "bodyPartsId": [
+            3,
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=cX-MeEUw6jU"
+    },
+    {
+        "id": 66,
+        "title": "Peso muerto convencional",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=kancsOn7CJY"
+    },
+    {
+        "id": 67,
+        "title": "Peso muerto rumano",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=rjvlSfZ-PQw"
+    },
+    {
+        "id": 68,
+        "title": "Peso muerto piernas rigidas",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/k3Bz0Bfpf7Q"
+    },
+    {
+        "id": 69,
+        "title": "Peso muerto con mancuernas",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/H0_gj6e4sEk"
+    },
+    {
+        "id": 70,
+        "title": "Peso muerto sumo",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=zYQJqiZ2zE0"
+    },
+    {
+        "id": 71,
+        "title": "Buenos dias con barra",
+        "bodyPartsId": [
+            2,
+            6,
+            7,
+            8,
+            9
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=dpfRXzAh7OE"
+    },
+    {
+        "id": 72,
+        "title": "Sentadilla libre",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=ynHkL5QoO1U"
+    },
+    {
+        "id": 73,
+        "title": "Sentadilla bulgara ",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/QuKHDwIocyg"
+    },
+    {
+        "id": 74,
+        "title": "Zancadas Gluteos ",
+        "bodyPartsId": [
+            9
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/Uipvz4alrA4"
+    },
+    {
+        "id": 75,
+        "title": "Hip Thrusts ",
+        "bodyPartsId": [
+            9
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/-ixNDLx3LL0"
+    },
+    {
+        "id": 76,
+        "title": "Patadas de gluteo ",
+        "bodyPartsId": [
+            9
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/rrhcfdBFz9s"
+    },
+    {
+        "id": 77,
+        "title": "Sentadilla sumo ",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/XtqCgYKBtTI"
+    },
+    {
+        "id": 78,
+        "title": "Peso muerto sumo",
+        "bodyPartsId": [
+            8
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=zYQJqiZ2zE0"
+    },
+    {
+        "id": 79,
+        "title": "Sentadilla sumo",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/shorts/XtqCgYKBtTI"
+    },
+    {
+        "id": 80,
+        "title": "Abductor en maquina",
+        "bodyPartsId": [],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=4CaBBmSWbwM"
+    },
+    {
+        "id": 81,
+        "title": "Curl Copenhague",
+        "bodyPartsId": [
+            3
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=iT6hOyyAwcI"
+    },
+    {
+        "id": 82,
+        "title": "Elevaciones de talones de pie y soleo sentado",
+        "bodyPartsId": [
+            10
+        ],
+        "imageUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=1H-k_qhur-g"
+    }
+]

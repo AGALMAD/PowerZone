@@ -36,4 +36,5 @@
     <string name="exit_description">Todos los cambios no guardados se perderán.</string>
     <string name="exit_confirm">Aceptar</string>
     <string name="exit_cancel">Cancelar</string>
+    <string name="bodyPartsButtonTitle">Aprender</string>
 </resources>
