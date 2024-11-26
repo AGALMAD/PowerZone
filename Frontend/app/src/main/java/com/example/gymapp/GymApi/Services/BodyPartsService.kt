@@ -4,6 +4,6 @@ import com.example.gymapp.GymApi.Models.BodyParts
 import retrofit2.http.GET
 
 interface BodyPartsService {
-    @GET("bodyParts")
+    @GET("69708275-6dc6-4bb4-a741-6e777627770c/")
     suspend fun getBodyParts(): List<BodyParts>
 }
