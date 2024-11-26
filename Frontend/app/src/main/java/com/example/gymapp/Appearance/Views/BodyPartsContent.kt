@@ -1,15 +1,21 @@
 package com.example.gymapp.Appearance.Views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,7 +44,7 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
         viewModel.fetchBodyParts()
     }
 
-    Column (modifier = Modifier.background(MaterialTheme.colorScheme.background)){
+    Column(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
         if (bodyParts.isEmpty()) {
             // Mustra una barra circular mientras cargan las imágenes
             CircularProgressIndicator()
@@ -47,34 +53,48 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
             // carga los elementos visibles
             LazyColumn {
                 items(bodyParts) { bodyPart ->
-                    Column(
+                    Card(
+                        onClick = { /* Do something */ },
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 12.dp
+                        ),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surface,
+                        ),
+
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp) // Espaciado entre elementos
+
                     ) {
-                        Text(
-                            text = bodyPart.title,
-                            textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.displayLarge,
-                            color = MaterialTheme.colorScheme.secondary,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 4.dp)
-                        )
-                        AsyncImage(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data(bodyPart.imageUrl)
-                                .crossfade(true)
-                                .build(),
-                            placeholder = painterResource(R.drawable.placeholder),
-                            error = painterResource(R.drawable.placeholder),
-                            contentDescription = bodyPart.title,
-                            contentScale = ContentScale.Crop, // La imagen se ajusta al espacio disponible
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .aspectRatio(1.77f) // Ratio entre el ancho y el alto de la imagen
-                        )
+                        Column(Modifier.fillMaxSize())
+                        {
+                            Text(
+                                text = bodyPart.title,
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.displayLarge,
+                                color = MaterialTheme.colorScheme.secondary,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(bottom = 4.dp)
+                            )
+                            AsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data(bodyPart.imageUrl)
+                                    .crossfade(true)
+                                    .build(),
+                                placeholder = painterResource(R.drawable.placeholder),
+                                error = painterResource(R.drawable.placeholder),
+                                contentDescription = bodyPart.title,
+                                contentScale = ContentScale.Crop, // La imagen se ajusta al espacio disponible
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .aspectRatio(1.77f) // Ratio entre el ancho y el alto de la imagen
+                            )
+                        }
                     }
+
+
                 }
             }
         }
