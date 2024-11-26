@@ -1,6 +1,6 @@
-package com.example.gymapp.Models
+package com.example.gymapp.GymApi.Models
 
-import com.example.gymapp.Services.BodyPartsService
+import com.example.gymapp.GymApi.Services.BodyPartsService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

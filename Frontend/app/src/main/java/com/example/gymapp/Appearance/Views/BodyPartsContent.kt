@@ -1,4 +1,4 @@
-package com.example.gymapp.Views
+package com.example.gymapp.Appearance.Views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -24,7 +24,7 @@ import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.example.ViewModels.BodyPartsViewModel
+import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
 import com.example.gymapp.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign

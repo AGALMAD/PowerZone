@@ -1,6 +1,6 @@
-package com.example.gymapp.Services
+package com.example.gymapp.GymApi.Services
 
-import com.example.gymapp.Models.BodyParts
+import com.example.gymapp.GymApi.Models.BodyParts
 import retrofit2.http.GET
 
 interface BodyPartsService {

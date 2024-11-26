@@ -1,4 +1,4 @@
-package com.example.gymapp
+package com.example.gymapp.Appearance
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,13 +8,13 @@ import androidx.activity.viewModels
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.ViewModels.BodyPartsViewModel
+import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
 import com.example.compose.AppTheme
-import com.example.gymapp.Views.AboutAppContent
-import com.example.gymapp.Views.AboutUsContent
-import com.example.gymapp.Data.Routes
-import com.example.gymapp.Views.BodyPartsContent
-import com.example.gymapp.Views.SettingsContent
+import com.example.gymapp.Appearance.Views.AboutAppContent
+import com.example.gymapp.Appearance.Views.AboutUsContent
+import com.example.gymapp.Appearance.Data.Routes
+import com.example.gymapp.Appearance.Views.BodyPartsContent
+import com.example.gymapp.Appearance.Views.SettingsContent
 
 
 class MainActivity : ComponentActivity() {

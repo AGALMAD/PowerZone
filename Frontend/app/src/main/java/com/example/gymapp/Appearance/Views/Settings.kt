@@ -1,4 +1,4 @@
-package com.example.gymapp.Views
+package com.example.gymapp.Appearance.Views
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -46,9 +46,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.gymapp.R
-import com.example.gymapp.Data.Routes
-import com.example.gymapp.Data.SettingsDataStore
-import com.example.gymapp.ui.theme.misFormas
+import com.example.gymapp.Appearance.Data.Routes
+import com.example.gymapp.Appearance.Data.SettingsDataStore
+import com.example.gymapp.Appearance.Themes.misFormas
 import kotlinx.coroutines.launch
 
 

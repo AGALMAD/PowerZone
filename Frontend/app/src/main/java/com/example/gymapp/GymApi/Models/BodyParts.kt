@@ -1,4 +1,4 @@
-package com.example.gymapp.Models
+package com.example.gymapp.GymApi.Models
 
 //Parte del Api que gestiona directamente los datos
 

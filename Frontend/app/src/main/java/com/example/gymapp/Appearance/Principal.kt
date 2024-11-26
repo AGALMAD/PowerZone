@@ -1,4 +1,4 @@
-package com.example.gymapp
+package com.example.gymapp.Appearance
 
 import android.app.Activity
 import android.content.Context
@@ -27,10 +27,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.gymapp.Data.Routes
-import com.example.gymapp.ui.theme.misFormas
-import com.example.gymapp.Generics.AlertDialog
-
+import com.example.gymapp.Appearance.Data.Routes
+import com.example.gymapp.Appearance.Themes.misFormas
+import com.example.gymapp.Appearance.Generics.AlertDialog
+import com.example.gymapp.R
 
 
 @Composable
