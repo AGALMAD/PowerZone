@@ -35,6 +35,7 @@ import com.example.gymapp.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.example.compose.backgroundDark
+import com.example.gymapp.Appearance.Data.Routes
 
 @Composable
 fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewModel) {
@@ -46,7 +47,7 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
 
     Column(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
         if (bodyParts.isEmpty()) {
-            // Mustra una barra circular mientras cargan las imágenes
+            // Muestra una barra circular mientras cargan las imágenes
             CircularProgressIndicator()
         } else {
             // Mostrar la lista de partes del cuerpo
@@ -54,14 +55,13 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
             LazyColumn {
                 items(bodyParts) { bodyPart ->
                     Card(
-                        onClick = { /* Do something */ },
+                        onClick = { navController.navigate(Routes.ExercisesScreen.route) },
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 12.dp
                         ),
                         colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surface,
+                            containerColor = MaterialTheme.colorScheme.surface
                         ),
-
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp) // Espaciado entre elementos

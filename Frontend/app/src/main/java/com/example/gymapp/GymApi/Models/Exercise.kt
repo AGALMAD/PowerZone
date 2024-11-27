@@ -1,6 +1,6 @@
 package com.example.gymapp.GymApi.Models
 
-data class Exercises (
+data class Exercise (
     val id: String,
     val title: String,
     val bodyPartsId: Array<String>,
