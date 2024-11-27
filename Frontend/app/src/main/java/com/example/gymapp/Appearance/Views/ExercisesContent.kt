@@ -36,8 +36,12 @@ fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewM
     val exercises by viewModel.exercises.observeAsState(emptyList())
     val context = LocalContext.current
 
+    val id = navController.currentBackStackEntry?.arguments?.getString("id")?.toInt()
+
     LaunchedEffect(Unit) {
-        viewModel.fetchExercises()
+        if (id != null) {
+            viewModel.fetchExercises(id)
+        }
     }
 
     if(exercises.isEmpty()){

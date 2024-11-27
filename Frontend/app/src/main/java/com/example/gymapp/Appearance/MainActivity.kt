@@ -18,7 +18,6 @@ import com.example.gymapp.Appearance.Views.ExercisesContent
 import com.example.gymapp.Appearance.Views.SettingsContent
 import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +35,6 @@ class MainActivity : ComponentActivity() {
                     composable(Routes.Settings.route) { SettingsContent(navController) }
                     composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, bodyPartsViewModel) }
                     composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
-
                 }
             }
         }

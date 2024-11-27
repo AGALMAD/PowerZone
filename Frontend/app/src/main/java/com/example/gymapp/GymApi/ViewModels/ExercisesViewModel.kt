@@ -14,13 +14,13 @@ class ExercisesViewModel: ViewModel() {
     private val _exercises = MutableLiveData<List<Exercise>>()
     val exercises: LiveData<List<Exercise>> = _exercises
 
-    fun fetchExercises() {
+    fun fetchExercises(id : Int) {
         viewModelScope.launch {
             try {
-                val exercises = repository.getExercises()
+                val exercises = repository.getExercises(id)
                 _exercises.value = exercises
             } catch (e: Exception) {
-                // Handle error
+                println(e)
             }
         }
     }
