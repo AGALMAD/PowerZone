@@ -38,7 +38,7 @@ fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewM
 
     val id = navController.currentBackStackEntry?.arguments?.getString("id")?.toInt()
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(id) {
         if (id != null) {
             viewModel.fetchExercises(id)
         }

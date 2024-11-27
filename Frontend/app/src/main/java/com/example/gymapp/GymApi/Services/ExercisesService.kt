@@ -6,9 +6,10 @@ import retrofit2.http.Query
 
 interface ExercisesService {
 
-    @GET("8b139b11-ca6a-4b87-8fba-3b76befb7bcb")
+    @GET("/v3/8b139b11-ca6a-4b87-8fba-3b76befb7bcb")
     suspend fun getAllExercices(): List<Exercise>
 
+    @GET("/v3/8b139b11-ca6a-4b87-8fba-3b76befb7bcb")
     suspend fun getAllExercicesByBodyPartId(id: Int): List<Exercise> {
         // Obtener todos los ejercicios
         val allExercices = getAllExercices()
