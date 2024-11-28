@@ -2,6 +2,7 @@ package com.example.gymapp.Appearance.Views
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -50,7 +51,7 @@ fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewM
     if(exercises.isEmpty()){
         CircularProgressIndicator()
     } else {
-        LazyColumn {
+        LazyColumn(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
             items(exercises) { exercise ->
 
                 CreateCard(

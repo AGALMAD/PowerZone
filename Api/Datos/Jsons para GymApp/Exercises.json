@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "Press Banca",
+        "title": "Press de Banca",
         "bodyPartsId": [
             1
         ],
@@ -10,7 +10,7 @@
     },
     {
         "id": 2,
-        "title": "Press banca en multipower",
+        "title": "Press de Banca en Multipower",
         "bodyPartsId": [
             1
         ],
@@ -19,16 +19,16 @@
     },
     {
         "id": 3,
-        "title": "Press plano con mancuernas",
+        "title": "Press Plano con Mancuernas",
         "bodyPartsId": [
             1
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/dumbbell-bench-press/dumbbell-bench-press-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Dumbbell-Bench-Press_13090f67-ccfc-4f3a-9bab-e75d753fa9fa_600x600.png?v=1612137970",
         "videoUrl": "https://www.youtube.com/watch?v=GCT0ieKgYcA"
     },
     {
         "id": 4,
-        "title": "Press inclinado barra libre",
+        "title": "Press Inclinado con Barra Libre",
         "bodyPartsId": [
             1
         ],
@@ -41,7 +41,7 @@
         "bodyPartsId": [
             1
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/incline-dumbbell-bench-press/incline-dumbbell-bench-press-800.jpg",
+        "imageUrl": "https://www.lyfta.app/_next/image?url=%2Fthumbnails%2F03141201.jpg&w=3840&q=20",
         "videoUrl": "https://www.youtube.com/watch?v=XbTgnX2vRhw"
     },
     {
@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "title": "Fondos en paralelas",
+        "title": "Fondos en Paralelas",
         "bodyPartsId": [
             1,
             4
@@ -69,7 +69,7 @@
         "bodyPartsId": [
             1
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/incline-dumbbell-fly/incline-dumbbell-fly-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Incline-Dumbbell-Fly_44d253c3-da60-45b2-b0ba-88a3bb79da09_600x600.png?v=1612137870",
         "videoUrl": "https://www.youtube.com/watch?v=AYWpCfLcYYg"
     },
     {
@@ -83,7 +83,7 @@
     },
     {
         "id": 10,
-        "title": "Aperturas en Peck Deck",
+        "title": "Aperturas en Pec Deck",
         "bodyPartsId": [
             1
         ],
@@ -92,11 +92,11 @@
     },
     {
         "id": 11,
-        "title": "Press de pecho en maquina",
+        "title": "Press de Pecho en Máquina",
         "bodyPartsId": [
             1
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/chest-press/chest-press-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Chest-Press-Machine_ab8cd29d-5698-4110-a938-098bda19b5fc_600x600.png?v=1621163108",
         "videoUrl": "https://www.youtube.com/shorts/GdBPBEKASZc"
     },
     {
@@ -125,7 +125,7 @@
         "bodyPartsId": [
             2
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/pull-ups/pull-ups-800.jpg",
+        "imageUrl": "https://www.lyfta.app/_next/image?url=%2Fthumbnails%2F29971201.jpg&w=3840&q=20",
         "videoUrl": "https://www.youtube.com/shorts/P2_vQVkhNe8"
     },
     {
@@ -134,21 +134,21 @@
         "bodyPartsId": [
             2
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/bent-over-row/bent-over-row-800.jpg",
+        "imageUrl": "https://eresfitness.com/wp-content/uploads/2019/07/Remo-con-barra-recta-de-pie.jpg.webp",
         "videoUrl": "https://www.youtube.com/shorts/VSdKfoQxj5o"
     },
     {
         "id": 16,
-        "title": "Remo con mancuernas",
+        "title": "Remo con mancuerna",
         "bodyPartsId": [
             2
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/dumbbell-row/dumbbell-row-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Dumbbell-Bent-Over-Row-_Single-Arm_49867db3-f465-4fbc-b359-29cbdda502e2_600x600.png?v=1612138069",
         "videoUrl": "https://www.youtube.com/shorts/LqABL2XAaDU"
     },
     {
         "id": 17,
-        "title": "Jalon al pecho abierto",
+        "title": "Jalón al Pecho Abierto",
         "bodyPartsId": [
             2
         ],
@@ -157,16 +157,16 @@
     },
     {
         "id": 18,
-        "title": "Jalon al pecho cerrado",
+        "title": "Jalón al Pecho Cerrado",
         "bodyPartsId": [
             2
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/close-grip-lat-pulldown/close-grip-lat-pulldown-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Close-Grip-Pulldown_072bb5ce-e3d9-4007-b8d2-d343e9d1051b_600x600.png?v=1612138178",
         "videoUrl": "https://www.youtube.com/shorts/YR4Ytkhtihs"
     },
     {
         "id": 19,
-        "title": "Pull over polea",
+        "title": "Pull Over en Polea",
         "bodyPartsId": [
             2
         ],
@@ -175,7 +175,7 @@
     },
     {
         "id": 20,
-        "title": "Remo dorian",
+        "title": "Remo Dorian",
         "bodyPartsId": [
             2
         ],
@@ -184,7 +184,7 @@
     },
     {
         "id": 21,
-        "title": "Remo en punta",
+        "title": "Remo en T-Bar",
         "bodyPartsId": [
             2
         ],
@@ -225,7 +225,7 @@
         "bodyPartsId": [
             3
         ],
-        "imageUrl": "https://www.getpersonalgrowth.com/images/posts/690b994c844701e8dca1d969624314f6-0.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Incline-Dumbbell-Curl_7debf468-cd34-49bc-8933-7f4b087e6cca_600x600.png?v=1612137309",
         "videoUrl": "https://www.youtube.com/watch?v=m2VZFlcJsaM"
     },
     {
@@ -234,7 +234,7 @@
         "bodyPartsId": [
             3
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/hammer-curl/hammer-curl-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Hammer-Curl_da9fea8b-fc81-4a4f-9af1-aea1b85239d7_600x600.png?v=1612137282",
         "videoUrl": "https://www.youtube.com/shorts/F9NYetV2598"
     },
     {
@@ -275,11 +275,11 @@
     },
     {
         "id": 31,
-        "title": "Curl arana",
+        "title": "Curl Araña",
         "bodyPartsId": [
             3
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/spider-curl/spider-curl-800.jpg",
+        "imageUrl": "https://fitcron.com/wp-content/uploads/2021/04/16281301-EZ-Barbell-Spider-Curl_Upper-Arms_720.gif",
         "videoUrl": "https://www.youtube.com/shorts/kJgdbUad2J4"
     },
     {
@@ -306,12 +306,12 @@
         "bodyPartsId": [
             4
         ],
-        "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvtD7kIK68bRYRW3yCB5UhvCLc2dskoYUIRB5QVqDfkTzFA7gBVLNipC2vu-sVUC33hyrgQlwZCZm5h_ThXmFVAPKfztDnmJ-FBysCtum9pVRbHZ_bTeIG8Yj3LwTFI8HWDK1Wq2R1ZkY/s1600/press-frances-mancuernas-tumbado.jpg",
+        "imageUrl": "https://i.pinimg.com/736x/1c/f2/d9/1cf2d9b08a9b683b6fe597ff17503446.jpg",
         "videoUrl": "https://www.youtube.com/shorts/DFFD1LU_iXw"
     },
     {
         "id": 36,
-        "title": "Extensiones tras nuca",
+        "title": "Extensiones Tras Nuca",
         "bodyPartsId": [
             4
         ],
@@ -324,7 +324,7 @@
         "bodyPartsId": [
             5
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/seated-dumbbell-shoulder-press/seated-dumbbell-shoulder-press-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Dumbbell-Shoulder-Press_da0aa742-620a-45f7-9277-78137d38ff28_600x600.png?v=1612138495",
         "videoUrl": "https://www.youtube.com/shorts/PWtkHROaH3Y"
     },
     {
@@ -365,7 +365,7 @@
     },
     {
         "id": 42,
-        "title": "Face pull",
+        "title": "Face Pull",
         "bodyPartsId": [
             5
         ],
@@ -392,7 +392,7 @@
     },
     {
         "id": 45,
-        "title": "Abdominales basicos ",
+        "title": "Abdominales Básicos",
         "bodyPartsId": [
             6
         ],
@@ -414,7 +414,7 @@
         "bodyPartsId": [
             6
         ],
-        "imageUrl": "https://adictosalgym.com/wp-content/uploads/2018/08/39277169_1877266432320318_1907458271086641152_n-300x300.jpg",
+        "imageUrl": "https://www.deportesdeciudad.com/wp-content/uploads/2018/07/elevaciones-pierna-con-rotacio%CC%81n.png",
         "videoUrl": "https://www.youtube.com/shorts/Dk0mwpAYUwo"
     },
     {
@@ -423,8 +423,17 @@
         "bodyPartsId": [
             6
         ],
-        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8WrZFFGcFWbzDJVF86zFLPvwr8hlHTLFu7Q&s",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0667/8118/4280/files/fhuwieh_480x480.png?v=1699485142",
         "videoUrl": "https://www.youtube.com/shorts/pTOsnzYMiXc"
+    },
+    {
+        "id": 49,
+        "title": "Sentadilla Libre",
+        "bodyPartsId": [
+            7
+        ],
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Squat_d752e42d-02ba-4692-b300-c6e67ad5a4f5_600x600.png?v=1612138811",
+        "videoUrl": "https://www.youtube.com/watch?v=DMYLamhUB_0"
     },
     {
         "id": 50,
@@ -432,7 +441,7 @@
         "bodyPartsId": [
             7
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/front-squat/front-squat-800.jpg",
+        "imageUrl": "https://i.pinimg.com/736x/06/4a/2c/064a2c9cac1ba8b5b52f5e770e39cb6b.jpg",
         "videoUrl": "https://www.youtube.com/watch?v=ynHkL5QoO1U"
     },
     {
@@ -441,7 +450,7 @@
         "bodyPartsId": [
             7
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/smith-machine-squat/smith-machine-squat-800.jpg",
+        "imageUrl": "https://www.lyfta.app/thumbnails/07501201.jpg",
         "videoUrl": "https://www.youtube.com/shorts/1y3D2I1cquU"
     },
     {
@@ -459,7 +468,7 @@
         "bodyPartsId": [
             7
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/sled-leg-press/sled-leg-press-800.jpg",
+        "imageUrl": "https://doriangym.es/wp-content/uploads/2022/10/prensa-de-piernas-45-grados.jpg",
         "videoUrl": "https://www.youtube.com/watch?v=SBynQ6-DyKo"
     },
     {
@@ -476,9 +485,8 @@
         "title": "Zancadas",
         "bodyPartsId": [
             7
-            
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/lunge/lunge-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Lunge_600x600.png?v=1612138903",
         "videoUrl": "https://www.youtube.com/shorts/KQqsS39XC5w"
     },
     {
@@ -502,11 +510,12 @@
     },
     {
         "id": 58,
-        "title": "Peso muerto con mancuernas",
+        "title": "Peso muerto Rumano con mancuernas",
         "bodyPartsId": [
-            8
+            8,
+            9
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/dumbbell-deadlift/dumbbell-deadlift-800.jpg",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEfIUof0Xe19YDgddu5k1Cu1zfd8Hf0TKIOgfhmCkD5Z9dlsZe_T4pG6L0AlSDm0PO7UQ&usqp=CAU",
         "videoUrl": "https://www.youtube.com/shorts/H0_gj6e4sEk"
     },
     {
@@ -546,28 +555,18 @@
         "videoUrl": "https://www.youtube.com/watch?v=cX-MeEUw6jU"
     },
     {
-        "id": 67,
-        "title": "Sentadilla libre",
-        "bodyPartsId": [
-            7,
-            9
-        ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/squat/squat-800.jpg",
-        "videoUrl": "https://www.youtube.com/watch?v=ynHkL5QoO1U"
-    },
-    {
-        "id": 68,
+        "id": 63,
         "title": "Sentadilla bulgara ",
         "bodyPartsId": [
             7,
             9
         ],
-        "imageUrl": "https://static.strengthlevel.com/images/exercises/dumbbell-bulgarian-split-squat/dumbbell-bulgarian-split-squat-800.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Barbell-Bulgarian-Split-Squat_600x600.png?v=1655223749",
         "videoUrl": "https://www.youtube.com/shorts/QuKHDwIocyg"
     },
     {
-        "id": 69,
-        "title": "Zancadas Gluteos ",
+        "id": 64,
+        "title": "Zancadas para Glúteos",
         "bodyPartsId": [
             9
         ],
@@ -575,7 +574,7 @@
         "videoUrl": "https://www.youtube.com/shorts/Uipvz4alrA4"
     },
     {
-        "id": 70,
+        "id": 65,
         "title": "Hip Thrusts ",
         "bodyPartsId": [
             9
@@ -584,7 +583,7 @@
         "videoUrl": "https://www.youtube.com/shorts/-ixNDLx3LL0"
     },
     {
-        "id": 71,
+        "id": 66,
         "title": "Patadas de gluteo ",
         "bodyPartsId": [
             9
@@ -593,7 +592,7 @@
         "videoUrl": "https://www.youtube.com/shorts/rrhcfdBFz9s"
     },
     {
-        "id": 72,
+        "id": 67,
         "title": "Peso muerto sumo",
         "bodyPartsId": [
             9,
@@ -603,7 +602,7 @@
         "videoUrl": "https://www.youtube.com/watch?v=zYQJqiZ2zE0"
     },
     {
-        "id": 73,
+        "id": 68,
         "title": "Sentadilla sumo",
         "bodyPartsId": [
             9,
@@ -613,7 +612,7 @@
         "videoUrl": "https://www.youtube.com/shorts/XtqCgYKBtTI"
     },
     {
-        "id": 74,
+        "id": 69,
         "title": "Abductor en maquina",
         "bodyPartsId": [
             10
@@ -622,8 +621,8 @@
         "videoUrl": "https://www.youtube.com/watch?v=4CaBBmSWbwM"
     },
     {
-        "id": 75,
-        "title": "Curl Copenhague",
+        "id": 70,
+        "title": "Curl de Copenhague",
         "bodyPartsId": [
             10
         ],
@@ -631,8 +630,8 @@
         "videoUrl": "https://www.youtube.com/watch?v=iT6hOyyAwcI"
     },
     {
-        "id": 76,
-        "title": "Elevaciones de talones de pie y soleo sentado",
+        "id": 71,
+        "title": "Elevaciones de Talones de Pie y Sóleo Sentado",
         "bodyPartsId": [
             11
         ],

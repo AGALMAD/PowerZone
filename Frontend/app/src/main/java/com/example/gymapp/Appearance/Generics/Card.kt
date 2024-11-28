@@ -1,6 +1,7 @@
 package com.example.gymapp.Appearance.Generics
 
 import android.service.autofill.OnClickAction
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -43,7 +45,7 @@ fun CreateCard(
             .padding(8.dp) // Espaciado entre elementos
 
     ) {
-        Column(Modifier.fillMaxSize())
+        Column(Modifier.fillMaxSize(),)
         {
             Text(
                 text = title,
@@ -66,6 +68,8 @@ fun CreateCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1.77f) // Ratio entre el ancho y el alto de la imagen
+                    .background(Color.White) // Fondo blanco para que todas las imágenes tengan el mismo aspecto
+
             )
         }
     }
