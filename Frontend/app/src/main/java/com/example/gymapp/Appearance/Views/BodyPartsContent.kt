@@ -1,5 +1,6 @@
 package com.example.gymapp.Appearance.Views
 
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,7 +35,15 @@ import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
 import com.example.gymapp.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import com.example.compose.backgroundDark
+import com.example.gymapp.Appearance.Data.Routes
+import com.example.gymapp.Appearance.Principal
+import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
+import androidx.activity.viewModels
+import com.example.gymapp.Appearance.Generics.CreateCard
+
 
 @Composable
 fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewModel) {
@@ -44,56 +53,21 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
         viewModel.fetchBodyParts()
     }
 
+
     Column(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
         if (bodyParts.isEmpty()) {
-            // Mustra una barra circular mientras cargan las imágenes
+            // Muestra una barra circular mientras cargan las imágenes
             CircularProgressIndicator()
         } else {
             // Mostrar la lista de partes del cuerpo
             // carga los elementos visibles
             LazyColumn {
                 items(bodyParts) { bodyPart ->
-                    Card(
-                        onClick = { /* Do something */ },
-                        elevation = CardDefaults.cardElevation(
-                            defaultElevation = 12.dp
-                        ),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surface,
-                        ),
 
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp) // Espaciado entre elementos
-
-                    ) {
-                        Column(Modifier.fillMaxSize())
-                        {
-                            Text(
-                                text = bodyPart.title,
-                                textAlign = TextAlign.Center,
-                                style = MaterialTheme.typography.displayLarge,
-                                color = MaterialTheme.colorScheme.secondary,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(bottom = 4.dp)
-                            )
-                            AsyncImage(
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data(bodyPart.imageUrl)
-                                    .crossfade(true)
-                                    .build(),
-                                placeholder = painterResource(R.drawable.placeholder),
-                                error = painterResource(R.drawable.placeholder),
-                                contentDescription = bodyPart.title,
-                                contentScale = ContentScale.Crop, // La imagen se ajusta al espacio disponible
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .aspectRatio(1.77f) // Ratio entre el ancho y el alto de la imagen
-                            )
-                        }
-                    }
-
+                    CreateCard(
+                        bodyPart.title,
+                        bodyPart.imageUrl
+                    ) { navController.navigate("ExercisesScreen/${bodyPart.id}")}
 
                 }
             }

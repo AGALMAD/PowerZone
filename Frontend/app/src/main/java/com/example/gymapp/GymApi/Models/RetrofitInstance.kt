@@ -1,11 +1,12 @@
 package com.example.gymapp.GymApi.Models
 
 import com.example.gymapp.GymApi.Services.BodyPartsService
+import com.example.gymapp.GymApi.Services.ExercisesService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://run.mocky.io/v3/69708275-6dc6-4bb4-a741-6e777627770c/"
+    private const val BASE_URL = "https://run.mocky.io/"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
@@ -16,5 +17,9 @@ object RetrofitInstance {
 
     val bodyPartsService: BodyPartsService by lazy {
         retrofit.create(BodyPartsService::class.java)
+    }
+
+    val exercisesService: ExercisesService by lazy {
+        retrofit.create(ExercisesService::class.java)
     }
 }

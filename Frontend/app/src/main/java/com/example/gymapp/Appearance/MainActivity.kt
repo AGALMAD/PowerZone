@@ -14,8 +14,9 @@ import com.example.gymapp.Appearance.Views.AboutAppContent
 import com.example.gymapp.Appearance.Views.AboutUsContent
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Views.BodyPartsContent
+import com.example.gymapp.Appearance.Views.ExercisesContent
 import com.example.gymapp.Appearance.Views.SettingsContent
-
+import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,15 +25,16 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 val navController = rememberNavController()
-                val viewModel: BodyPartsViewModel by viewModels()
+                val bodyPartsViewModel: BodyPartsViewModel by viewModels()
+                val exercisesViewModel: ExercisesViewModel by viewModels()
 
                 NavHost(navController = navController, startDestination = Routes.Principal.route) {
                     composable(Routes.Principal.route) { Principal(navController) }
                     composable(Routes.AboutUs.route) { AboutUsContent(navController) }
                     composable(Routes.AboutApp.route) { AboutAppContent(navController) }
                     composable(Routes.Settings.route) { SettingsContent(navController) }
-                    composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, viewModel) }
-
+                    composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, bodyPartsViewModel) }
+                    composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
                 }
             }
         }
