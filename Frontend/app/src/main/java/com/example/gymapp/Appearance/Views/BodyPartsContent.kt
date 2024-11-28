@@ -1,5 +1,6 @@
 package com.example.gymapp.Appearance.Views
 
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,8 +35,14 @@ import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
 import com.example.gymapp.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import com.example.compose.backgroundDark
 import com.example.gymapp.Appearance.Data.Routes
+import com.example.gymapp.Appearance.Principal
+import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
+import androidx.activity.viewModels
+
 
 @Composable
 fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewModel) {
@@ -44,6 +51,7 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
     LaunchedEffect(Unit) {
         viewModel.fetchBodyParts()
     }
+
 
     Column(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
         if (bodyParts.isEmpty()) {
@@ -55,7 +63,7 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
             LazyColumn {
                 items(bodyParts) { bodyPart ->
                     Card(
-                        onClick = { navController.navigate(Routes.ExercisesScreen.route) },
+                        onClick = { navController.navigate("ExercisesScreen/${bodyPart.id}") },
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 12.dp
                         ),

@@ -3,9 +3,11 @@ package com.example.gymapp.Appearance.Views
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -36,8 +38,12 @@ fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewM
     val exercises by viewModel.exercises.observeAsState(emptyList())
     val context = LocalContext.current
 
-    LaunchedEffect(Unit) {
-        viewModel.fetchExercises()
+    val id = navController.currentBackStackEntry?.arguments?.getString("id")?.toInt()
+
+    LaunchedEffect(id) {
+        if (id != null) {
+            viewModel.fetchExercises(id)
+        }
     }
 
     if(exercises.isEmpty()){
@@ -90,6 +96,17 @@ fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewM
                 }
 
             }
+
+            //Espaciador al final para mejorar el aspecto
+            item {
+                Spacer(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp))
+            }
+
         }
+
+
+
     }
 }
