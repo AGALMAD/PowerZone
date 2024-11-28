@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.R
 
 @Composable
@@ -40,6 +41,7 @@ fun CreateCard(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
+        shape = misFormas.medium,
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp) // Espaciado entre elementos
