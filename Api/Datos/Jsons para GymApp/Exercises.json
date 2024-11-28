@@ -6,7 +6,7 @@
             1
         ],
         "imageUrl": "https://static.strengthlevel.com/images/exercises/bench-press/bench-press-800.jpg",
-        "videoUrl": "https://www.youtube.com/shorts/e7oz2OHA_8U"
+        "videoUrl": "https://www.youtube.com/watch?v=sucrdFBE7Tk"
     },
     {
         "id": 2,
@@ -60,7 +60,7 @@
             1,
             4
         ],
-        "imageUrl": "https://www.feda.net/wp-content/uploads/2019/02/dip.jpg",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Parallel-Dip-Bar_600x600.png?v=1619977962",
         "videoUrl": "https://www.youtube.com/watch?v=mn_sF2GHgdA"
     },
     {
@@ -221,7 +221,7 @@
     },
     {
         "id": 25,
-        "title": "Curl mancuernas banco inclinado ",
+        "title": "Curl mancuernas banco inclinado",
         "bodyPartsId": [
             3
         ],
@@ -248,7 +248,7 @@
     },
     {
         "id": 28,
-        "title": "Curl con barra Z",
+        "title": "Curl con barra",
         "bodyPartsId": [
             3
         ],
@@ -283,17 +283,8 @@
         "videoUrl": "https://www.youtube.com/shorts/kJgdbUad2J4"
     },
     {
-        "id": 32,
-        "title": "Fondos cerrados",
-        "bodyPartsId": [
-            4
-        ],
-        "imageUrl": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Parallel-Dip-Bar_600x600.png?v=1619977962",
-        "videoUrl": "https://www.youtube.com/watch?v=mn_sF2GHgdA"
-    },
-    {
         "id": 33,
-        "title": "Extensiones de triceps con cuerda en polea alta ",
+        "title": "Extensiones de triceps con cuerda",
         "bodyPartsId": [
             4
         ],
@@ -302,7 +293,7 @@
     },
     {
         "id": 34,
-        "title": "Extensiones de triceps con barra en polea alta",
+        "title": "Extensiones de triceps con barra",
         "bodyPartsId": [
             4
         ],
@@ -320,7 +311,7 @@
     },
     {
         "id": 36,
-        "title": "Extensiones por encima de la cabeza con mancuerna ",
+        "title": "Extensiones tras nuca",
         "bodyPartsId": [
             4
         ],

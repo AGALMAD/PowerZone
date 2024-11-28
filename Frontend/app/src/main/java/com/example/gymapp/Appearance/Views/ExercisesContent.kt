@@ -30,6 +30,7 @@ import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.example.gymapp.Appearance.Generics.CreateCard
 import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
 import com.example.gymapp.R
 
@@ -51,50 +52,15 @@ fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewM
     } else {
         LazyColumn {
             items(exercises) { exercise ->
-                Card(
-                    onClick = {
-                                val videoIntent = Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse(exercise.videoUrl)
-                                )
-                                context.startActivity(videoIntent)
-                              },
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 12.dp
-                    ),
-                    colors = CardDefaults.cardColors(
-                        contentColor = MaterialTheme.colorScheme.surface
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ){
-                    Column(Modifier.fillMaxSize()) {
-                        Text(
-                            text = exercise.title,
-                            textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.displayLarge,
-                            color = MaterialTheme.colorScheme.secondary,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(bottom = 4.dp)
-                        )
-                        AsyncImage(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data(exercise.imageUrl)
-                                .crossfade(true)
-                                .build(),
-                            placeholder = painterResource(R.drawable.placeholder),
-                            error = painterResource(R.drawable.placeholder),
-                            contentDescription = exercise.title,
-                            contentScale = ContentScale.Crop, // La imagen se ajusta al espacio disponible
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .aspectRatio(1.77f) // Ratio entre el ancho y el alto de la imagen
-                        )
-                    }
-                }
 
+                CreateCard(
+                    exercise.title,
+                    exercise.imageUrl
+                )
+                {
+                    val videoIntent = Intent(Intent.ACTION_VIEW, Uri.parse(exercise.videoUrl))
+                    context.startActivity(videoIntent)
+                }
             }
 
             //Espaciador al final para mejorar el aspecto

@@ -42,6 +42,7 @@ import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Principal
 import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
 import androidx.activity.viewModels
+import com.example.gymapp.Appearance.Generics.CreateCard
 
 
 @Composable
@@ -62,46 +63,11 @@ fun BodyPartsContent(navController: NavHostController, viewModel: BodyPartsViewM
             // carga los elementos visibles
             LazyColumn {
                 items(bodyParts) { bodyPart ->
-                    Card(
-                        onClick = { navController.navigate("ExercisesScreen/${bodyPart.id}") },
-                        elevation = CardDefaults.cardElevation(
-                            defaultElevation = 12.dp
-                        ),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surface
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp) // Espaciado entre elementos
 
-                    ) {
-                        Column(Modifier.fillMaxSize())
-                        {
-                            Text(
-                                text = bodyPart.title,
-                                textAlign = TextAlign.Center,
-                                style = MaterialTheme.typography.displayLarge,
-                                color = MaterialTheme.colorScheme.secondary,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(bottom = 4.dp)
-                            )
-                            AsyncImage(
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data(bodyPart.imageUrl)
-                                    .crossfade(true)
-                                    .build(),
-                                placeholder = painterResource(R.drawable.placeholder),
-                                error = painterResource(R.drawable.placeholder),
-                                contentDescription = bodyPart.title,
-                                contentScale = ContentScale.Crop, // La imagen se ajusta al espacio disponible
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .aspectRatio(1.77f) // Ratio entre el ancho y el alto de la imagen
-                            )
-                        }
-                    }
-
+                    CreateCard(
+                        bodyPart.title,
+                        bodyPart.imageUrl
+                    ) { navController.navigate("ExercisesScreen/${bodyPart.id}")}
 
                 }
             }
