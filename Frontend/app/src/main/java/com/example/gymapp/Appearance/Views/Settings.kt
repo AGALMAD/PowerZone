@@ -33,6 +33,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,13 +50,25 @@ import com.example.gymapp.R
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Data.SettingsDataStore
 import com.example.gymapp.Appearance.Themes.misFormas
+import com.example.gymapp.GymApi.ViewModels.AuthState
+import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun SettingsContent(navController: NavHostController){
+fun SettingsContent(navController: NavHostController, authViewModel : AuthViewModel){
 
     val context = LocalContext.current
+    val authState = authViewModel.authState.observeAsState()
+
+    //Necesita sesión iniciada para poder acceder a la configuración
+    LaunchedEffect (authState.value){
+        when(authState.value){
+            is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
+            else -> Unit
+        }
+    }
+
 
     val scope = rememberCoroutineScope()
 
