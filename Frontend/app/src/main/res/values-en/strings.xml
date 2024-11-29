@@ -42,4 +42,5 @@
     <string name="emailWord">Email</string>
     <string name="passWord">Password</string>
     <string name="notAccountText">Don´t have an account, SingUp</string>
+    <string name="errorLoginMessage">Something went wron</string>
 </resources>

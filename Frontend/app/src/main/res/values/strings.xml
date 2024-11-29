@@ -42,4 +42,5 @@
     <string name="emailWord">Email</string>
     <string name="passWord">Contraseña</string>
     <string name="notAccountText">No tienes cuenta, Registrate</string>
+    <string name="errorLoginMessage">Algo salió mal</string>
 </resources>
