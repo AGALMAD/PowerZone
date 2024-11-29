@@ -167,7 +167,7 @@ fun InsertButtos(context: Context, navController: NavHostController, authViewMod
 
     ) {
         Text(
-            text = context.getString(R.string.about_app_title),
+            text = context.getString(R.string.about_us_title),
             style = MaterialTheme.typography.headlineSmall,
         )
     }
