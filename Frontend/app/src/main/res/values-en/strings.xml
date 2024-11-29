@@ -45,4 +45,5 @@
     <string name="errorLoginMessage">Something went wrong</string>
     <string name="name_label">Name</string>
     <string name="haveAccountText">Already have account, Login</string>
+    <string name="accountTitle">My account</string>
 </resources>

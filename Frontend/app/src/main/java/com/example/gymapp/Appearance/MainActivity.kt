@@ -17,6 +17,7 @@ import com.example.gymapp.Appearance.Views.Api.BodyPartsContent
 import com.example.gymapp.Appearance.Views.Api.ExercisesContent
 import com.example.gymapp.Appearance.Views.Authentication.Login
 import com.example.gymapp.Appearance.Views.Authentication.Register
+import com.example.gymapp.Appearance.Views.Authentication.UserAccount
 import com.example.gymapp.Appearance.Views.SettingsContent
 import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
@@ -42,6 +43,8 @@ class MainActivity : ComponentActivity() {
                     composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
                     composable(Routes.Login.route) { Login(navController, authViewModel) }
                     composable(Routes.Register.route) { Register(navController, authViewModel) }
+                    composable(Routes.UserAccount.route) { UserAccount(navController, authViewModel) }
+
                 }
             }
         }
