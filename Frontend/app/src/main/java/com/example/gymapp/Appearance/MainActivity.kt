@@ -10,8 +10,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
 import com.example.compose.AppTheme
-import com.example.gymapp.Appearance.Views.AboutAppContent
 import com.example.gymapp.Appearance.Views.AboutUsContent
+
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Views.Api.BodyPartsContent
 import com.example.gymapp.Appearance.Views.Api.ExercisesContent
@@ -36,9 +36,8 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(navController = navController, startDestination = Routes.Principal.route) {
                     composable(Routes.Principal.route) { Principal(navController, authViewModel) }
-                    composable(Routes.AboutUs.route) { AboutUsContent(navController) }
-                    composable(Routes.AboutApp.route) { AboutAppContent(navController) }
                     composable(Routes.Settings.route) { SettingsContent(navController, authViewModel) }
+                    composable(Routes.AboutUs.route) { AboutUsContent(navController) }
                     composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, bodyPartsViewModel) }
                     composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
                     composable(Routes.Login.route) { Login(navController, authViewModel) }

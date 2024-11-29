@@ -159,15 +159,15 @@ fun InsertLogoImage() {
 fun InsertButtos(context: Context, navController: NavHostController, authViewModel: AuthViewModel) {
 
 
-    // Botón para ir a About App
+    // Botón para ir a About Us
     Button(
-        onClick = { navController.navigate(Routes.AboutApp.route) },
+        onClick = { navController.navigate(Routes.AboutUs.route) },
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
     ) {
         Text(
-            text = context.getString(R.string.about_app_title),
+            text = context.getString(R.string.about_us_title),
             style = MaterialTheme.typography.headlineSmall,
         )
     }

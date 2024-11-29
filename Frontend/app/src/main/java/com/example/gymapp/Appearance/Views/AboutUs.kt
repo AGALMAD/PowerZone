@@ -9,30 +9,40 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
+import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.R
-
 
 @Composable
 fun AboutUsContent(navController: NavHostController) {
     val context = LocalContext.current
 
+    // Barra de scroll que recuerda por donde está
+    val scrollState = rememberScrollState()
 
     Column (
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(scrollState) // Activar scroll vertical
             .background(MaterialTheme.colorScheme.background), //!!!!!! Importante para que cambie el color de fondo
         verticalArrangement = Arrangement.spacedBy(18.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -44,13 +54,7 @@ fun AboutUsContent(navController: NavHostController) {
             color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.displayLarge,
             modifier =  Modifier.padding(30.dp)
-
-
         )
-
-
-
-
 
         //Cambia la imagen según si está en modo claro u oscuro
         Image(
@@ -60,9 +64,8 @@ fun AboutUsContent(navController: NavHostController) {
                 painterResource(R.drawable.logo_sin_fondo_negro),
             contentDescription = "Imagen Logo principal",
             modifier = Modifier.size(300.dp)
+                .clickable { navController.navigate(Routes.Principal.route) }
         )
-
-
 
         //Texto sobre nosotros
         Text(
@@ -71,12 +74,45 @@ fun AboutUsContent(navController: NavHostController) {
             color = MaterialTheme.colorScheme.secondary,
             style = MaterialTheme.typography.bodyLarge,
             modifier =  Modifier.padding(30.dp)
-
         )
 
+        Text(
+            text = context.getString(R.string.authors_text),
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier.padding(30.dp)
+        )
 
-        //Contacto
-        Row {
+        Image(
+            painterResource(R.drawable.ale),
+            contentDescription = "Imagen Ale",
+            modifier = Modifier.size(180.dp).clip(CircleShape) // Hace la imagen redonda
+        )
+
+        Text(
+            text = context.getString(R.string.description_Ale),
+            textAlign = TextAlign.Justify,
+            color = MaterialTheme.colorScheme.secondary,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(15.dp)
+        )
+
+        Image(
+            painterResource(R.drawable.dani),
+            contentDescription = "Imagen Daniel",
+            modifier = Modifier.size(180.dp).clip(CircleShape)
+        )
+
+        Text(
+            text = context.getString(R.string.description_Daniel),
+            textAlign = TextAlign.Justify,
+            color = MaterialTheme.colorScheme.secondary,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(15.dp)
+        )
+
+        Row (horizontalArrangement = Arrangement.spacedBy(10.dp)){
             Image(
                 painter = if(isSystemInDarkTheme() )
                     painterResource(R.drawable.instagram_logo_blanco)
@@ -92,9 +128,8 @@ fun AboutUsContent(navController: NavHostController) {
                         )
                         context.startActivity(instagramIntent)
                     }
-
-
             )
+
             Image(
                 painter = if(isSystemInDarkTheme() )
                     painterResource(R.drawable.x_logo_blanco)
@@ -110,8 +145,8 @@ fun AboutUsContent(navController: NavHostController) {
                         )
                         context.startActivity(instagramIntent)
                     }
-
             )
+
             Image(
                 painter = if(isSystemInDarkTheme() )
                     painterResource(R.drawable.yt_logo_blanco)
@@ -123,19 +158,26 @@ fun AboutUsContent(navController: NavHostController) {
                     .clickable {
                         val instagramIntent = Intent(
                             Intent.ACTION_VIEW,
-                            Uri.parse("https://www.youtube.com/")
+                            Uri.parse("https://youtu.be/xvFZjo5PgG0?si=vucKhT0IF3JnBCyx")
                         )
                         context.startActivity(instagramIntent)
                     }
-
-
             )
-
-
-
         }
 
+            // Línea divisoria
+            HorizontalDivider(
+                color = Color.Gray,
+                modifier = Modifier,
+                thickness = 2.dp
+            )
+
+            Text(
+                text = context.getString(R.string.licence_text),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(30.dp)
+            )
     }
-
 }
-
