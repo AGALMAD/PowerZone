@@ -9,11 +9,15 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class AuthViewModel : ViewModel() {
+
     private val auth : FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
 
+    init {
+        checkAuthStatus()
+    }
 
     fun checkAuthStatus(){
         if (auth.currentUser == null){

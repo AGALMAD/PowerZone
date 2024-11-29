@@ -44,11 +44,10 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
 
     val authState = authViewModel.authState.observeAsState()
 
-
     LaunchedEffect(authState.value)
     {
         when(authState.value){
-            is AuthState.Authenticated -> navController.navigate(Routes.Login.route)
+            is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
             else -> Unit
         }
     }
