@@ -5,10 +5,14 @@ import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,8 +32,11 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Themes.misFormas
@@ -37,29 +44,22 @@ import com.example.gymapp.Appearance.Generics.AlertDialog
 import com.example.gymapp.GymApi.ViewModels.AuthState
 import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import com.example.gymapp.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 
 @Composable
 fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
     val context = LocalContext.current
 
-    val authState = authViewModel.authState.observeAsState()
-
-    LaunchedEffect(authState.value)
-    {
-        when(authState.value){
-            is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
-            else -> Unit
-        }
-    }
-
-    
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        InsertHeader(context, authViewModel, navController)
+
         InsertTitle(context.getString(R.string.appTitle),)
         Spacer(modifier = Modifier.height(26.dp))
 
@@ -73,6 +73,63 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
 }
 
 @Composable
+fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: NavHostController){
+
+    val authState = authViewModel.authState.observeAsState()
+
+    Row(
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.background)
+            .padding(0.dp, 20.dp)
+    ) {
+        when(authState.value){
+            is AuthState.Authenticated -> {
+                val user = Firebase.auth.currentUser
+
+                Text(
+                    color = MaterialTheme.colorScheme.primary,
+                    text = context.getString(R.string.welcomeText) + " " + user!!.email!!,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+
+                TextButton(
+                    onClick = { authViewModel.singout() },
+                ) {
+                    Text(
+                        text = context.getString(R.string.singoutTitle),
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
+
+            }
+
+            is AuthState.Unauthenticated ->
+            {
+                TextButton(
+                    onClick = { navController.navigate(Routes.Login.route) },
+                ) {
+                    Text(
+                        text = context.getString(R.string.loginTitle),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+
+            }
+
+            else -> Unit
+        }
+
+    }
+}
+
+
+@Composable
 fun InsertTitle(title : String) {
     Text(
         text = title,
@@ -81,6 +138,7 @@ fun InsertTitle(title : String) {
         style = MaterialTheme.typography.displayLarge,
         modifier = Modifier.padding(30.dp)
     )
+
 }
 
 @Composable
@@ -140,21 +198,6 @@ fun InsertButtos(context: Context, navController: NavHostController, authViewMod
     ) {
         Text(
             text = context.getString(R.string.settingsTitle),
-            style = MaterialTheme.typography.headlineSmall,
-        )
-    }
-
-    Spacer(modifier = Modifier.height(20.dp))
-
-
-    // Botón para mostrar los datos del usuario
-    Button(
-        onClick = { navController.navigate(Routes.UserAccount.route) },
-        shape = misFormas.small,
-        modifier = Modifier.width(250.dp)
-    ) {
-        Text(
-            text = context.getString(R.string.accountTitle),
             style = MaterialTheme.typography.headlineSmall,
         )
     }
