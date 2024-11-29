@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
@@ -44,11 +45,10 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
 
     val authState = authViewModel.authState.observeAsState()
 
-
     LaunchedEffect(authState.value)
     {
         when(authState.value){
-            is AuthState.Authenticated -> navController.navigate(Routes.Login.route)
+            is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
             else -> Unit
         }
     }
@@ -66,7 +66,7 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
         InsertLogoImage()
         Spacer(modifier = Modifier.height(100.dp))
 
-        InsertButtos(context, navController)
+        InsertButtos(context, navController, authViewModel)
 
     }
 
@@ -98,23 +98,7 @@ fun InsertLogoImage() {
 
 
 @Composable
-fun InsertButtos(context: Context, navController: NavHostController) {
-
-    // Botón para ir a About Us
-    Button(
-        onClick = { navController.navigate(Routes.AboutUs.route) },
-        shape = misFormas.small,
-        modifier = Modifier.width(250.dp)
-
-    ) {
-        Text(
-            text = context.getString(R.string.about_us_title),
-            style = MaterialTheme.typography.headlineSmall,
-        )
-    }
-
-
-    Spacer(modifier = Modifier.height(20.dp))
+fun InsertButtos(context: Context, navController: NavHostController, authViewModel: AuthViewModel) {
 
 
     // Botón para ir a About App
@@ -163,19 +147,20 @@ fun InsertButtos(context: Context, navController: NavHostController) {
     Spacer(modifier = Modifier.height(20.dp))
 
 
-    // Botón para mostrar el AlertDialog
+    // Botón para mostrar los datos del usuario
     Button(
-        onClick ={ navController.navigate(Routes.Login.route) },
+        onClick = { navController.navigate(Routes.UserAccount.route) },
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
     ) {
         Text(
-            text = context.getString(R.string.loginTitle),
+            text = context.getString(R.string.accountTitle),
             style = MaterialTheme.typography.headlineSmall,
         )
     }
 
     Spacer(modifier = Modifier.height(20.dp))
+
 
     val showDialog = remember { mutableStateOf(false) }
 
