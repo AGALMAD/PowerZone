@@ -40,9 +40,6 @@ class MainActivity : ComponentActivity() {
                     composable(Routes.Settings.route) { SettingsContent(navController) }
                     composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, bodyPartsViewModel) }
                     composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
-                    composable(Routes.Login.route) { Login(navController, authViewModel ) }
-                    composable(Routes.Register.route) { Register(navController) }
-
                 }
             }
         }

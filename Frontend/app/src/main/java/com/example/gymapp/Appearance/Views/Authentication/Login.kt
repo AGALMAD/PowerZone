@@ -97,7 +97,7 @@ fun Login(navController: NavHostController, authViewModel: AuthViewModel){
 
         // Botón para inicar sesión
         Button(
-            onClick = { authViewModel.singup(email,password) },
+            onClick = { authViewModel.login(email,password) },
             shape = misFormas.medium,
         ) {
             Text(
