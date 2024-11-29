@@ -43,7 +43,7 @@ fun Principal(navController: NavHostController) {
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        InsertTitle(context)
+        InsertTitle(context.getString(R.string.appTitle),)
         Spacer(modifier = Modifier.height(26.dp))
 
         InsertLogoImage()
@@ -56,10 +56,9 @@ fun Principal(navController: NavHostController) {
 }
 
 @Composable
-fun InsertTitle(context: Context) {
-    //Titulo sobre nosotros
+fun InsertTitle(title : String) {
     Text(
-        text = context.getString(R.string.appTitle),
+        text = title,
         textAlign = TextAlign.Center,
         color = MaterialTheme.colorScheme.primary,
         style = MaterialTheme.typography.displayLarge,
@@ -146,6 +145,21 @@ fun InsertButtos(context: Context, navController: NavHostController) {
 
     Spacer(modifier = Modifier.height(20.dp))
 
+
+    // Botón para mostrar el AlertDialog
+    Button(
+        onClick ={ navController.navigate(Routes.Login.route) },
+        shape = misFormas.small,
+        modifier = Modifier.width(250.dp)
+    ) {
+        Text(
+            text = context.getString(R.string.loginTitle),
+            style = MaterialTheme.typography.headlineSmall,
+        )
+    }
+
+    Spacer(modifier = Modifier.height(20.dp))
+
     val showDialog = remember { mutableStateOf(false) }
 
     // Botón para mostrar el AlertDialog
@@ -181,33 +195,4 @@ fun InsertButtos(context: Context, navController: NavHostController) {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-foreach
-textos.mapIndexed { index, item -> */
-
-//List<() -> Unit>
-
-
 

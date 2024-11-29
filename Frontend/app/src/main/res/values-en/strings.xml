@@ -37,4 +37,9 @@
     <string name="exit_confirm">Confirm</string>
     <string name="exit_cancel">Cancel</string>
     <string name="bodyPartsButtonTitle">Learn</string>
+    <string name="loginTitle">Login</string>
+    <string name="singUpTitle">Signup</string>
+    <string name="emailWord">Email</string>
+    <string name="passWord">Password</string>
+    <string name="notAccountText">Don´t have an account, SingUp</string>
 </resources>
