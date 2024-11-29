@@ -9,4 +9,6 @@ sealed class Routes(val route : String) {
     data object ExercisesScreen : Routes("ExercisesScreen/{id}")
     data object Login : Routes("Login");
     data object Register : Routes("Register");
+    data object UserAccount : Routes("UserAccount");
+
 }

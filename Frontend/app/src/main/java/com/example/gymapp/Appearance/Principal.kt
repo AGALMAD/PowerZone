@@ -2,6 +2,7 @@ package com.example.gymapp.Appearance
 
 import android.app.Activity
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -15,7 +16,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,36 +34,48 @@ import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.Appearance.Generics.AlertDialog
+import com.example.gymapp.GymApi.ViewModels.AuthState
+import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import com.example.gymapp.R
 
 
 @Composable
-fun Principal(navController: NavHostController) {
+fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
     val context = LocalContext.current
 
+    val authState = authViewModel.authState.observeAsState()
+
+    LaunchedEffect(authState.value)
+    {
+        when(authState.value){
+            is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
+            else -> Unit
+        }
+    }
+
+    
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        InsertTitle(context)
+        InsertTitle(context.getString(R.string.appTitle),)
         Spacer(modifier = Modifier.height(26.dp))
 
         InsertLogoImage()
         Spacer(modifier = Modifier.height(100.dp))
 
-        InsertButtos(context, navController)
+        InsertButtos(context, navController, authViewModel)
 
     }
 
 }
 
 @Composable
-fun InsertTitle(context: Context) {
-    //Titulo sobre nosotros
+fun InsertTitle(title : String) {
     Text(
-        text = context.getString(R.string.appTitle),
+        text = title,
         textAlign = TextAlign.Center,
         color = MaterialTheme.colorScheme.primary,
         style = MaterialTheme.typography.displayLarge,
@@ -82,23 +98,7 @@ fun InsertLogoImage() {
 
 
 @Composable
-fun InsertButtos(context: Context, navController: NavHostController) {
-
-    // Botón para ir a About Us
-    Button(
-        onClick = { navController.navigate(Routes.AboutUs.route) },
-        shape = misFormas.small,
-        modifier = Modifier.width(250.dp)
-
-    ) {
-        Text(
-            text = context.getString(R.string.about_us_title),
-            style = MaterialTheme.typography.headlineSmall,
-        )
-    }
-
-
-    Spacer(modifier = Modifier.height(20.dp))
+fun InsertButtos(context: Context, navController: NavHostController, authViewModel: AuthViewModel) {
 
 
     // Botón para ir a About App
@@ -146,6 +146,22 @@ fun InsertButtos(context: Context, navController: NavHostController) {
 
     Spacer(modifier = Modifier.height(20.dp))
 
+
+    // Botón para mostrar los datos del usuario
+    Button(
+        onClick = { navController.navigate(Routes.UserAccount.route) },
+        shape = misFormas.small,
+        modifier = Modifier.width(250.dp)
+    ) {
+        Text(
+            text = context.getString(R.string.accountTitle),
+            style = MaterialTheme.typography.headlineSmall,
+        )
+    }
+
+    Spacer(modifier = Modifier.height(20.dp))
+
+
     val showDialog = remember { mutableStateOf(false) }
 
     // Botón para mostrar el AlertDialog
@@ -181,33 +197,4 @@ fun InsertButtos(context: Context, navController: NavHostController) {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-foreach
-textos.mapIndexed { index, item -> */
-
-//List<() -> Unit>
-
-
 

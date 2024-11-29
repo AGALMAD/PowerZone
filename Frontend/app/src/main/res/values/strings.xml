@@ -37,4 +37,13 @@
     <string name="exit_confirm">Aceptar</string>
     <string name="exit_cancel">Cancelar</string>
     <string name="bodyPartsButtonTitle">Aprender</string>
+    <string name="loginTitle">Iniciar Sesión</string>
+    <string name="singUpTitle">Registrarse</string>
+    <string name="emailWord">Email</string>
+    <string name="passWord">Contraseña</string>
+    <string name="notAccountText">No tienes cuenta, Registrate</string>
+    <string name="name_label">Nombre</string>
+    <string name="haveAccountText">Ya tienes cuenta, Inicia sesión</string>
+    <string name="errorLoginMessage">Algo salió mal</string>
+    <string name="accountTitle">Mi cuenta</string>
 </resources>

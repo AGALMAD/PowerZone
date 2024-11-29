@@ -13,9 +13,13 @@ import com.example.compose.AppTheme
 import com.example.gymapp.Appearance.Views.AboutAppContent
 import com.example.gymapp.Appearance.Views.AboutUsContent
 import com.example.gymapp.Appearance.Data.Routes
-import com.example.gymapp.Appearance.Views.BodyPartsContent
-import com.example.gymapp.Appearance.Views.ExercisesContent
+import com.example.gymapp.Appearance.Views.Api.BodyPartsContent
+import com.example.gymapp.Appearance.Views.Api.ExercisesContent
+import com.example.gymapp.Appearance.Views.Authentication.Login
+import com.example.gymapp.Appearance.Views.Authentication.Register
+import com.example.gymapp.Appearance.Views.Authentication.UserAccount
 import com.example.gymapp.Appearance.Views.SettingsContent
+import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
 
 class MainActivity : ComponentActivity() {
@@ -27,14 +31,20 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val bodyPartsViewModel: BodyPartsViewModel by viewModels()
                 val exercisesViewModel: ExercisesViewModel by viewModels()
+                val authViewModel: AuthViewModel by viewModels()
+
 
                 NavHost(navController = navController, startDestination = Routes.Principal.route) {
-                    composable(Routes.Principal.route) { Principal(navController) }
+                    composable(Routes.Principal.route) { Principal(navController, authViewModel) }
                     composable(Routes.AboutUs.route) { AboutUsContent(navController) }
                     composable(Routes.AboutApp.route) { AboutAppContent(navController) }
                     composable(Routes.Settings.route) { SettingsContent(navController) }
                     composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, bodyPartsViewModel) }
                     composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
+                    composable(Routes.Login.route) { Login(navController, authViewModel) }
+                    composable(Routes.Register.route) { Register(navController, authViewModel) }
+                    composable(Routes.UserAccount.route) { UserAccount(navController, authViewModel) }
+
                 }
             }
         }
