@@ -2,6 +2,7 @@ package com.example.gymapp.Appearance
 
 import android.app.Activity
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -16,6 +17,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,13 +33,27 @@ import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.Appearance.Generics.AlertDialog
+import com.example.gymapp.GymApi.ViewModels.AuthState
+import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import com.example.gymapp.R
 
 
 @Composable
-fun Principal(navController: NavHostController) {
+fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
     val context = LocalContext.current
 
+    val authState = authViewModel.authState.observeAsState()
+
+
+    LaunchedEffect(authState.value)
+    {
+        when(authState.value){
+            is AuthState.Authenticated -> navController.navigate(Routes.Login.route)
+            else -> Unit
+        }
+    }
+
+    
     Column(
         modifier = Modifier
             .fillMaxSize()

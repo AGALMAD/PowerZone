@@ -1,5 +1,4 @@
 package com.example.gymapp.GymApi.ViewModels
-
 import android.annotation.SuppressLint
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.LiveData
@@ -10,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class AuthViewModel : ViewModel() {
-
     private val auth : FirebaseAuth = FirebaseAuth.getInstance()
 
     private val _authState = MutableLiveData<AuthState>()
@@ -70,7 +68,6 @@ class AuthViewModel : ViewModel() {
         auth.signOut()
         _authState.value = AuthState.Unauthenticated
     }
-
 }
 
 
