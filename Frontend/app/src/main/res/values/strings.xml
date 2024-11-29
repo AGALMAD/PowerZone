@@ -46,4 +46,6 @@
     <string name="haveAccountText">Ya tienes cuenta, Inicia sesión</string>
     <string name="errorLoginMessage">Algo salió mal</string>
     <string name="accountTitle">Mi cuenta</string>
+    <string name="welcomeText">Bienvenido</string>
+    <string name="singoutTitle">Cerrar sesión</string>
 </resources>
