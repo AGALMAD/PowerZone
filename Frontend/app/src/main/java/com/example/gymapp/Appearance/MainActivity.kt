@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = Routes.Principal.route) {
                     composable(Routes.Principal.route) { Principal(navController, authViewModel) }
                     composable(Routes.Settings.route) { SettingsContent(navController, authViewModel) }
-                    composable(Routes.AboutApp.route) { AboutUsContent(navController) }
+                    composable(Routes.AboutUs.route) { AboutUsContent(navController) }
                     composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, bodyPartsViewModel) }
                     composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
                     composable(Routes.Login.route) { Login(navController, authViewModel) }
