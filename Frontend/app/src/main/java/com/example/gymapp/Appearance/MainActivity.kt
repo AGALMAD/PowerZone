@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
                 val exercisesViewModel: ExercisesViewModel by viewModels()
                 val authViewModel: AuthViewModel by viewModels()
 
+                
 
                 NavHost(navController = navController, startDestination = Routes.Principal.route) {
                     composable(Routes.Principal.route) { Principal(navController, authViewModel) }
@@ -40,6 +41,8 @@ class MainActivity : ComponentActivity() {
                     composable(Routes.Settings.route) { SettingsContent(navController) }
                     composable(Routes.BodyPartsScreen.route) { BodyPartsContent(navController, bodyPartsViewModel) }
                     composable(Routes.ExercisesScreen.route) { ExercisesContent(navController, exercisesViewModel) }
+                    composable(Routes.Login.route) { Login(navController) }
+                    composable(Routes.Register.route) { Register(navController, authViewModel) }
                 }
             }
         }
