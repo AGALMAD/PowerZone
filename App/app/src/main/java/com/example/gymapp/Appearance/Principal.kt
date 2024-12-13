@@ -58,6 +58,7 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(50.dp))
         InsertHeader(context, authViewModel, navController)
 
         InsertTitle(context.getString(R.string.appTitle),)
