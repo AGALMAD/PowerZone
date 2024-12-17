@@ -58,6 +58,7 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
             .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(70.dp))
         InsertHeader(context, authViewModel, navController)
 
         InsertTitle(context.getString(R.string.appTitle),)
@@ -158,16 +159,15 @@ fun InsertLogoImage() {
 @Composable
 fun InsertButtos(context: Context, navController: NavHostController, authViewModel: AuthViewModel) {
 
-
-    // Botón para ir a About Us
-    Button(
-        onClick = { navController.navigate(Routes.AboutUs.route) },
+    // Botón para ir a Settings
+    Button(onClick =
+    { navController.navigate(Routes.Settings.route) },
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
     ) {
         Text(
-            text = context.getString(R.string.about_us_title),
+            text = context.getString(R.string.settingsTitle),
             style = MaterialTheme.typography.headlineSmall,
         )
     }
@@ -189,54 +189,20 @@ fun InsertButtos(context: Context, navController: NavHostController, authViewMod
 
     Spacer(modifier = Modifier.height(20.dp))
 
-    // Botón para ir a Settings
-    Button(onClick =
-    { navController.navigate(Routes.Settings.route) },
+    // Botón para ir a About Us
+    Button(
+        onClick = { navController.navigate(Routes.AboutUs.route) },
         shape = misFormas.small,
         modifier = Modifier.width(250.dp)
 
     ) {
         Text(
-            text = context.getString(R.string.settingsTitle),
+            text = context.getString(R.string.about_us_title),
             style = MaterialTheme.typography.headlineSmall,
         )
     }
 
     Spacer(modifier = Modifier.height(20.dp))
-
-
-    val showDialog = remember { mutableStateOf(false) }
-
-    // Botón para mostrar el AlertDialog
-    Button(
-        onClick = { showDialog.value = true }, //no se puede llamar a la función directamente desde el onclick
-        shape = misFormas.small,
-        modifier = Modifier.width(250.dp)
-    ) {
-        Text(
-            text = context.getString(R.string.exit_button_title),
-            style = MaterialTheme.typography.headlineSmall,
-        )
-    }
-
-    val activity = (LocalContext.current as? Activity)
-    val imageBitmap = ImageBitmap.imageResource(R.drawable.icon)
-    // Llama al AlertDialog genérico y lo muestra
-    if (showDialog.value) {
-        AlertDialog(
-            title =  context.getString(R.string.exit_title),
-            description =  context.getString(R.string.exit_description),
-            icon = imageBitmap,
-            confirmText =  context.getString(R.string.exit_confirm),
-            dismissText = context.getString(R.string.exit_cancel),
-            confirm = {
-                activity?.finish()
-                showDialog.value = false
-            },
-            dismiss = {
-                showDialog.value = false
-            })
-    }
 
 
 }

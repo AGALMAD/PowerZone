@@ -33,7 +33,7 @@ fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewM
             viewModel.fetchExercises(id)
         }
     }
-
+    Spacer(modifier = Modifier.height(50.dp))
     if(exercises.isEmpty()){
         CircularProgressIndicator()
     } else {

@@ -9,9 +9,7 @@
     <string name="description_Daniel">Especialista en desarrollo móvil y diseño de interfaz, Daniel ha creado una experiencia intuitiva y atractiva en Power Zone para que los usuarios naveguen fácilmente y se motiven en su entrenamiento.</string>
     <string name="licence_text">Se permite el uso, copia y modificación de esta aplicación sin costo, tanto para uso personal como comercial, siempre que se mantenga este aviso de licencia. No se permite la venta directa de la aplicación, pero puede incluirse como parte de otros servicios.</string>
     <string name="appTitle">Crea tu rutina a medida</string>
-    <string name="settingsTitle">Ajustes</string>
-
-
+    <string name="settingsTitle">Crear Rutina</string>
     <string name="configuration_title">Configuración de rutina</string>
     <string name="fullbody_text">Cuerpo completo</string>
     <string name="select_zone_text">Seleccione la zona a entrenar:</string>
@@ -48,4 +46,6 @@
     <string name="accountTitle">Mi cuenta</string>
     <string name="welcomeText">Bienvenido</string>
     <string name="singoutTitle">Cerrar sesión</string>
+    <string name="home_text">Inicio</string>
+    <string name="account_text">Cuenta</string>
 </resources>
