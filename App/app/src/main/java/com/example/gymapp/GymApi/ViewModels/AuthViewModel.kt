@@ -32,7 +32,8 @@ class AuthViewModel : ViewModel() {
     fun login(email : String, password : String){
 
         if (email.isEmpty() || password.isEmpty()){
-            _authState.value = AuthState.Error("Email or passord can´t be empty")
+             _authState.value = AuthState.Error("Email or passord can´t be empty")
+            return
         }
 
         _authState.value = AuthState.Loading
