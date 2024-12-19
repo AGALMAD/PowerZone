@@ -10,6 +10,7 @@ import com.example.gymapp.Appearance.Navegationdrawer.NavigationDrawer
 import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
 import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
+import com.example.gymapp.Room.ViewModels.TasksViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +21,8 @@ class MainActivity : ComponentActivity() {
                 val bodyPartsViewModel: BodyPartsViewModel by viewModels()
                 val exercisesViewModel: ExercisesViewModel by viewModels()
                 val authViewModel: AuthViewModel by viewModels()
+                val tasksViewModel: TasksViewModel by viewModels()
+
                 NavigationDrawer(bodyPartsViewModel,exercisesViewModel,authViewModel)
             }
         }
