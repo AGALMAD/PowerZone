@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                 val authViewModel: AuthViewModel by viewModels()
                 val tasksViewModel: TasksViewModel by viewModels()
 
-                NavigationDrawer(bodyPartsViewModel,exercisesViewModel,authViewModel)
+                NavigationDrawer(bodyPartsViewModel,exercisesViewModel,authViewModel,tasksViewModel)
             }
         }
     }

@@ -71,7 +71,8 @@ import kotlinx.coroutines.launch
 fun NavigationDrawer(
     bodyPartsViewModel: BodyPartsViewModel,
     exercisesViewModel: ExercisesViewModel,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    tasksViewModel: TasksViewModel
 ){
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -215,7 +216,9 @@ fun NavigationDrawer(
                     Login(navController, authViewModel) }
                 composable(Routes.Register.route) { selectedItemIndex = 1
                     Register(navController, authViewModel) }
-
+                composable(Routes.TasksManager.route) { selectedItemIndex = 5
+                    TasksManager(navController,tasksViewModel)
+                }
             }
         }
         val activity = (LocalContext.current as? Activity)
