@@ -54,4 +54,9 @@
     <string name="high_priority_text">High</string>
     <string name="medium_priority_text">Medium</string>
     <string name="low_priority_text">Low</string>
+    <string name="save_text">Save</string>
+    <string name="deleteall_text">Delete All</string>
+    <string name="task_description_text">Task description</string>
+    <string name="task_text">"Task list "</string>
+    <string name="select_priority_text">Select priority</string>
 </resources>

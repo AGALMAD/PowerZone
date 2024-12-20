@@ -29,12 +29,20 @@ import androidx.navigation.NavHostController
 import com.example.gymapp.Room.ViewModels.TasksViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import com.example.gymapp.Appearance.Themes.misFormas
+import com.example.gymapp.Appearance.Views.GenerateTitle
 import com.example.gymapp.R
+import com.example.ui.theme.AppTypography
+
 
 
 @Composable
@@ -44,45 +52,76 @@ fun TasksManager(navController: NavHostController,
 
     val context = LocalContext.current
 
-    val scrollState = rememberScrollState()
-
     val taskList by viewModel.getAll().collectAsState(initial = emptyList())
     var taskDescription by remember { mutableStateOf("") }
     var taskPriority by remember { mutableIntStateOf(0) }
 
+    val cardColor = Color(0xFF919198)
+    val lowPriorityColor = Color(0xFF116913)
+    val mediumPriorityColor = Color(0xFF0E2059)
+    val highPriorityColor = Color(0xFFE30B1F)
+
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(scrollState)
-            .background(MaterialTheme.colorScheme.background),
+            .background(MaterialTheme.colorScheme.background)
+            .padding(top = 30.dp) ,// Márgenes alrededor de la tarjeta
         verticalArrangement = Arrangement.spacedBy(18.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     )  {
 
+        GenerateTitle(context.getString(R.string.task_text))
+
         LazyColumn(
-            modifier = Modifier.weight(.7F),
-            verticalArrangement = Arrangement.Center
+            modifier = Modifier.height(500.dp),
+            verticalArrangement = Arrangement.Top,
+
         ) {
+            //Recorre todas las tareas y las muestra por pantalla
             items(taskList) { task ->
                 Card(
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 12.dp
+                    ),
+                    colors = CardDefaults.cardColors(
+                        containerColor = cardColor
+                    ),
+                    shape = misFormas.medium,
                     modifier = Modifier
-                        .width(200.dp)
-                        .height(80.dp)
-                        .padding(vertical = 8.dp)
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp) // Márgenes alrededor de la tarjeta
+
                 ) {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
+                    Column (
+                        modifier = Modifier.fillMaxSize()
+                            .padding(16.dp)
+
                     ) {
                         when (task.priority) {
-                            1 -> Text(text = context.getString(R.string.low_priority_text), style = MaterialTheme.typography.bodySmall)
-                            2 -> Text(text = context.getString(R.string.medium_priority_text), style = MaterialTheme.typography.bodySmall)
-                            3 -> Text(text = context.getString(R.string.high_priority_text, style = MaterialTheme.typography.bodySmall)
+                            1 -> Text(text = context.getString(R.string.low_priority_text),
+                                style = AppTypography.bodyMedium,
+                                color = lowPriorityColor,
+                                fontWeight = FontWeight.Bold
+                            )
+                            2 -> Text(text = context.getString(R.string.medium_priority_text),
+                                style = AppTypography.bodyMedium,
+                                color = mediumPriorityColor,
+                                fontWeight = FontWeight.Bold
+                            )
+                            3 -> Text(text = context.getString(R.string.high_priority_text),
+                                style = AppTypography.bodyMedium,
+                                color = highPriorityColor,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
 
-                        Text(text = task.description, style = MaterialTheme.typography.displaySmall)
+                        Spacer(modifier = Modifier.height(10.dp))
 
-
+                        Text(text = task.description,
+                            style = AppTypography.bodyLarge,
+                            color = Color.Black,
+                            textAlign = TextAlign.Justify
+                        )
 
                     }
                 }
@@ -90,18 +129,22 @@ fun TasksManager(navController: NavHostController,
         }
 
 
+        val scrollState = rememberScrollState()
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.background),
+                .background(MaterialTheme.colorScheme.background)
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(18.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        ){
             // Campo de texto para la descripción
             OutlinedTextField(
                 value = taskDescription,
+                shape = misFormas.small,
                 onValueChange = { taskDescription = it },
-                label = { Text("Descripción de la tarea") }
+                label = { Text(context.getString(R.string.task_description_text)) }
             )
 
             // Dropdown para la prioridad
@@ -109,12 +152,28 @@ fun TasksManager(navController: NavHostController,
                 taskPriority = priority // Actualiza el entero seleccionado
             }
 
-            Row {
-                Button(onClick = { viewModel.insertTask(taskDescription, taskPriority) }) {
-                    Text(text = "SAVE")
+            //Botones para guardar una tarea o para eliminarlas todas
+            Row{
+                Button(
+                    shape = misFormas.small,
+                    modifier = Modifier.width(150.dp)
+                        .padding(end =  10.dp),
+                    onClick = {
+                    viewModel.insertTask(taskDescription, taskPriority)
+                    taskDescription = ""
+                })
+                {
+                    Text(text = context.getString(R.string.save_text))
                 }
-                Button(onClick = { viewModel.deleteAllTasks(taskList) }) {
-                    Text(text = "ALL DELETE")
+
+                Button(shape = misFormas.small,
+                    modifier = Modifier.width(150.dp),
+                    onClick = {
+                    viewModel.deleteAllTasks(taskList)
+                    taskDescription = ""
+                },
+                ) {
+                    Text(text = context.getString(R.string.deleteall_text))
                 }
             }
         }
@@ -125,19 +184,25 @@ fun TasksManager(navController: NavHostController,
 }
 
 
-
+//Funcion que genera el dropdown
 @Composable
 fun GenerateDropDown(selectedPriority: Int, onPrioritySelected: (Int) -> Unit) {
+
+    val context = LocalContext.current
+
+
     val opciones = listOf(
-        "Alta" to 1,
-        "Media" to 2,
-        "Baja" to 3)
+        context.getString(R.string.low_priority_text) to 1,
+        context.getString(R.string.medium_priority_text) to 2,
+        context.getString(R.string.high_priority_text) to 3)
 
     var expanded by remember { mutableStateOf(false) }
 
     Column {
-        OutlinedButton(onClick = { expanded = true }) {
-            Text(text = opciones.firstOrNull { it.second == selectedPriority }?.first ?: "Selecciona prioridad")
+        OutlinedButton(onClick = { expanded = true },
+            shape = misFormas.small,
+        ) {
+            Text(text = opciones.firstOrNull { it.second == selectedPriority }?.first ?: context.getString(R.string.select_priority_text))
         }
 
         DropdownMenu(
