@@ -16,7 +16,7 @@ class TasksViewModel(private val tasksRepository: TasksRepository) : ViewModel()
 
     fun getAll(): Flow<List<Task>> = tasksRepository.getAll()
 
-    fun insertTask(description: String, priority: String) = viewModelScope.launch {
+    fun insertTask(description: String, priority: Int) = viewModelScope.launch {
         tasksRepository.insertTask(Task(description = description, priority = priority))
     }
 
