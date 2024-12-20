@@ -7,8 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.gymapp.Room.Aplication.TasksAplication
-import com.example.gymapp.Room.Daos.TasksDao
-import com.example.gymapp.Room.Entities.Task
+import com.example.gymapp.Room.Models.Task
 import com.example.gymapp.Room.Repositories.TasksRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
