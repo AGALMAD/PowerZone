@@ -49,4 +49,7 @@
     <string name="home_text">Inicio</string>
     <string name="account_text">Cuenta</string>
     <string name="tasks_name">Tareas</string>
+    <string name="high_priority_text">Alta</string>
+    <string name="medium_priority_text">Media</string>
+    <string name="low_priority_text">Baja</string>
 </resources>

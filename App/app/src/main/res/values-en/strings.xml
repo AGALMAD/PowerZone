@@ -51,4 +51,7 @@
     <string name="home_text">Home</string>
     <string name="account_text">Account</string>
     <string name="tasks_name">Tasks</string>
+    <string name="high_priority_text">High</string>
+    <string name="medium_priority_text">Medium</string>
+    <string name="low_priority_text">Low</string>
 </resources>

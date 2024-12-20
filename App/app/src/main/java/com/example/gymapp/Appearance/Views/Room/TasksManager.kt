@@ -34,18 +34,19 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.platform.LocalContext
+import com.example.gymapp.R
 
 
 @Composable
 fun TasksManager(navController: NavHostController,
-                 viewModel: TasksViewModel = viewModel(factory = TasksViewModel.Factory) // ..1
+                 viewModel: TasksViewModel = viewModel(factory = TasksViewModel.Factory)
 ) {
 
     val context = LocalContext.current
 
     val scrollState = rememberScrollState()
 
-    val taskList by viewModel.getAll().collectAsState(initial = emptyList()) // ..2
+    val taskList by viewModel.getAll().collectAsState(initial = emptyList())
     var taskDescription by remember { mutableStateOf("") }
     var taskPriority by remember { mutableIntStateOf(0) }
 
@@ -74,9 +75,9 @@ fun TasksManager(navController: NavHostController,
                         contentAlignment = Alignment.Center
                     ) {
                         when (task.priority) {
-                            1 -> Text(text = "Baja", style = MaterialTheme.typography.displaySmall)
-                            2 -> Text(text = "Media", style = MaterialTheme.typography.displaySmall)
-                            3 -> Text(text = "Alta", style = MaterialTheme.typography.displaySmall)
+                            1 -> Text(text = context.getString(R.string.low_priority_text), style = MaterialTheme.typography.bodySmall)
+                            2 -> Text(text = context.getString(R.string.medium_priority_text), style = MaterialTheme.typography.bodySmall)
+                            3 -> Text(text = context.getString(R.string.high_priority_text, style = MaterialTheme.typography.bodySmall)
                         }
 
                         Text(text = task.description, style = MaterialTheme.typography.displaySmall)
@@ -90,9 +91,11 @@ fun TasksManager(navController: NavHostController,
 
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.weight(0.3F)
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background),
+            verticalArrangement = Arrangement.spacedBy(18.dp, Alignment.CenterVertically),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Campo de texto para la descripción
             OutlinedTextField(
