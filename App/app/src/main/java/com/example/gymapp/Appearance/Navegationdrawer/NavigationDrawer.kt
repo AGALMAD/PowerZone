@@ -6,22 +6,20 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -58,17 +56,23 @@ import com.example.gymapp.Appearance.Views.Api.BodyPartsContent
 import com.example.gymapp.Appearance.Views.Api.ExercisesContent
 import com.example.gymapp.Appearance.Views.Authentication.Login
 import com.example.gymapp.Appearance.Views.Authentication.Register
+import com.example.gymapp.Appearance.Views.Room.TasksManager
 import com.example.gymapp.Appearance.Views.SettingsContent
 import com.example.gymapp.GymApi.ViewModels.AuthViewModel
 import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
 import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
 import com.example.gymapp.R
+import com.example.gymapp.Room.ViewModels.TasksViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun NavigationDrawer(bodyPartsViewModel: BodyPartsViewModel,exercisesViewModel: ExercisesViewModel,authViewModel: AuthViewModel){
+fun NavigationDrawer(
+    bodyPartsViewModel: BodyPartsViewModel,
+    exercisesViewModel: ExercisesViewModel,
+    authViewModel: AuthViewModel
+){
     val navController = rememberNavController()
     val context = LocalContext.current
     val showDialog = remember { mutableStateOf(false) }
@@ -105,6 +109,12 @@ fun NavigationDrawer(bodyPartsViewModel: BodyPartsViewModel,exercisesViewModel: 
             selectedIcon = Icons.Filled.Info,
             unselectedIcon = Icons.Outlined.Info,
             route = Routes.AboutUs.route
+        ),
+        NavigationItems(
+            title = context.getString(R.string.tasks_name),
+            selectedIcon = Icons.Filled.CheckCircle,
+            unselectedIcon = Icons.Outlined.CheckCircle,
+            route = Routes.TasksManager.route
         ),
         NavigationItems(
             title = context.getString(R.string.exit_button_title),
@@ -205,6 +215,7 @@ fun NavigationDrawer(bodyPartsViewModel: BodyPartsViewModel,exercisesViewModel: 
                     Login(navController, authViewModel) }
                 composable(Routes.Register.route) { selectedItemIndex = 1
                     Register(navController, authViewModel) }
+
             }
         }
         val activity = (LocalContext.current as? Activity)
