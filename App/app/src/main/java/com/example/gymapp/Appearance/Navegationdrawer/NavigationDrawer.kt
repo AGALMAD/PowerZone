@@ -21,6 +21,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material3.Badge
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -34,6 +35,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,6 +43,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
@@ -77,7 +80,7 @@ fun NavigationDrawer(
     val navController = rememberNavController()
     val context = LocalContext.current
     val showDialog = remember { mutableStateOf(false) }
-
+    val tasknotfinished by tasksViewModel.getCount().collectAsState(0)
 
     ///List of Navigation Items that will be clicked
     val items = listOf(
@@ -165,10 +168,18 @@ fun NavigationDrawer(
                                 contentDescription = item.title
                             )
                         },
-                        badge = {  // Show Badge
-                            //item.badgeCount?.let {
-                              //  Text(text = item.badgeCount.toString())
-                            //}
+                        badge = {
+                            if(index == 5){
+                                if(tasknotfinished>0){
+                                    Badge(
+                                        modifier = Modifier.padding(5.dp),
+                                        containerColor = Color.Red,
+                                        contentColor = Color.White,
+                                        content = {Text(tasknotfinished.toString())}
+                                    )
+                                }
+
+                            }
                         },
                         modifier = Modifier
                             .padding(NavigationDrawerItemDefaults.ItemPadding) //padding between items

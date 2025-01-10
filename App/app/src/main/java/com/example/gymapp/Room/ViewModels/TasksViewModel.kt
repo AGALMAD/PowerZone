@@ -16,8 +16,14 @@ class TasksViewModel(private val tasksRepository: TasksRepository) : ViewModel()
 
     fun getAll(): Flow<List<Task>> = tasksRepository.getAll()
 
+    fun getCount(): Flow<Int> = tasksRepository.getCount()
+
+    fun updateTask(id : Int,description: String,priority: Int, finished: Boolean) = viewModelScope.launch {
+        tasksRepository.updateTask(Task(id,description,priority,finished))
+    }
+
     fun insertTask(description: String, priority: Int) = viewModelScope.launch {
-        tasksRepository.insertTask(Task(description = description, priority = priority))
+        tasksRepository.insertTask(Task(description = description, priority = priority, finished = false))
     }
 
     fun deleteAllTasks(allTasks: List<Task>) = viewModelScope.launch {
