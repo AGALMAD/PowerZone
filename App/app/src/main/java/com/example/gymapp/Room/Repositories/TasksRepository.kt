@@ -1,6 +1,6 @@
 package com.example.gymapp.Room.Repositories
 
-import com.example.gymapp.Room.Entities.Task
+import com.example.gymapp.Room.Models.Task
 import com.example.gymapp.Room.Daos.TasksDao
 
 class TasksRepository(private val tasksDao: TasksDao) {

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.gymapp.Room.Entities.Task
+import com.example.gymapp.Room.Models.Task
 import kotlinx.coroutines.flow.Flow
 
 //Interfaz para manejar los datos de la base de datos

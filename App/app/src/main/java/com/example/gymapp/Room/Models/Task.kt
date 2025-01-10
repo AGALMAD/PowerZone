@@ -1,4 +1,4 @@
-package com.example.gymapp.Room.Entities
+package com.example.gymapp.Room.Models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
