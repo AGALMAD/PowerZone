@@ -52,7 +52,8 @@ git clone https://github.com/AGALMAD/PowerZone.git
 - Configura Firebase Authentication activando el método de autenticación por correo electrónico y contraseña.
 
 ### 3. Configura la API Moki
-- Accede a https://designer.mocky.io/
+- Accede a [Mocky](https://designer.mocky.io/)
+- Crea un nuevo mock
 - Añade HTTP Response Body tus datos en formato json
 - Obten la url y en el servicio añade el ultimo tramo de esta
 
