@@ -1,11 +1,11 @@
-package com.example.demo
+package com.PowerZone.PowerZone
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DemoApplication
+class PowerZoneApplication
 
 fun main(args: Array<String>) {
-	runApplication<DemoApplication>(*args)
+	runApplication<PowerZoneApplication>(*args)
 }
