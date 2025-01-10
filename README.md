@@ -21,70 +21,66 @@
 
 ## Características Principales
 
-### 1. **Inicio de Sesión con Firebase**
-- Autenticación segura y rápida utilizando Firebase Authentication.
-- Permite el registro e inicio de sesión mediante correo electrónico y contraseña.
-
-### 2. **Ajustes Personalizados**
-- Configuración ajustable por el usuario para personalizar la experiencia.
-- Preparación para futura integración de inteligencia artificial que generarán rutinas de gimnasio adaptadas a las necesidades del usuario.
-
-### 3. **Aprende Técnicas de Ejercicios**
-- Un apartado dedicado para enseñar las técnicas correctas de los ejercicios más comunes.
-- Integración con la API **Moki** para proporcionar el mejor contenido seleccionado.
-
-### 4. **Temas**
-- La aplicación obtiene el tema que el usuario tiene establecido en su dispositivo y lo establece en la aplicación
-
-### 5. **Idiomas**
-- La aplicación está disponible tanto en español como en ingles
+- **Inicio de Sesión Seguro**: Soporte para registro e inicio de sesión con Firebase.
+- **Ajustes Personalizados**: Configuración guardada en la sesión de cada usuario. Se adaptará en el futuro con inteligencia artificial
+- **Tutoriales de Ejercicios**: Aprende técnicas correctas organizadas por grupos musculares.
+- **Modo Oscuro/Claro**: Adopta el tema del sistema del dispositivo automáticamente.
+- **Soporte Multilingüe**: Disponible en español e inglés.
 
 ---
 
 ## Tecnologías Utilizadas
 
-- **Lenguaje de Programación:** Kotlin
-- **Arquitectura:** Jetpack Compose
-- **Backend:** Firebase Authentication
-- **API:** Hosteada en mocky.io con datos propios
+- **Kotlin**: Lenguaje de programación moderno, seguro y eficiente para Android.
+- **Jetpack Compose**: Framework de UI declarativa que permite un desarrollo rápido y flexible.
+- **Firebase Authentication**: Proporciona autenticación confiable y escalable.
+- **Mocky.io**: Servicio para crear APIs rápidas y estáticas con datos personalizados.
 
 ---
 
 ## Instalación y Configuración
 
-### 1. Clona el repositorio
-```bash
-git clone https://github.com/AGALMAD/PowerZone.git
-```
+### Requisitos Previos:
+- Android Studio ladybug o superior.
+- Android SDK 21.
+- Dependencias sincronizadas con Gradle.
 
-### 2. Configura Firebase
-- Accede a [Firebase Console](https://console.firebase.google.com) y crea un proyecto.
-- Descarga el archivo `google-services.json` y colócalo en la carpeta `app` de tu proyecto.
-- Configura Firebase Authentication activando el método de autenticación por correo electrónico y contraseña.
+### Pasos:
 
-### 3. Configura la API Moki
-- Accede a [Mocky](https://designer.mocky.io/)
-- Crea un nuevo mock
-- Añade HTTP Response Body tus datos en formato json
-- Obten la url y en el servicio añade el ultimo tramo de esta
+1. **Clona el repositorio**:
+   ```bash
+   git clone https://github.com/AGALMAD/PowerZone.git
+   ```
 
-### 4. Compila y ejecuta la aplicación
-Abre el proyecto en Android Studio, sincroniza las dependencias y ejecuta la aplicación en un emulador o dispositivo físico.
+2. **Configura Firebase**:
+   - Accede a [Firebase Console](https://console.firebase.google.com) y crea un proyecto.
+   - Descarga el archivo `google-services.json` y colócalo en la carpeta `app` de tu proyecto.
+   - Configura Firebase Authentication activando el método de autenticación por correo electrónico y contraseña.
+
+3. **Configura la API Mocky**:
+   - Accede a [Mocky](https://designer.mocky.io/).
+   - Crea un nuevo mock.
+   - Añade tus datos en formato JSON en el HTTP Response Body.
+   - Obtén la URL y úsala en tu servicio añadiendo el último tramo de esta.
+
+4. **Compila y ejecuta**:
+   - Abre el proyecto en Android Studio.
+   - Sincroniza las dependencias y ejecuta la aplicación en un emulador o dispositivo físico.
 
 ---
 
 ## Uso de la Aplicación
 
-1. Para poder introducir datos personalizados para crear una rutina es necesario regístrarse o iniciar sesión utilizando tu correo y contraseña.
-2. Para poder acceder a los tutoriales debes acceder al apartado `aprender` y este se encuentra dividido en los distintos grupos musculares, en ellos encontrarás múltiples tutoriales con el que aprenderás a ejecutar la técnica correctamente
+1. **Inicio de sesión**: Regístrate o inicia sesión utilizando tu correo y contraseña para personalizar tus datos.
+2. **Explora Tutoriales**: Accede al apartado `Aprender`, donde encontrarás tutoriales organizados por grupos musculares.
 
 ---
 
 ## Próximas Actualizaciones
 
-- API REST con Spring Boot con el que almacenaremos los datos de los ejercicios y autenticación propia
-- Implementación de una IA que genere rutinas de gimnasio personalizadas.
-- Integración de estadísticas y seguimiento de progreso del usuario.
+- **Alta Prioridad**: API REST con Spring Boot para almacenamiento y autenticación propia.
+- **Alta Prioridad**: Implementación de una IA que genere rutinas de gimnasio personalizadas.
+- **Media Prioridad**: Estadísticas y seguimiento del progreso del usuario.
 
 ---
 
@@ -104,4 +100,5 @@ Este proyecto está licenciado bajo la **MIT License**. Consulta el archivo `LIC
 
 ---
 
+¡Gracias por usar PowerZone! 💪 Si tienes dudas o sugerencias, no dudes en abrir un issue en el repositorio. 🚀
 ¡Gracias por usar PowerZone! 💪 Si tienes dudas o sugerencias, no dudes en abrir un issue en el repositorio. 🚀
