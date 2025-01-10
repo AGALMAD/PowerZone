@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 class ArticleController(
         private val articleService: ActivityService
 ) {
-    @GetMapping("/api/activity")
+    @GetMapping()
     fun listAll(): List<ActivityResponse> =
             articleService.findAll()
                     .map { it.toResponse() }
