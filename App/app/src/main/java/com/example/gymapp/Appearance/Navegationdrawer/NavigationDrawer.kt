@@ -217,8 +217,8 @@ fun NavigationDrawer(
                 composable(Routes.Register.route) { selectedItemIndex = 1
                     Register(navController, authViewModel) }
                 composable(Routes.TasksManager.route) { selectedItemIndex = 5
-                    TasksManager(navController, tasksViewModel) }
-
+                    TasksManager(navController,tasksViewModel)
+                }
             }
         }
         val activity = (LocalContext.current as? Activity)
