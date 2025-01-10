@@ -30,6 +30,7 @@ import com.example.gymapp.Room.ViewModels.TasksViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.OutlinedButton
@@ -38,6 +39,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.Appearance.Views.GenerateTitle
 import com.example.gymapp.R
@@ -92,38 +94,62 @@ fun TasksManager(navController: NavHostController,
                         .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp) // Márgenes alrededor de la tarjeta
 
                 ) {
-                    Column (
-                        modifier = Modifier.fillMaxSize()
-                            .padding(16.dp)
-
-                    ) {
-                        when (task.priority) {
-                            1 -> Text(text = context.getString(R.string.low_priority_text),
-                                style = AppTypography.bodyMedium,
-                                color = lowPriorityColor,
-                                fontWeight = FontWeight.Bold
-                            )
-                            2 -> Text(text = context.getString(R.string.medium_priority_text),
-                                style = AppTypography.bodyMedium,
-                                color = mediumPriorityColor,
-                                fontWeight = FontWeight.Bold
-                            )
-                            3 -> Text(text = context.getString(R.string.high_priority_text),
-                                style = AppTypography.bodyMedium,
-                                color = highPriorityColor,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        Text(text = task.description,
-                            style = AppTypography.bodyLarge,
-                            color = Color.Black,
-                            textAlign = TextAlign.Justify
+                    Row(verticalAlignment = Alignment.CenterVertically){
+                        Checkbox(
+                            checked = task.finished,
+                            onCheckedChange = {
+                                viewModel.updateTask(
+                                    task.id,
+                                    task.description,
+                                    task.priority,
+                                    !task.finished
+                                )
+                            }
                         )
+                        Column (
+                            modifier = Modifier.fillMaxSize()
+                                .padding(16.dp)
 
+                        ) {
+                            when (task.priority) {
+                                1 -> Text(text = context.getString(R.string.low_priority_text),
+                                    style = AppTypography.bodyMedium,
+                                    color = lowPriorityColor,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                2 -> Text(text = context.getString(R.string.medium_priority_text),
+                                    style = AppTypography.bodyMedium,
+                                    color = mediumPriorityColor,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                3 -> Text(text = context.getString(R.string.high_priority_text),
+                                    style = AppTypography.bodyMedium,
+                                    color = highPriorityColor,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            if(task.finished){
+                                Text(text = task.description,
+                                    style = AppTypography.bodyLarge,
+                                    color = Color.Black,
+                                    textAlign = TextAlign.Justify,
+                                    textDecoration = TextDecoration.LineThrough
+                                    )
+                            }else{
+                                Text(text = task.description,
+                                    style = AppTypography.bodyLarge,
+                                    color = Color.Black,
+                                    textAlign = TextAlign.Justify
+                                    )
+                            }
+
+
+                        }
                     }
+
                 }
             }
         }

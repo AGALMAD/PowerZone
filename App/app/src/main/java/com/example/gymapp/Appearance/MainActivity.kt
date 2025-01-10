@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 
                 //Variables necesarias para task view model
                 val context = LocalContext.current
-                val db = Room.databaseBuilder(context, TasksDatabase::class.java, "tasks-db").build()
+                val db = Room.databaseBuilder(context, TasksDatabase::class.java, "tasks2").build()
                 val tasksDao = db.TasksDao()
                 val tasksRepository = TasksRepository(tasksDao)
                 val tasksViewModel = TasksViewModel(tasksRepository)

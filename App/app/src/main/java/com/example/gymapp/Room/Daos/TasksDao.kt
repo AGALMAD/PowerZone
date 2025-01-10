@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.gymapp.Room.Models.Task
 import kotlinx.coroutines.flow.Flow
 
@@ -12,6 +13,12 @@ import kotlinx.coroutines.flow.Flow
 interface TasksDao {
     @Query("SELECT * FROM tasks")
     fun getAll(): Flow<List<Task>>
+
+    @Query("SELECT COUNT(*) FROM tasks WHERE finished IS FALSE")
+    fun getCount(): Flow<Int>
+
+    @Update
+    suspend fun updateTask(task: Task)
 
     @Insert
     suspend fun insertTask(task: Task)

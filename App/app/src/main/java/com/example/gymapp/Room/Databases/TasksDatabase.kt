@@ -22,7 +22,7 @@ abstract class TasksDatabase : RoomDatabase(){
                 Room.databaseBuilder(
                     context = context,
                     klass = TasksDatabase::class.java,
-                    name = "tasks"
+                    name = "tasks2"
                 )
                     .build()
                     .also { Instance = it }
