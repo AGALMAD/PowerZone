@@ -10,8 +10,7 @@
 5. [Uso de la Aplicación](#uso-de-la-aplicación)
 6. [Próximas Actualizaciones](#próximas-actualizaciones)
 7. [Contribuciones](#contribuciones)
-8. [Licencia](#licencia)
-
+   
 ## Descripción del Proyecto
 
 **PowerZone** es una aplicación de Android diseñada con **Jetpack Compose** que tiene como objetivo ayudar a los usuarios a mejorar su experiencia en el gimnasio. La aplicación incluye funciones esenciales como inicio de sesión de usuario mediante Firebase, ajustes personalizados para mejorar la experiencia del usuario, y un apartado educativo para aprender técnicas adecuadas de ejercicios
@@ -94,11 +93,5 @@
 
 ---
 
-## Licencia
 
-Este proyecto está licenciado bajo la **MIT License**. Consulta el archivo `LICENSE` para más detalles.
-
----
-
-¡Gracias por usar PowerZone! 💪 Si tienes dudas o sugerencias, no dudes en abrir un issue en el repositorio. 🚀
 ¡Gracias por usar PowerZone! 💪 Si tienes dudas o sugerencias, no dudes en abrir un issue en el repositorio. 🚀
