@@ -37,12 +37,14 @@ class UserController(
         else
             throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
     }
+
     private fun User.toResponse(): UserResponse =
             UserResponse(
                     uuid = this.id,
                     email = this.email,
                     name = this.name
             )
+
     private fun UserRequest.toModel(): User =
             User(
                     id = UUID.randomUUID(),

@@ -21,8 +21,10 @@ class Configuration{
     fun userDetailsService(userRepository: UserRepository): UserDetailsService =
             CustomUserDetailsService(userRepository)
 
+
     @Bean
     fun encoder(): PasswordEncoder = BCryptPasswordEncoder()
+
     @Bean
     fun authenticationProvider(userRepository: UserRepository): AuthenticationProvider =
             DaoAuthenticationProvider()

@@ -1,10 +1,9 @@
+package com.PowerZone.PowerZone.Services
 
 import com.PowerZone.PowerZone.Config.JwtProperties
-import com.PowerZone.PowerZone.Config.TokenService
 import com.PowerZone.PowerZone.Controller.Auth.AuthenticationRequest
 import com.PowerZone.PowerZone.Controller.Auth.AuthenticationResponse
 import com.PowerZone.PowerZone.Repository.RefreshTokenRepository
-import com.PowerZone.PowerZone.Services.CustomUserDetailsService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UserDetails
@@ -13,11 +12,11 @@ import java.util.*
 
 @Service
 class AuthenticationService(
-        private val authManager: AuthenticationManager,
-        private val userDetailsService: CustomUserDetailsService,
-        private val tokenService: TokenService,
-        private val jwtProperties: JwtProperties,
-        private val refreshTokenRepository: RefreshTokenRepository,
+    private val authManager: AuthenticationManager,
+    private val userDetailsService: CustomUserDetailsService,
+    private val tokenService: TokenService,
+    private val jwtProperties: JwtProperties,
+    private val refreshTokenRepository: RefreshTokenRepository,
 ) {
 
     fun authentication(authenticationRequest: AuthenticationRequest): AuthenticationResponse {
