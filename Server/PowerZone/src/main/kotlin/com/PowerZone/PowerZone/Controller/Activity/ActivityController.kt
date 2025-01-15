@@ -10,16 +10,22 @@ class ArticleController(
         private val articleService: ActivityService
 ) {
     @GetMapping()
-    fun listAll(): List<ActivityResponse> =
-            articleService.findAll()
-                    .map { it.toResponse() }
+    fun getAll(): List<ActivityResponse> =
+            articleService.allActivities()
+                    .map { it.toResponse()!! }
 
-    private fun Activity.toResponse(): ActivityResponse =
+    @GetMapping("/{id}")
+    fun getById(@PathVariable id: String): ActivityResponse? =
+        articleService.getActivityById(id)?.toResponse()
+
+    private fun Activity.toResponse(): ActivityResponse? =
+        this.id?.let {
             ActivityResponse(
-                    id = this.id,
-                    title = this.title,
-                    description = this.description,
-                    startDateTime = this.startDateTime,
-                    endDateTime = this.endDateTime
+                id = it,
+                title = this.title,
+                description = this.description,
+                startDateTime = this.startDateTime,
+                endDateTime = this.endDateTime
             )
+        }
 }
