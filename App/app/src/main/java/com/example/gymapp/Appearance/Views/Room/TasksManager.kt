@@ -43,6 +43,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -54,7 +55,7 @@ import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.Appearance.Views.GenerateTitle
 import com.example.gymapp.R
 import com.example.ui.theme.AppTypography
-
+import kotlinx.coroutines.delay
 
 
 @Composable
@@ -74,6 +75,7 @@ fun TasksManager(navController: NavHostController,
     val mediumPriorityColor = Color(0xFF0E2059)
     val highPriorityColor = Color(0xFFE30B1F)
 
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -92,6 +94,11 @@ fun TasksManager(navController: NavHostController,
         ) {
             //Recorre todas las tareas y las muestra por pantalla
             items(taskList) { task ->
+                LaunchedEffect(visible) {
+                    delay(3000)
+                    viewModel.deleteOneTask(task)
+
+                }
                 AnimatedVisibility(
                     visible = visible,
                     exit = scaleOut() + shrinkVertically(shrinkTowards = Alignment.CenterVertically)
@@ -174,7 +181,6 @@ fun TasksManager(navController: NavHostController,
                             Icon(
                                 modifier = Modifier.clickable {
                                     visible = false
-                                    viewModel.deleteOneTask(task)
                                 },
                                 imageVector = Icons.Outlined.Delete,
                                 contentDescription = "Delete",
