@@ -9,9 +9,16 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class TokenService() {
+class TokenService(
+        jwtProperties: JwtProperties
+) {
 
-    private val secretKey = Jwts.SIG.HS256.key().build()
+    //private val secretKey = Jwts.SIG.HS256.key().build() manera correcta al desplegar (se cambia al reiniciar el servidor)
+
+    //manera menos segura ya que se puede ver en aplication.properties
+    private val secretKey = Keys.hmacShaKeyFor(
+            jwtProperties.key.toByteArray()
+    )
 
 
     fun generate(
