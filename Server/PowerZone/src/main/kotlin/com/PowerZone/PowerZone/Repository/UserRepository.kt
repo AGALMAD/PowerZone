@@ -12,25 +12,29 @@ class UserRepository(
 ) {
     private val users = mutableSetOf(
             User(
-                    id = UUID.randomUUID(),
+                id = UUID.randomUUID().toString(),
+                name = "alejandro",
+                email = "ale@gmail.com",
+                password = "pass1",
+                role = Role.ADMIN.toString()
+            ),
+            User(
+                    id = UUID.randomUUID().toString(),
                     name = "pepe",
                     email = "pepe@gmail.com",
                     password = "pass1",
-                    role = Role.USER,
             ),
             User(
-                    id = UUID.randomUUID(),
+                id = UUID.randomUUID().toString(),
                     name = "paco",
                     email = "paco@gmail.com",
                     password = "pass2",
-                    role = Role.ADMIN,
             ),
             User(
-                    id = UUID.randomUUID(),
+                id = UUID.randomUUID().toString(),
                     name = "manolo",
                     email = "manolo@gmail.com",
                     password = "pass3",
-                    role = Role.USER,
             ),
     )
 
@@ -48,11 +52,10 @@ class UserRepository(
     fun findAll(): Set<User> =
             users
 
-    fun findByUUID(uuid: UUID): User? =
-            users
-                    .firstOrNull { it.id == uuid }
+    fun findByUUID(uuid: String): User? =
+            users.firstOrNull { it.id == uuid }
 
-    fun deleteByUUID(uuid: UUID): Boolean {
+    fun deleteByUUID(uuid: String): Boolean {
         val foundUser = findByUUID(uuid)
 
         return foundUser?.let {

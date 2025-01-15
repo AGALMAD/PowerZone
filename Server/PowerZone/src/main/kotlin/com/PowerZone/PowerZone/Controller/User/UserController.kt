@@ -24,12 +24,12 @@ class UserController(
             userService.findAll()
                     .map { it.toResponse() }
     @GetMapping("/{uuid}")
-    fun findByUUID(@PathVariable uuid: UUID): UserResponse =
+    fun findByUUID(@PathVariable uuid: String): UserResponse =
             userService.findByUUID(uuid)
                     ?.toResponse()
                     ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
     @DeleteMapping("/{uuid}")
-    fun deleteByUUID(@PathVariable uuid: UUID): ResponseEntity<Boolean> {
+    fun deleteByUUID(@PathVariable uuid: String): ResponseEntity<Boolean> {
         val success = userService.deleteByUUID(uuid)
         return if (success)
             ResponseEntity.noContent()
@@ -40,17 +40,16 @@ class UserController(
 
     private fun User.toResponse(): UserResponse =
             UserResponse(
-                    uuid = this.id,
+                    uuid = UUID.fromString(id),
                     email = this.email,
                     name = this.name
             )
 
     private fun UserRequest.toModel(): User =
             User(
-                    id = UUID.randomUUID(),
+                    id = UUID.randomUUID().toString(),
                     name = this.name,
                     email = this.email,
                     password = this.password,
-                    role = Role.USER,
             )
 }

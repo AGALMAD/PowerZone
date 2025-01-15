@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class JwtAuthApplication
+class PowerZoneApplication
 
 fun main(args: Array<String>) {
-    runApplication<JwtAuthApplication>(*args)
+    runApplication<PowerZoneApplication>(*args)
 }

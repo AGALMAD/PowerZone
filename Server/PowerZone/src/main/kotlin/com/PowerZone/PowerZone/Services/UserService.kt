@@ -16,11 +16,11 @@ class UserService(
             user
         } else null
     }
-    fun findByUUID(uuid: UUID): User? =
+    fun findByUUID(uuid: String): User? =
             userRepository.findByUUID(uuid)
     fun findAll(): List<User> =
             userRepository.findAll()
                     .toList()
-    fun deleteByUUID(uuid: UUID): Boolean =
+    fun deleteByUUID(uuid: String): Boolean =
             userRepository.deleteByUUID(uuid)
 }

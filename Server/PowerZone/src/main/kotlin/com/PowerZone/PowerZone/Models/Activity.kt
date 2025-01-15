@@ -5,8 +5,8 @@ import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
 import java.util.*
 
-@Table("ACTIVITY")
-data class Activity(@Id val id : String? = UUID.randomUUID().toString(),
+@Table("ACTIVITIES")
+data class Activity(@Id val id : String = UUID.randomUUID().toString(),
                     val title: String,
                     val description: String,
                     val startDateTime: LocalDateTime,
