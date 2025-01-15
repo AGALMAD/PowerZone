@@ -11,8 +11,8 @@ CREATE TABLE users (
 -- Tabla para las actividades
 CREATE TABLE activities (
     id VARCHAR(60) DEFAULT RANDOM_UUID() PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
+    title VARCHAR(60) NOT NULL,
+    description VARCHAR(255),
     start_date_time TIMESTAMP NOT NULL,
     end_date_time TIMESTAMP NOT NULL
 );
@@ -22,6 +22,5 @@ CREATE TABLE activities (
 CREATE TABLE participation (
     userId VARCHAR(60) NOT NULL,
     activityId VARCHAR(60) NOT NULL,
-
 );
 
