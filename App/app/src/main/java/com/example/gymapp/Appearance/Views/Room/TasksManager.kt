@@ -68,7 +68,6 @@ fun TasksManager(navController: NavHostController,
     val taskList by viewModel.getAll().collectAsState(initial = emptyList())
     var taskDescription by remember { mutableStateOf("") }
     var taskPriority by remember { mutableIntStateOf(0) }
-    var visible by remember { mutableStateOf(true) }
 
     val cardColor = Color(0xFF919198)
     val lowPriorityColor = Color(0xFF116913)
@@ -90,17 +89,19 @@ fun TasksManager(navController: NavHostController,
         LazyColumn(
             modifier = Modifier.height(500.dp),
             verticalArrangement = Arrangement.Top,
-
         ) {
             //Recorre todas las tareas y las muestra por pantalla
             items(taskList) { task ->
-                LaunchedEffect(visible) {
-                    delay(3000)
-                    viewModel.deleteOneTask(task)
-
+                var isVisible by remember { mutableStateOf(true) }
+                if(!isVisible){
+                    LaunchedEffect(task.id) {
+                        delay(100)
+                        viewModel.deleteOneTask(task)
+                        isVisible = true
+                    }
                 }
                 AnimatedVisibility(
-                    visible = visible,
+                    visible = isVisible,
                     exit = scaleOut() + shrinkVertically(shrinkTowards = Alignment.CenterVertically)
                 ) {
                     Card(
@@ -180,7 +181,7 @@ fun TasksManager(navController: NavHostController,
                             }
                             Icon(
                                 modifier = Modifier.clickable {
-                                    visible = false
+                                    isVisible = false
                                 },
                                 imageVector = Icons.Outlined.Delete,
                                 contentDescription = "Delete",
