@@ -26,8 +26,6 @@ class UserService(
     fun findById(id: String): Optional<User> =
             userRepository.findById(id)
 
-    fun findByEmail(email : String) : Optional<User> =
-        userRepository.findByEmail(email)
 
     fun deleteById(id: String): Boolean {
         return if (userRepository.existsById(id)) {
