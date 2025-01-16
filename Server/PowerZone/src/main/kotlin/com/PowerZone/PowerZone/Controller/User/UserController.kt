@@ -1,5 +1,6 @@
 package com.PowerZone.PowerZone.Controller.User
 
+import com.PowerZone.PowerZone.Models.Role
 import com.PowerZone.PowerZone.Models.User
 import com.PowerZone.PowerZone.Services.UserService
 import org.springframework.http.HttpStatus
@@ -52,5 +53,6 @@ class UserController(
                     name = this.name,
                     email = this.email,
                     password = this.password,
+                    role = Role.USER.toString()
             )
 }
