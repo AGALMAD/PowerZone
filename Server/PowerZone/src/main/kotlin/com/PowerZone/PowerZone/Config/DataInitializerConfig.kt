@@ -15,7 +15,7 @@ import java.util.UUID
 fun dataInitializer(
         activityService: ActivityService,
         userService: UserService
-) {
+) = ApplicationRunner {
     val activities = listOf(
         Activity(
             title = "Clase de Yoga",

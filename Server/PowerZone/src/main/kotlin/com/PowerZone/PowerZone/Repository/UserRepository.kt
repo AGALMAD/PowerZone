@@ -10,13 +10,6 @@ import java.util.*
 
 @Repository
 interface UserRepository : CrudRepository<User, String>{
-    fun findByEmail(email: String): User?
-
-    fun findByUUID(UUID: String): User?
-    fun deleteByUUID(UUID: String): Boolean
-
-
-
-
+    fun findByEmail(email: String): Optional<User>
 
 }

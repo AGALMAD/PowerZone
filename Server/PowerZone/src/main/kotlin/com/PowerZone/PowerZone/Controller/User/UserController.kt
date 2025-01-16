@@ -1,6 +1,5 @@
 package com.PowerZone.PowerZone.Controller.User
 
-import com.PowerZone.PowerZone.Models.Role
 import com.PowerZone.PowerZone.Models.User
 import com.PowerZone.PowerZone.Services.UserService
 import org.springframework.http.HttpStatus
@@ -23,14 +22,16 @@ class UserController(
     fun listAll(): List<UserResponse> =
             userService.findAll()
                     .map { it.toResponse() }
-    @GetMapping("/{uuid}")
-    fun findByUUID(@PathVariable uuid: String): UserResponse =
-            userService.findByUUID(uuid)
-                    ?.toResponse()
-                    ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
-    @DeleteMapping("/{uuid}")
-    fun deleteByUUID(@PathVariable uuid: String): ResponseEntity<Boolean> {
-        val success = userService.deleteByUUID(uuid)
+    @GetMapping("/{id}")
+    fun findById(@PathVariable id: String): UserResponse =
+            userService.findById(id)
+                    .map { it.toResponse() }
+                    .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.") }
+
+
+    @DeleteMapping("/{id}")
+    fun deleteById(@PathVariable id: String): ResponseEntity<Boolean> {
+        val success = userService.deleteById(id)
         return if (success)
             ResponseEntity.noContent()
                     .build()
@@ -40,7 +41,7 @@ class UserController(
 
     private fun User.toResponse(): UserResponse =
             UserResponse(
-                    uuid = this.id,
+                    id = this.id,
                     email = this.email,
                     name = this.name
             )
