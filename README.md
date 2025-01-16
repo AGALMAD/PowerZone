@@ -23,6 +23,7 @@
 - **Inicio de Sesión Seguro**: Soporte para registro e inicio de sesión con Firebase.
 - **Ajustes Personalizados**: Configuración guardada en la sesión de cada usuario. Se adaptará en el futuro con inteligencia artificial
 - **Tutoriales de Ejercicios**: Aprende técnicas correctas organizadas por grupos musculares.
+- **Progreso**: Registra tus sesiones de entrenamiento para llevar un seguimiento efectivo.
 - **Modo Oscuro/Claro**: Adopta el tema del sistema del dispositivo automáticamente.
 - **Soporte Multilingüe**: Disponible en español e inglés.
 
@@ -33,7 +34,7 @@
 - **Kotlin**: Lenguaje de programación moderno, seguro y eficiente para Android.
 - **Jetpack Compose**: Framework de UI declarativa que permite un desarrollo rápido y flexible.
 - **Firebase Authentication**: Proporciona autenticación confiable y escalable.
-- **Mocky.io**: Servicio para crear APIs rápidas y estáticas con datos personalizados.
+- **Spring Boot + Kotlin**: Framework para crear aplicaciones basadas en Spring, que facilita la creación de APIs REST y microservicios.
 
 ---
 
@@ -77,9 +78,9 @@
 
 ## Próximas Actualizaciones
 
-- **Alta Prioridad**: API REST con Spring Boot para almacenamiento y autenticación propia.
-- **Alta Prioridad**: Implementación de una IA que genere rutinas de gimnasio personalizadas.
-- **Media Prioridad**: Estadísticas y seguimiento del progreso del usuario.
+- API REST con Spring Boot para almacenamiento y autenticación propia.
+- Implementación de una IA que genere rutinas de gimnasio personalizadas.
+- Estadísticas del progreso del usuario.
 
 ---
 
