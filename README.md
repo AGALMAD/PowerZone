@@ -34,7 +34,7 @@
 - **Kotlin**: Lenguaje de programación moderno, seguro y eficiente para Android.
 - **Jetpack Compose**: Framework de UI declarativa que permite un desarrollo rápido y flexible.
 - **Firebase Authentication**: Proporciona autenticación confiable y escalable.
-- **Spring Boot + Kotlin**: Framework para crear aplicaciones basadas en Spring, que facilita la creación de APIs REST y microservicios.
+- **Spring Boot + Kotlin**: Facilita la creación de APIs REST y microservicios.
 
 ---
 
@@ -73,6 +73,7 @@
 
 1. **Inicio de sesión**: Regístrate o inicia sesión utilizando tu correo y contraseña para personalizar tus datos.
 2. **Explora Tutoriales**: Accede al apartado `Aprender`, donde encontrarás tutoriales organizados por grupos musculares.
+3. **Registra tus sesiones de entrenamiento**: Accede al apartado `Progreso`, donde podras llevar un registro del progreso diario.
 
 ---
 
