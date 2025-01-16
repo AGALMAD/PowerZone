@@ -40,7 +40,7 @@ class UserController(
 
     private fun User.toResponse(): UserResponse =
             UserResponse(
-                    uuid = UUID.fromString(id),
+                    uuid = this.id,
                     email = this.email,
                     name = this.name
             )

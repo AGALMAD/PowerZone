@@ -5,7 +5,7 @@ import org.springframework.data.relational.core.mapping.Table
 import java.util.UUID
 
 @Table("USER")
-data class User(@Id val id: String?,
+data class User(@Id val id: String,
                 val name: String,
                 val email: String,
                 val password: String,

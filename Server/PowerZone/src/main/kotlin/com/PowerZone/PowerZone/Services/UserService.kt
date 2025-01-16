@@ -16,11 +16,16 @@ class UserService(
             user
         } else null
     }
-    fun findByUUID(uuid: String): User? =
-            userRepository.findByUUID(uuid)
     fun findAll(): List<User> =
             userRepository.findAll()
                     .toList()
+
+    fun findByUUID(uuid: String): User? =
+            userRepository.findByUUID(uuid)
+
+    fun findByEmail(email : String) : User? =
+        userRepository.findByEmail(email)
+
     fun deleteByUUID(uuid: String): Boolean =
             userRepository.deleteByUUID(uuid)
 }

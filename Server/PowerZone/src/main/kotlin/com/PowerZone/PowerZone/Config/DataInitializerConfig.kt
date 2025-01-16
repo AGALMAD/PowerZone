@@ -1,7 +1,10 @@
 package com.PowerZone.PowerZone.Config
 
 import com.PowerZone.PowerZone.Models.Activity
+import com.PowerZone.PowerZone.Models.Role
+import com.PowerZone.PowerZone.Models.User
 import com.PowerZone.PowerZone.Services.ActivityService
+import com.PowerZone.PowerZone.Services.UserService
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -9,7 +12,10 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 @Bean
-fun dataInitializer(activityService: ActivityService) {
+fun dataInitializer(
+        activityService: ActivityService,
+        userService: UserService
+) {
     val activities = listOf(
         Activity(
             title = "Clase de Yoga",
@@ -44,4 +50,36 @@ fun dataInitializer(activityService: ActivityService) {
     )
 
     activities.forEach { activityService.newActivity(it) }
+
+
+    val users = mutableSetOf(
+            User(
+                    id = UUID.randomUUID().toString(),
+                    name = "alejandro",
+                    email = "ale@gmail.com",
+                    password = "1234",
+                    role = Role.ADMIN.toString()
+            ),
+            User(
+                    id = UUID.randomUUID().toString(),
+                    name = "pepe",
+                    email = "pepe@gmail.com",
+                    password = "pass1",
+            ),
+            User(
+                    id = UUID.randomUUID().toString(),
+                    name = "paco",
+                    email = "paco@gmail.com",
+                    password = "pass2",
+            ),
+            User(
+                    id = UUID.randomUUID().toString(),
+                    name = "manolo",
+                    email = "manolo@gmail.com",
+                    password = "pass3",
+            ),
+    )
+
+    users.forEach { userService.createUser(it) }
+
 }
