@@ -15,7 +15,7 @@ val onBackgroundLight = Color(0xFF22191C)       // Rojo oscuro
 val surfaceLight = Color(0xFFFFF8F7)            // Blanco
 val onSurfaceLight = Color(0xFF221919)          // Rojo oscuro
 val errorLight = Color(0xFFBA1A1A)              // Rojo de error
-val onErrorLight = Color(0xFFFFFFFF)            // Blanco
+val onErrorLight = Color(0xFFDC0000)            // Blanco
 
 
 // Modo oscuro

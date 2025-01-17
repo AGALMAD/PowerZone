@@ -1,6 +1,10 @@
 package com.example.gymapp.Appearance.Views.Room
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.verticalScroll
@@ -29,14 +33,21 @@ import androidx.navigation.NavHostController
 import com.example.gymapp.Room.ViewModels.TasksViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Clear
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -44,7 +55,7 @@ import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.Appearance.Views.GenerateTitle
 import com.example.gymapp.R
 import com.example.ui.theme.AppTypography
-
+import kotlinx.coroutines.delay
 
 
 @Composable
@@ -63,6 +74,7 @@ fun TasksManager(navController: NavHostController,
     val mediumPriorityColor = Color(0xFF0E2059)
     val highPriorityColor = Color(0xFFE30B1F)
 
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -77,27 +89,33 @@ fun TasksManager(navController: NavHostController,
         LazyColumn(
             modifier = Modifier.height(500.dp),
             verticalArrangement = Arrangement.Top,
-
         ) {
             //Recorre todas las tareas y las muestra por pantalla
             items(taskList) { task ->
-                Card(
-                    elevation = CardDefaults.cardElevation(
-                        defaultElevation = 12.dp
-                    ),
-                    colors = CardDefaults.cardColors(
-                        containerColor = cardColor
-                    ),
-                    shape = misFormas.medium,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp) // Márgenes alrededor de la tarjeta
-
+                var isVisible by remember { mutableStateOf(true) }
+                if(!isVisible){
+                    LaunchedEffect(task.id) {
+                        delay(100)
+                        viewModel.deleteOneTask(task)
+                        isVisible = true
+                    }
+                }
+                AnimatedVisibility(
+                    visible = isVisible,
+                    exit = scaleOut() + shrinkVertically(shrinkTowards = Alignment.CenterVertically)
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically){
-                        Checkbox(
-                            checked = task.finished,
-                            onCheckedChange = {
+                    Card(
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 12.dp
+                        ),
+                        colors = CardDefaults.cardColors(
+                            containerColor = cardColor
+                        ),
+                        shape = misFormas.medium,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp) // Márgenes alrededor de la tarjeta
+                            .clickable {
                                 viewModel.updateTask(
                                     task.id,
                                     task.description,
@@ -105,52 +123,75 @@ fun TasksManager(navController: NavHostController,
                                     !task.finished
                                 )
                             }
-                        )
-                        Column (
-                            modifier = Modifier.fillMaxSize()
-                                .padding(16.dp)
 
-                        ) {
-                            when (task.priority) {
-                                1 -> Text(text = context.getString(R.string.low_priority_text),
-                                    style = AppTypography.bodyMedium,
-                                    color = lowPriorityColor,
-                                    fontWeight = FontWeight.Bold
-                                )
-                                2 -> Text(text = context.getString(R.string.medium_priority_text),
-                                    style = AppTypography.bodyMedium,
-                                    color = mediumPriorityColor,
-                                    fontWeight = FontWeight.Bold
-                                )
-                                3 -> Text(text = context.getString(R.string.high_priority_text),
-                                    style = AppTypography.bodyMedium,
-                                    color = highPriorityColor,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
-
-                            Spacer(modifier = Modifier.height(10.dp))
-
-                            if(task.finished){
-                                Text(text = task.description,
-                                    style = AppTypography.bodyLarge,
-                                    color = Color.Black,
-                                    textAlign = TextAlign.Justify,
-                                    textDecoration = TextDecoration.LineThrough
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically
+                        ){
+                            Checkbox(
+                                checked = task.finished,
+                                onCheckedChange = {
+                                    viewModel.updateTask(
+                                        task.id,
+                                        task.description,
+                                        task.priority,
+                                        !task.finished
                                     )
-                            }else{
-                                Text(text = task.description,
-                                    style = AppTypography.bodyLarge,
-                                    color = Color.Black,
-                                    textAlign = TextAlign.Justify
+                                }
+                            )
+                            Column (
+                                modifier = Modifier.padding(16.dp)
+
+                            ) {
+                                when (task.priority) {
+                                    1 -> Text(text = context.getString(R.string.low_priority_text),
+                                        style = AppTypography.bodyMedium,
+                                        color = lowPriorityColor,
+                                        fontWeight = FontWeight.Bold
                                     )
+                                    2 -> Text(text = context.getString(R.string.medium_priority_text),
+                                        style = AppTypography.bodyMedium,
+                                        color = mediumPriorityColor,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    3 -> Text(text = context.getString(R.string.high_priority_text),
+                                        style = AppTypography.bodyMedium,
+                                        color = highPriorityColor,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+
+                                Spacer(modifier = Modifier.height(10.dp))
+
+                                if(task.finished){
+                                    Text(text = task.description,
+                                        modifier = Modifier.width(250.dp),
+                                        style = AppTypography.bodyLarge,
+                                        color = Color.Black,
+                                        textAlign = TextAlign.Justify,
+                                        textDecoration = TextDecoration.LineThrough
+                                    )
+                                }else{
+                                    Text(text = task.description,
+                                        modifier = Modifier.width(250.dp),
+                                        style = AppTypography.bodyLarge,
+                                        color = Color.Black,
+                                        textAlign = TextAlign.Justify
+                                    )
+                                }
                             }
-
-
+                            Icon(
+                                modifier = Modifier.clickable {
+                                    isVisible = false
+                                },
+                                imageVector = Icons.Outlined.Delete,
+                                contentDescription = "Delete",
+                                tint = MaterialTheme.colorScheme.onError
+                            )
                         }
-                    }
 
+                    }
                 }
+
             }
         }
 

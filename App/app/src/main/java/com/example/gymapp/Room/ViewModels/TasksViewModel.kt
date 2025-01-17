@@ -3,6 +3,7 @@ package com.example.gymapp.Room.ViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -28,6 +29,10 @@ class TasksViewModel(private val tasksRepository: TasksRepository) : ViewModel()
 
     fun deleteAllTasks(allTasks: List<Task>) = viewModelScope.launch {
         tasksRepository.deleteAllTasks(allTasks)
+    }
+
+    fun deleteOneTask(task: Task) = viewModelScope.launch {
+        tasksRepository.deleteOneTask(task)
     }
 
     companion object {
