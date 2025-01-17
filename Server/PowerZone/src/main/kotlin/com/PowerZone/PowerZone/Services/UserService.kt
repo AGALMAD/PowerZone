@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
-import java.util.*
 
 @Service
 class UserService(
@@ -17,25 +16,24 @@ class UserService(
         if (userRepository.findByEmail(user.email) != null) {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists.")
         }
-        val userEncode = user.copy(password = encoder.encode(user.password))
-        return userRepository.save(userEncode)
+        user.password = encoder.encode(user.password)
+        return userRepository.newUser(user)
     }
+
 
     fun findAll(): List<User> =
             userRepository.findAll()
                     .toList()
 
-    fun findById(id: String): Optional<User> =
+    fun findById(id: String): User? =
             userRepository.findById(id)
 
 
-    fun deleteById(id: String): Boolean {
-        return if (userRepository.existsById(id)) {
-            userRepository.deleteById(id)
-            true
-        }
-        else {
-            false
-        }
-    }
+    fun findByEmail(email: String): User? =
+        userRepository.findByEmail(email)
+
+
+
+
+
 }

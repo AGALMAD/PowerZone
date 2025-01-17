@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS users(
     name VARCHAR(20) NOT NULL,
     email VARCHAR(60) UNIQUE NOT NULL,
     password VARCHAR(60) NOT NULL,
-    role VARCHAR(10) NOT NULL
+    role VARCHAR(10) DEFAULT 'USER' NOT NULL
 );
 
 -- Tabla para las actividades

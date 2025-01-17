@@ -8,7 +8,7 @@ import java.util.UUID
 data class User(@Id val id: String,
                 val name: String,
                 val email: String,
-                val password: String,
+                var password: String,
                 val role: String = Role.USER.toString()) {
 
 }
