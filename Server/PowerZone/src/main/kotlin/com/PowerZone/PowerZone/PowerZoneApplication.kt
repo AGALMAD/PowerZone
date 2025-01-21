@@ -8,4 +8,6 @@ class PowerZoneApplication
 
 fun main(args: Array<String>) {
     runApplication<PowerZoneApplication>(*args)
+
+
 }

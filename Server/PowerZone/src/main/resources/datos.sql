@@ -8,8 +8,5 @@ INSERT INTO ACTIVITIES (title, description, start_date_time, end_date_time) VALU
 
 -- Datos para la tabla 'users'
 INSERT INTO USERS (id, name, email, password, role) VALUES
-(UUID(), 'alejandro', 'ale@gmail.com', '1234', 'ADMIN'),
-(UUID(), 'pepe', 'pepe@gmail.com', 'pass1', 'USER'),
-(UUID(), 'paco', 'paco@gmail.com', 'pass2', 'USER'),
-(UUID(), 'manolo', 'manolo@gmail.com', 'pass3', 'USER');
+(UUID(), 'agalmad', 'agalmad@gmail.com', '$2a$10$QfVnMjApZVS8zVmI0ptbcOF69xg.PRC3uj9CJkmr/i5h5mlapwE1G', 'ADMIN');
 
