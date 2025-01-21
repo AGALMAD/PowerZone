@@ -2,23 +2,27 @@ package com.PowerZone.PowerZone.Controller.Activity
 
 import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Services.ActivityService
-import org.apache.coyote.Response
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 @RestController
 @RequestMapping("/api/activities")
 class ActivityController(
-        private val articleService: ActivityService
+        private val activityService: ActivityService
 ) {
     @GetMapping()
     fun getAll(): List<ActivityResponse> =
-            articleService.allActivities()
+            activityService.allActivities()
                     .map { it.toResponse() }
+
+    @PostMapping()
+    fun newActivity(@RequestBody activity: ActivityRequest): Activity? =
+        activityService.newActivity(activity.toModel())
+
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: String): ActivityResponse? =
-        articleService.getActivityById(id)?.toResponse()
+        activityService.findById(id)?.toResponse()
 
     private fun Activity.toResponse(): ActivityResponse =
         ActivityResponse(
@@ -28,4 +32,14 @@ class ActivityController(
             startDateTime = this.startDateTime,
             endDateTime = this.endDateTime
         )
+
+    private fun ActivityRequest.toModel(): Activity =
+        Activity(
+            id = UUID.randomUUID().toString(),
+            title = this.title,
+            description = this.description,
+            startDateTime = this.startDateTime,
+            endDateTime = this.endDateTime
+        )
+
 }

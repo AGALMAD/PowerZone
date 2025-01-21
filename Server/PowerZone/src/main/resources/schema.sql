@@ -19,5 +19,7 @@ CREATE TABLE IF NOT EXISTS activities(
 -- Tabla para las actividades de cada usuario
 CREATE TABLE IF NOT EXISTS participation (
     userId VARCHAR(60) NOT NULL,
-    activityId VARCHAR(60) NOT NULL
+    activityId VARCHAR(60) NOT NULL,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (activityId) REFERENCES activities(id) ON DELETE CASCADE
 );
