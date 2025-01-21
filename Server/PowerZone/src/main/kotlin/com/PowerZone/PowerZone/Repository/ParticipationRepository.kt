@@ -8,8 +8,16 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class ParticipationRepository (private val db: JdbcTemplate){
-    fun findAll(userId: String): List<User> = db.query("select * from messages") { response, _ ->
-        User(response.getString("id"), response.getString("name"),
-            response.getString("email"),response.getString("password"),response.getString("role"))
+
+    fun findAllByUserId(userId: String): List<Participation> = db.query("select * from participation where userId = ?", arrayOf(userId)) { response, _ ->
+        Participation(response.getString("userId"), response.getString("activityId"))
     }
+
+    fun newParticipation(participation: Participation) : Participation? {
+        db.update("insert into participation(userId, activityId) values (?, ?)",
+            participation.userId,participation.activityId)
+
+        return participation
+    }
+
 }

@@ -16,7 +16,7 @@ class ActivityController(
                     .map { it.toResponse() }
 
     @PostMapping()
-    fun newActivity(@RequestBody activity: ActivityRequest): Activity? =
+    fun newActivity(@RequestBody activity: ActivityRequest): Activity =
         activityService.newActivity(activity.toModel())
 
 
@@ -35,7 +35,6 @@ class ActivityController(
 
     private fun ActivityRequest.toModel(): Activity =
         Activity(
-            id = UUID.randomUUID().toString(),
             title = this.title,
             description = this.description,
             startDateTime = this.startDateTime,

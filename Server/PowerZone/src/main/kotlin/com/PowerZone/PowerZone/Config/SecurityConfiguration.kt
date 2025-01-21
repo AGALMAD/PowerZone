@@ -24,9 +24,10 @@ class SecurityConfiguration(
                 .csrf { it.disable() }
                 .authorizeHttpRequests {
                     it
-                            .requestMatchers("/api/auth", "/api/auth/refresh", "/error","/api/activities","/api/activities/**")
+                            .requestMatchers("/api/auth", "/api/auth/refresh", "/error","/api/activities",
+                                "/api/activities/**","/api/participations/**")
                             .permitAll()
-                            .requestMatchers(HttpMethod.POST, "/api/user", )
+                            .requestMatchers(HttpMethod.POST, "/api/user", "/api/participations" )
                             .permitAll()
                             .requestMatchers(HttpMethod.POST, "/api/activities", )
                             .hasRole("ADMIN")

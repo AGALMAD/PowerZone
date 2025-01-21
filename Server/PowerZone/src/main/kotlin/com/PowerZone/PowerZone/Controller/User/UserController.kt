@@ -21,13 +21,14 @@ class UserController(
                     ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
 
 
-    @DeleteMapping("/{email}")
-    fun getByEmail(@PathVariable email: String): UserResponse {
+    @GetMapping("/{email}")
+    fun deleteByEmail(@PathVariable email: String): UserResponse {
         return userService.findById(email)
             ?.toResponse()
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
 
     }
+
 
     private fun User.toResponse(): UserResponse =
             UserResponse(
