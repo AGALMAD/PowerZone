@@ -18,7 +18,14 @@ class ParticipationService(private val participationRepository: ParticipationRep
         return activities
     }
 
+    fun notExistParticipation(participation: Participation): Boolean {
+        val activity = participationRepository.findParticipation(participation)
+        return activity.isEmpty()
+    }
 
     fun newParticipation(participation: Participation) : Participation? =
         participationRepository.newParticipation(participation)
+
+    fun deleteParticipation(participation: Participation) : Participation? =
+        participationRepository.deleteParticipation(participation)
 }

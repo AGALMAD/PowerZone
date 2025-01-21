@@ -17,11 +17,22 @@ class ParticipationController(
 
     @PostMapping
     fun create(@RequestBody participation: Participation): Participation =
-        participationService.newParticipation(participation)
-            ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create participation.")
+        if (participationService.notExistParticipation(participation)) {
+            participationService.newParticipation(participation)
+                ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create participation.")
+        } else {
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "participation already created.")
+        }
+
 
     @GetMapping("/{userId}")
     fun getByUserId(@PathVariable userId: String): List<Activity> =
         participationService.findAllByUserId(userId)
+
+    @DeleteMapping
+    fun delete(@RequestBody participation: Participation): Participation =
+        participationService.deleteParticipation(participation)
+            ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot delete participation.")
+
 
 }

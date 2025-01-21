@@ -1,5 +1,6 @@
 package com.PowerZone.PowerZone.Repository
 
+import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Models.Participation
 import com.PowerZone.PowerZone.Models.User
 import org.springframework.data.repository.CrudRepository
@@ -13,11 +14,27 @@ class ParticipationRepository (private val db: JdbcTemplate){
         Participation(response.getString("userId"), response.getString("activityId"))
     }
 
+    fun findParticipation(participation: Participation): List<Participation> = db.query(
+        "select * from participation where userId = ? and activityId = ?",
+        arrayOf(participation.userId, participation.activityId)
+    ) { response, _ ->
+        Participation(response.getString("userId"), response.getString("activityId"))
+    }
+
+
     fun newParticipation(participation: Participation) : Participation? {
         db.update("insert into participation(userId, activityId) values (?, ?)",
             participation.userId,participation.activityId)
 
         return participation
     }
+
+    fun deleteParticipation(participation: Participation): Participation? {
+        db.update("delete from participation where userId = ? and activityId = ?",
+            participation.userId, participation.activityId)
+
+        return participation
+    }
+
 
 }
