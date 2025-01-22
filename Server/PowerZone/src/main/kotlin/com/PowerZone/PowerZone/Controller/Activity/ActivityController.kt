@@ -3,6 +3,7 @@ package com.PowerZone.PowerZone.Controller.Activity
 import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Services.ActivityService
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 @RestController
 @RequestMapping("/api/activities")
@@ -15,8 +16,8 @@ class ActivityController(
                     .map { it.toResponse() }
 
     @PostMapping()
-    fun newActivity(@RequestBody activity: ActivityRequest): Activity? =
-        activityService.save(activity.toModel())
+    fun newActivity(@RequestBody activity: ActivityRequest): ActivityResponse =
+        activityService.save(activity.toModel()).toResponse()
 
 
     @GetMapping("/{id}")
@@ -24,12 +25,13 @@ class ActivityController(
         activityService.findById(id)?.toResponse()
 
     @DeleteMapping("/{id}")
-    fun deleteById(@PathVariable id: String): ActivityResponse? =
-        activityService.deleteById(id)?.toResponse()
+    fun deleteById(@PathVariable id: String): Unit =
+        activityService.deleteById(id)
+
 
     private fun Activity.toResponse(): ActivityResponse =
         ActivityResponse(
-            id = this.id,
+            id = this.id!!,
             title = this.title,
             description = this.description,
             startDateTime = this.startDateTime,
@@ -40,8 +42,8 @@ class ActivityController(
         Activity(
             title = this.title,
             description = this.description,
-            startDateTime = this.startDateTime.toString(),
-            endDateTime = this.endDateTime.toString()
+            startDateTime = this.startDateTime,
+            endDateTime = this.endDateTime
         )
 
 }

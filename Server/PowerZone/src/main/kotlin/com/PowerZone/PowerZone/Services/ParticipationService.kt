@@ -5,12 +5,13 @@ import com.PowerZone.PowerZone.Models.Participation
 import com.PowerZone.PowerZone.Repository.ActivityRepository
 import com.PowerZone.PowerZone.Repository.ParticipationRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class ParticipationService(private val participationRepository: ParticipationRepository,
     private val activityRepository: ActivityRepository
 ) {
-    fun findAllByUserId(userId: String): List<Activity?> {
+    fun findAllByUserId(userId: String): List<Optional<Activity>> {
         val participations = participationRepository.findAllByUserId(userId)
         val activities = participations.map {
             activityRepository.findById(it.activityId)

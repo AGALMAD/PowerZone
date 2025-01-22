@@ -2,11 +2,15 @@ package com.PowerZone.PowerZone.Repository
 
 import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Models.Participation
+import org.springframework.data.repository.CrudRepository
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
 
 
 @Repository
+interface ActivityRepository : CrudRepository<Activity,String>
+
+/*
 class ActivityRepository(private val db: JdbcTemplate){
 
     fun save(activity: Activity) : Activity? {
@@ -47,3 +51,5 @@ class ActivityRepository(private val db: JdbcTemplate){
 
 
 }
+
+ */

@@ -8,6 +8,7 @@ import com.PowerZone.PowerZone.Services.ParticipationService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
+import java.util.*
 
 @RestController
 @RequestMapping("/api/participations")
@@ -26,7 +27,7 @@ class ParticipationController(
 
 
     @GetMapping("/{userId}")
-    fun getByUserId(@PathVariable userId: String): List<Activity?> =
+    fun getByUserId(@PathVariable userId: String): List<Optional<Activity>> =
         participationService.findAllByUserId(userId)
 
     @DeleteMapping
