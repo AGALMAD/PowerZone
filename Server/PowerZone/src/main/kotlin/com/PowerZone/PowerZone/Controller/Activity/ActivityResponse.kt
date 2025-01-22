@@ -7,6 +7,6 @@ data class ActivityResponse(
     val id: String,
     val title: String,
     val description: String,
-    val startDateTime: LocalDateTime,
-    val endDateTime: LocalDateTime) {
+    val startDateTime: String,
+    val endDateTime: String) {
 }

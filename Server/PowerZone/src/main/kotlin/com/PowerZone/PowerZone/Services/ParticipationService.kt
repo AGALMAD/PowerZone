@@ -10,13 +10,15 @@ import org.springframework.stereotype.Service
 class ParticipationService(private val participationRepository: ParticipationRepository,
     private val activityRepository: ActivityRepository
 ) {
-    fun findAllByUserId(userId: String): List<Activity> {
+    fun findAllByUserId(userId: String): List<Activity?> {
         val participations = participationRepository.findAllByUserId(userId)
-        val activities = participations.map { participation ->
-            activityRepository.findById(participation.activityId).orElse(null)
-        }.filterNotNull()
+        val activities = participations.map {
+            activityRepository.findById(it.activityId)
+        }
+
         return activities
     }
+
 
     fun notExistParticipation(participation: Participation): Boolean {
         val activity = participationRepository.findParticipation(participation)
@@ -24,7 +26,7 @@ class ParticipationService(private val participationRepository: ParticipationRep
     }
 
     fun newParticipation(participation: Participation) : Participation? =
-        participationRepository.newParticipation(participation)
+        participationRepository.save(participation)
 
     fun deleteParticipation(participation: Participation) : Participation? =
         participationRepository.deleteParticipation(participation)

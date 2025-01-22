@@ -1,9 +1,6 @@
 package com.PowerZone.PowerZone.Repository
 
-import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Models.Participation
-import com.PowerZone.PowerZone.Models.User
-import org.springframework.data.repository.CrudRepository
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
 
@@ -22,7 +19,7 @@ class ParticipationRepository (private val db: JdbcTemplate){
     }
 
 
-    fun newParticipation(participation: Participation) : Participation? {
+    fun save(participation: Participation) : Participation? {
         db.update("insert into participation(userId, activityId) values (?, ?)",
             participation.userId,participation.activityId)
 

@@ -26,7 +26,7 @@ class ParticipationController(
 
 
     @GetMapping("/{userId}")
-    fun getByUserId(@PathVariable userId: String): List<Activity> =
+    fun getByUserId(@PathVariable userId: String): List<Activity?> =
         participationService.findAllByUserId(userId)
 
     @DeleteMapping
