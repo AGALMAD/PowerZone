@@ -25,7 +25,7 @@ class UserController(
     fun deleteByEmail(@PathVariable email: String): UserResponse {
         return userService.findById(email)
             ?.toResponse()
-            ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
+            ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Not user found.")
 
     }
 
