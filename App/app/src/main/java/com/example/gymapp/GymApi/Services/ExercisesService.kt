@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface ExercisesService {
 
-    @GET("v3/4440a7ef-81a5-44c6-bcff-0ef2d73dd866")
+    @GET("b494dbd9-823b-4bc2-ac6b-9158f9eb66c6")
     suspend fun getAllExercices(): List<Exercise>
 
 

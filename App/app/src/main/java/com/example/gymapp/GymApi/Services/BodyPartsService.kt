@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface BodyPartsService {
 
-    @GET("/v3/69708275-6dc6-4bb4-a741-6e777627770c/")
+    @GET("b92c6c4f-f568-4df3-af1f-cc2ef88dbd02")
     suspend fun getBodyParts(): List<BodyPart>
 
 }
