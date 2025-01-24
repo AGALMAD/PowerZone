@@ -21,8 +21,8 @@ class ParticipationRepository (private val db: JdbcTemplate){
 
     fun save(participation: Participation) : Participation? {
         db.update("insert into participation(userId, activityId) values (?, ?)",
-            arrayOf(participation.userId),arrayOf(participation.activityId))
-
+            participation.userId, participation.activityId
+        )
         return participation
     }
 

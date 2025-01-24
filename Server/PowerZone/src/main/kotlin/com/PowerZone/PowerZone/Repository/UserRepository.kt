@@ -28,7 +28,7 @@ class UserRepository (
 
     fun findById(id: String): User? {
         return try {
-            db.queryForObject("select * from users where email = ?", arrayOf(id)) { response, _ ->
+            db.queryForObject("select * from users where id = ?", arrayOf(id)) { response, _ ->
                 User(response.getString("id"), response.getString("name"),
                     response.getString("email"), response.getString("password"), response.getString("role"))
             }
