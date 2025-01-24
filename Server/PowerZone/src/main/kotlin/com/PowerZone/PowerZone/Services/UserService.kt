@@ -2,25 +2,38 @@ package com.PowerZone.PowerZone.Services
 
 import com.PowerZone.PowerZone.Models.User
 import com.PowerZone.PowerZone.Repository.UserRepository
+import org.springframework.http.HttpStatus
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import java.util.*
+import org.springframework.web.server.ResponseStatusException
 
 @Service
 class UserService(
-        private val userRepository: UserRepository
+        private val userRepository: UserRepository,
+        private val encoder : PasswordEncoder
 ) {
     fun createUser(user: User): User? {
-        val found = userRepository.findByEmail(user.email)
-        return if (found == null) {
-            userRepository.save(user)
-            user
-        } else null
+        if (userRepository.findByEmail(user.email) != null) {
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists.")
+        }
+        user.password = encoder.encode(user.password)
+        return userRepository.newUser(user)
     }
-    fun findByUUID(uuid: UUID): User? =
-            userRepository.findByUUID(uuid)
+
+
     fun findAll(): List<User> =
             userRepository.findAll()
                     .toList()
-    fun deleteByUUID(uuid: UUID): Boolean =
-            userRepository.deleteByUUID(uuid)
+
+    fun findById(id: String): User? =
+            userRepository.findById(id)
+
+
+    fun findByEmail(email: String): User? =
+        userRepository.findByEmail(email)
+
+
+
+
+
 }

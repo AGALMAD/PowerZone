@@ -7,5 +7,7 @@ import org.springframework.boot.runApplication
 class PowerZoneApplication
 
 fun main(args: Array<String>) {
-	runApplication<PowerZoneApplication>(*args)
+    runApplication<PowerZoneApplication>(*args)
+
+
 }

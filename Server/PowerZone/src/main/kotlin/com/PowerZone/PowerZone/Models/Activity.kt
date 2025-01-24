@@ -1,10 +1,17 @@
 package com.PowerZone.PowerZone.Models
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
 import java.util.*
 
-
-data class Activity(val id: UUID, val title: String, val description: String, val startDateTime: LocalDateTime, val endDateTime: LocalDateTime) {
+@Table("ACTIVITIES")
+data class Activity(@Id val id: String? = null,
+                    val title: String,
+                    val description: String,
+                    val startDateTime: String,
+                    val endDateTime: String
+) {
 
 
 

@@ -24,12 +24,25 @@ class SecurityConfiguration(
                 .csrf { it.disable() }
                 .authorizeHttpRequests {
                     it
-                            .requestMatchers("/api/auth", "api/auth/refresh", "/error")
+                            //A todos los usuarios se les permite autenticarse y ver mensajes de error
+                            .requestMatchers("/api/auth", "/api/auth/refresh", "/error")
                             .permitAll()
-                            .requestMatchers(HttpMethod.POST, "/api/user")
-                            .permitAll()
-                            .requestMatchers("/api/user**")
+
+                            //Solo los administradores van a poder ver los datos de todos los ususarios y eliminarlos
+                            .requestMatchers("/api/user/**" )
                             .hasRole("ADMIN")
+
+                            //Todos los usuarios pueden crear una cuenta
+                            .requestMatchers(HttpMethod.POST, "/api/user", "/api/participations" )
+                            .permitAll()
+
+                            //Solo solo administradores pueden crear y eliminar actividades
+                            .requestMatchers(HttpMethod.POST, "/api/activities", )
+                            .hasRole("ADMIN")
+                            .requestMatchers(HttpMethod.DELETE, "/api/activities/**", )
+                            .hasRole("ADMIN")
+
+                            //Todas las peticiones de obtencion de datos de usuarios, participaciones, actividades ... es necesario estar autenticados
                             .anyRequest()
                             .fullyAuthenticated()
                 }

@@ -1,65 +1,50 @@
 package com.PowerZone.PowerZone.Repository
 
-import com.PowerZone.PowerZone.Models.Role
 import com.PowerZone.PowerZone.Models.User
-import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.dao.EmptyResultDataAccessException
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
-import java.util.*
 
 @Repository
-class UserRepository(
-        private val encoder: PasswordEncoder
-) {
-    private val users = mutableSetOf(
-            User(
-                    id = UUID.randomUUID(),
-                    name = "pepe",
-                    email = "pepe@gmail.com",
-                    password = "pass1",
-                    role = Role.USER,
-            ),
-            User(
-                    id = UUID.randomUUID(),
-                    name = "paco",
-                    email = "paco@gmail.com",
-                    password = "pass2",
-                    role = Role.ADMIN,
-            ),
-            User(
-                    id = UUID.randomUUID(),
-                    name = "manolo",
-                    email = "manolo@gmail.com",
-                    password = "pass3",
-                    role = Role.USER,
-            ),
-    )
+class UserRepository (
+    private val db: JdbcTemplate
+){
 
-    //Se guardan los usuarios con la contraseña encriptada
-    fun save(user: User): Boolean {
-        val updated = user.copy(password = encoder.encode(user.password))
-        return users.add(updated)
+    fun findAll(): List<User> = db.query("select * from users") { response, _ ->
+        User(response.getString("id"), response.getString("name"),
+            response.getString("email"),response.getString("password"),response.getString("role"))
     }
 
-
-    fun findByEmail(email: String): User? =
-            users
-                    .firstOrNull { it.email == email }
-
-    fun findAll(): Set<User> =
-            users
-
-    fun findByUUID(uuid: UUID): User? =
-            users
-                    .firstOrNull { it.id == uuid }
-
-    fun deleteByUUID(uuid: UUID): Boolean {
-        val foundUser = findByUUID(uuid)
-
-        return foundUser?.let {
-            users.removeIf {
-                it.id == uuid
+    fun findByEmail(email: String): User? {
+        return try {
+            db.queryForObject("select * from users where email = ?", arrayOf(email)) { response, _ ->
+                User(response.getString("id"), response.getString("name"),
+                    response.getString("email"), response.getString("password"), response.getString("role"))
             }
-        } ?: false
+        } catch (e: EmptyResultDataAccessException) {
+            null
+        }
     }
+
+    fun findById(id: String): User? {
+        return try {
+            db.queryForObject("select * from users where email = ?", arrayOf(id)) { response, _ ->
+                User(response.getString("id"), response.getString("name"),
+                    response.getString("email"), response.getString("password"), response.getString("role"))
+            }
+        } catch (e: EmptyResultDataAccessException) {
+            null
+        }
+    }
+
+
+
+    fun newUser(user: User) : User? {
+        db.update("insert into users(name, email, password) values (?, ?, ?)",
+            user.name, user.email, user.password)
+
+        return user
+    }
+
 
 }

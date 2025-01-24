@@ -1,29 +1,55 @@
 package com.PowerZone.PowerZone.Repository
 
 import com.PowerZone.PowerZone.Models.Activity
+import com.PowerZone.PowerZone.Models.Participation
+import org.springframework.data.repository.CrudRepository
+import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
-import java.time.LocalDateTime
-import java.util.*
+
 
 @Repository
-class ActivityRepository {
+interface ActivityRepository : CrudRepository<Activity,String>
 
-    private val activities = listOf(
-             Activity(
-                    UUID.randomUUID(),
-                    "Clases de defensa personal",
-                    "Clase de defensa personal para niños",
-                    LocalDateTime.of(2025, 1, 15, 10, 0),
-                    LocalDateTime.of(2025, 1, 15, 11, 0)
-             ),
-            Activity(
-                    UUID.randomUUID(),
-                    "Clases de CrossFit",
-                    "Clases de CrossFit en grupo para todo tipo de personas",
-                    LocalDateTime.of(2025, 1, 15, 10, 0),
-                    LocalDateTime.of(2025, 1, 15, 11, 0),
-                    )
-    )
+/*
+class ActivityRepository(private val db: JdbcTemplate){
 
-    fun findAll(): List<Activity> = activities
+    fun save(activity: Activity) : Activity? {
+        db.update("insert into activities (title, description, start_date_time, end_date_time) values (?, ?, ?, ?)",
+            activity.title, activity.description, activity.startDateTime, activity.endDateTime)
+
+        return activity
+    }
+
+
+    fun findById(id: String): Activity? = db.query("select * from activities where id = ?", arrayOf(id)) { response, _ ->
+        Activity(response.getString("id"), response.getString("title"),
+            response.getString("description"),response.getString("start_date_time"),
+            response.getString("end_date_time"))
+    }.firstOrNull()
+
+    fun findAll(): List<Activity> = db.query("select * from activities") { response, _ ->
+        Activity(response.getString("id"), response.getString("title"),
+            response.getString("description"),response.getString("start_date_time"),
+            response.getString("end_date_time"))
+    }
+
+    fun delete(id: String): Activity? {
+
+        val activity = findById(id)
+
+        if (activity != null)
+            db.update("delete from activities where id = ?", arrayOf(id))
+
+        return activity
+
+    }
+
+
+
+
+
+
+
 }
+
+ */

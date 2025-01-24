@@ -1,6 +1,7 @@
 package com.PowerZone.PowerZone.Controller.Auth
 
 import com.PowerZone.PowerZone.Services.AuthenticationService
+
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -20,6 +21,7 @@ class AuthController(
     ): AuthenticationResponse =
             authenticationService.authentication(authRequest)
 
+
     @PostMapping("/refresh")
     fun refreshAccessToken(
             @RequestBody request: RefreshTokenRequest
@@ -27,6 +29,8 @@ class AuthController(
             authenticationService.refreshAccessToken(request.token)
                     ?.mapToTokenResponse()
                     ?: throw ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid refresh token.")
+
+
     private fun String.mapToTokenResponse(): TokenResponse =
             TokenResponse(
                     token = this
