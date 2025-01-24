@@ -29,9 +29,7 @@ class SecurityConfiguration(
                             .permitAll()
 
                             //Solo los administradores van a poder ver los datos de todos los ususarios y eliminarlos
-                            .requestMatchers(HttpMethod.GET, "/api/user" )
-                            .hasRole("ADMIN")
-                            .requestMatchers(HttpMethod.DELETE, "/api/user/**" )
+                            .requestMatchers("/api/user/**" )
                             .hasRole("ADMIN")
 
                             //Todos los usuarios pueden crear una cuenta

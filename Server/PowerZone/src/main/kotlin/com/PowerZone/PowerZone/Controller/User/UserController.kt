@@ -22,26 +22,33 @@ class UserController(
                     ?.toResponse()
                     ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
 
-    @GetMapping
+    /* Obtencion de todos los usuarios (solo administradores)*/
+    @GetMapping("/all")
     fun getAll(): List<UserResponse> {
         return userService.findAll().map {
             it.toResponse()
         }
     }
 
-    @GetMapping("/{email}")
-    fun getByEmail(
-            @PathVariable email: String,
+    /* Obtencion de usuario por Id (solo administradores)*/
+    @GetMapping("/{id}")
+    fun getById(
+            @PathVariable id : String
+    ): UserResponse{
+        return userService.findById(id)
+                ?.toResponse()
+                ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
+
+    }
+
+    @GetMapping
+    fun getAuthUser(
             auth: Authentication // Detalles del usuario autenticado
     ): UserResponse
     {
-        // Verificamos si el usuario autenticado está intentando acceder a su propio perfil
-        if (auth.name != email) {
-            throw ResponseStatusException(HttpStatus.FORBIDDEN, "Solo puedes ver tus detalles")
-        }
 
-        // Detalles del usuario (no se manda la contraseña)
-        return userService.findById(email)
+        // Detalles del propio usuario (no se manda la contraseña)
+        return userService.findById(auth.name)
                 ?.toResponse()
                 ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
     }
