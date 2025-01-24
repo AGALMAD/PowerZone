@@ -5,8 +5,10 @@ import com.PowerZone.PowerZone.Models.User
 import com.PowerZone.PowerZone.Services.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
+import java.security.Principal
 import java.util.*
 
 @RestController
@@ -28,11 +30,20 @@ class UserController(
     }
 
     @GetMapping("/{email}")
-    fun getByEmail(@PathVariable email: String): UserResponse {
-        return userService.findById(email)
-            ?.toResponse()
-            ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Not user found.")
+    fun getByEmail(
+            @PathVariable email: String,
+            auth: Authentication // Detalles del usuario autenticado
+    ): UserResponse
+    {
+        // Verificamos si el usuario autenticado está intentando acceder a su propio perfil
+        if (auth.name != email) {
+            throw ResponseStatusException(HttpStatus.FORBIDDEN, "Solo puedes ver tus detalles")
+        }
 
+        // Detalles del usuario (no se manda la contraseña)
+        return userService.findById(email)
+                ?.toResponse()
+                ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
     }
 
     @DeleteMapping("/{email}")
