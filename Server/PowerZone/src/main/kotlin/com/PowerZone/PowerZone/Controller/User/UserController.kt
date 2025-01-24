@@ -20,12 +20,26 @@ class UserController(
                     ?.toResponse()
                     ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
 
+    @GetMapping
+    fun getAll(): List<UserResponse> {
+        return userService.findAll().map {
+            it.toResponse()
+        }
+    }
 
     @GetMapping("/{email}")
-    fun deleteByEmail(@PathVariable email: String): UserResponse {
+    fun getByEmail(@PathVariable email: String): UserResponse {
         return userService.findById(email)
             ?.toResponse()
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Not user found.")
+
+    }
+
+    @DeleteMapping("/{email}")
+    fun deleteByEmail(@PathVariable email: String): UserResponse {
+        return userService.findById(email)
+                ?.toResponse()
+                ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Not user found.")
 
     }
 
