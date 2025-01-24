@@ -10,7 +10,7 @@
     <string name="description_Daniel">A mobile development and UI specialist, Daniel has crafted an intuitive, engaging experience in Power Zone to help users easily navigate and stay motivated in their workouts.</string>
     <string name="licence_text">Permission is granted to use, copy, and modify this application at no cost for personal or commercial purposes, as long as this license notice is included. Direct resale of the application is not allowed, but it may be included as part of other services.</string>
     <string name="appTitle">" Create your custom routine"</string>
-    <string name="settingsTitle">Settings</string>
+    <string name="settingsTitle">Create Routine</string>
 
     <string name="configuration_title">Rutine configuration</string>
     <string name="fullbody_text">Full Body</string>
@@ -48,4 +48,15 @@
     <string name="accountTitle">My account</string>
     <string name="welcomeText">Welcome</string>
     <string name="singoutTitle">Singout</string>
+    <string name="home_text">Home</string>
+    <string name="account_text">Account</string>
+    <string name="tasks_name">Tasks</string>
+    <string name="high_priority_text">High</string>
+    <string name="medium_priority_text">Medium</string>
+    <string name="low_priority_text">Low</string>
+    <string name="save_text">Save</string>
+    <string name="deleteall_text">Delete All</string>
+    <string name="task_description_text">Task description</string>
+    <string name="task_text">"Task list "</string>
+    <string name="select_priority_text">Select priority</string>
 </resources>
