@@ -10,7 +10,7 @@ class UserRepository (
     private val db: JdbcTemplate
 ){
 
-    fun findAll(): List<User> = db.query("select * from messages") { response, _ ->
+    fun findAll(): List<User> = db.query("select * from users") { response, _ ->
         User(response.getString("id"), response.getString("name"),
             response.getString("email"),response.getString("password"),response.getString("role"))
     }

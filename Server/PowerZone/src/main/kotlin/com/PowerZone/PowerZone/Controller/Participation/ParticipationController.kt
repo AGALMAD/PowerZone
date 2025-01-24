@@ -1,7 +1,5 @@
 package com.PowerZone.PowerZone.Controller.Participation
 
-import com.PowerZone.PowerZone.Controller.User.UserRequest
-import com.PowerZone.PowerZone.Controller.User.UserResponse
 import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Models.Participation
 import com.PowerZone.PowerZone.Services.ParticipationService
@@ -25,10 +23,13 @@ class ParticipationController(
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "participation already created.")
         }
 
-
     @GetMapping("/{userId}")
-    fun getByUserId(@PathVariable userId: String): List<Optional<Activity>> =
-        participationService.findAllByUserId(userId)
+    fun getAllParticipationsByUserId(@PathVariable userId: String): List<Participation> =
+            participationService.findAllParticipationsByUserId(userId)
+
+    @GetMapping("/details/{userId}")
+    fun getAllActivitiesByUserId(@PathVariable userId: String): List<Optional<Activity>> =
+        participationService.findAllActivitiesByUserId(userId)
 
     @DeleteMapping
     fun delete(@RequestBody participation: Participation): Participation =

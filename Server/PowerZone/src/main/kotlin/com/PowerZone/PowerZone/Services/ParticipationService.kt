@@ -4,6 +4,7 @@ import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Models.Participation
 import com.PowerZone.PowerZone.Repository.ActivityRepository
 import com.PowerZone.PowerZone.Repository.ParticipationRepository
+import jakarta.servlet.http.Part
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -11,13 +12,18 @@ import java.util.*
 class ParticipationService(private val participationRepository: ParticipationRepository,
     private val activityRepository: ActivityRepository
 ) {
-    fun findAllByUserId(userId: String): List<Optional<Activity>> {
+    fun findAllActivitiesByUserId(userId: String): List<Optional<Activity>> {
         val participations = participationRepository.findAllByUserId(userId)
         val activities = participations.map {
             activityRepository.findById(it.activityId)
         }
 
         return activities
+    }
+
+    fun findAllParticipationsByUserId(userId: String): List<Participation> {
+        val participations = participationRepository.findAllByUserId(userId)
+        return participations
     }
 
 

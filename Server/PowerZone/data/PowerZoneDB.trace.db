@@ -1,0 +1,4 @@
+2025-01-24 12:42:27.491562+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "MESSAGES" no encontrada
+Table "MESSAGES" not found; SQL statement:
+select * from messages [42102-232]
