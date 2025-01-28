@@ -1,4 +1,4 @@
-package com.example.gymapp.GymApi.Models.Exercices
+package com.example.gymapp.GymApi.Models.Exercises
 
 data class Exercise (
     val id: String,
