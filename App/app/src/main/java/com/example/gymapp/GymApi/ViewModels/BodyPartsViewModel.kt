@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gymapp.GymApi.Models.BodyPart
+import com.example.gymapp.GymApi.Models.Exercices.BodyPart
 import com.example.gymapp.GymApi.Repositories.BodyPartsRepository
 import kotlinx.coroutines.launch
 

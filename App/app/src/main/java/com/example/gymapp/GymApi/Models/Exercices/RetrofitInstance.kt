@@ -1,4 +1,4 @@
-package com.example.gymapp.GymApi.Models
+package com.example.gymapp.GymApi.Models.Exercices
 
 import com.example.gymapp.GymApi.Services.BodyPartsService
 import com.example.gymapp.GymApi.Services.ExercisesService
