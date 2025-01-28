@@ -32,7 +32,7 @@ class UserController(
 
     /* Obtencion de usuario por Id (solo administradores)*/
     @GetMapping("/{email}")
-    fun getById(
+    fun getByEmail(
             @PathVariable email : String
     ): UserResponse{
         return userService.findByEmail(email)
