@@ -28,13 +28,10 @@ class SecurityConfiguration(
                             .requestMatchers("/api/auth", "/api/auth/refresh", "/error")
                             .permitAll()
 
-                            //Solo los administradores van a poder ver los datos de todos los ususarios y eliminarlos
-                            .requestMatchers("/api/user/**" )
-                            .hasRole("ADMIN")
-
                             //Todos los usuarios pueden crear una cuenta
                             .requestMatchers(HttpMethod.POST, "/api/user", "/api/participations" )
                             .permitAll()
+
 
                             //Solo solo administradores pueden crear y eliminar actividades
                             .requestMatchers(HttpMethod.POST, "/api/activities", )

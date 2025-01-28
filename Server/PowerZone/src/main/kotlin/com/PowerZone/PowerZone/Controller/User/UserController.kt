@@ -31,11 +31,11 @@ class UserController(
     }
 
     /* Obtencion de usuario por Id (solo administradores)*/
-    @GetMapping("/{id}")
+    @GetMapping("/{email}")
     fun getById(
-            @PathVariable id : String
+            @PathVariable email : String
     ): UserResponse{
-        return userService.findById(id)
+        return userService.findByEmail(email)
                 ?.toResponse()
                 ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
 
@@ -48,20 +48,12 @@ class UserController(
     {
 
         // Detalles del propio usuario (no se manda la contraseña)
-        return userService.findById(auth.name)
+        return userService.findByEmail(auth.name)
                 ?.toResponse()
                 ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
     }
 
-    @DeleteMapping("/{email}")
-    fun deleteByEmail(@PathVariable email: String): UserResponse {
-        return userService.findById(email)
-                ?.toResponse()
-                ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Not user found.")
-
-    }
-
-
+    
     private fun User.toResponse(): UserResponse =
             UserResponse(
                     id = this.id,
