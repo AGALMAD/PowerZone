@@ -6,9 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -29,9 +27,9 @@ import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.InsertTitle
 import com.example.gymapp.Appearance.Themes.misFormas
-import com.example.gymapp.GymApi.ViewModels.AuthViewModel
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import com.example.gymapp.R
-import com.example.gymapp.GymApi.ViewModels.AuthState
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 
 @Composable
 fun Login(navController: NavHostController, authViewModel: AuthViewModel){

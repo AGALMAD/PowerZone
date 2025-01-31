@@ -52,8 +52,8 @@ import com.example.gymapp.R
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Data.SettingsDataStore
 import com.example.gymapp.Appearance.Themes.misFormas
-import com.example.gymapp.GymApi.ViewModels.AuthState
-import com.example.gymapp.GymApi.ViewModels.AuthViewModel
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
 
 
