@@ -12,17 +12,17 @@ import retrofit2.http.Path
 interface UserService {
 
     @POST("/api/user")
-    suspend fun create(userRequest: UserRequest): UserResponse
+    suspend fun create(userRequest: UserRequest): UserResponse?
 
     //Método solo disponible con token
     @GET("/api/user")
-    suspend fun getAuthUser(): UserResponse
+    suspend fun getAuthUser(): UserResponse?
 
     //Métodos solo disponibles para usuarios administradores
     @GET("/api/user/{email}")
-    suspend fun getByEmail(@Path("email") email: String): UserResponse
+    suspend fun getByEmail(@Path("email") email: String): UserResponse?
 
     @GET("/api/user/all")
-    suspend fun getAll(): UserResponse
+    suspend fun getAll(): UserResponse?
 
 }

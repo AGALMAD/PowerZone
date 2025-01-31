@@ -11,9 +11,9 @@ import retrofit2.http.POST
 interface AuthService {
 
     @POST("/api/auth")
-    suspend fun authenticate(authRequest: AuthenticationRequest): AuthenticationResponse
+    suspend fun authenticate(authRequest: AuthenticationRequest): AuthenticationResponse?
 
     @POST("/api/auth/refresh")
-    suspend fun refreshAccessToken(tokenRequest: RefreshTokenRequest): TokenResponse
+    suspend fun refreshAccessToken(tokenRequest: RefreshTokenRequest): TokenResponse?
 
 }
