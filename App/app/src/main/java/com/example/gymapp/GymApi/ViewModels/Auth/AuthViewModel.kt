@@ -22,6 +22,8 @@ import com.example.gymapp.GymApi.Services.Auth.UserService
 import com.example.gymapp.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 
 
@@ -72,7 +74,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
     val getAccessToken: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[accessToken]
+            preferences[accessToken] ?: ""
         }
 
     suspend fun setAccessToken(newAccessToken : String) {
@@ -83,7 +85,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
     val getRefreshToken: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[refreshToken]
+            preferences[refreshToken] ?: ""
         }
 
     suspend fun setRefreshToken(newRefreshToken : String) {
@@ -95,13 +97,13 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
     val auth = AuthRepository()
 
-
-    private val _authState = MutableLiveData<AuthState>()
-    val authState: LiveData<AuthState> = _authState
+    //Variable para poder cambiar los estados
+    private val _authState = MutableStateFlow<AuthState>(AuthState.Unauthenticated)
+    //Variable para poder verlos en las vistas
+    val authState: StateFlow<AuthState> = _authState
 
 
     init {
-        //Cargar los datos del data store
     }
 
 
@@ -174,7 +176,11 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         }
     }
 
+
+
+
 }
+
 
 
 sealed class AuthState{
