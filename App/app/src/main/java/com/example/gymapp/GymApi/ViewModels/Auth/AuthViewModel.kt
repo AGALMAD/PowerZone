@@ -11,6 +11,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.gymapp.GymApi.Data.dataStoreName
+import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
+import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
 import com.example.gymapp.GymApi.Models.AuthenticationInstance
 import com.example.gymapp.GymApi.Models.Exercises.RetrofitInstance
 import com.example.gymapp.GymApi.Models.User.UserRequest
@@ -52,7 +54,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
             preferences[userName] ?: application.baseContext.getString(R.string.name_label)
         }
 
-    suspend fun setSwitchCardioTime(newUserName : String) {
+    suspend fun setUserName(newUserName : String) {
         application.baseContext.authDataStore.edit { preferences ->
             preferences[userName] = newUserName
         }
@@ -60,7 +62,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
     val getEmail: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[email] ?: application.baseContext.getString(R.string.emailWord)
+            preferences[email] ?: "application.baseContext.getString(R.string.emailWord)"
         }
 
     suspend fun setEmail(newEmail : String) {
@@ -106,24 +108,21 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
 
 
-    fun login(email : String, password : String){
+    suspend fun login(email : String, password : String){
 
         if (email.isEmpty() || password.isEmpty()){
-             _authState.value = AuthState.Error("Email or passord can´t be empty")
+             _authState.value = AuthState.Error("email_password_cant_be_empty")
             return
         }
 
         _authState.value = AuthState.Loading
-        auth.login(email,password)
-            .addOnCompleteListener{ task ->
-                if (task.isSuccessful) {
-                    _authState.value = AuthState.Authenticated
-                }
-                else{
-                    _authState.value =
-                        AuthState.Error(task.exception?.message ?: "Something went wrong")
-                }
-            }
+
+        val response = auth.login(email,password)
+
+        if (response != null){
+            getUserDataAndSave(response.accessToken)
+        }
+
     }
 
 
@@ -131,29 +130,43 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
     suspend fun singup(userName:String, email : String, password : String){
 
         if (userName.isEmpty()|| email.isEmpty() || password.isEmpty()){
-            _authState.value = AuthState.Error("Email or passord can´t be empty")
+            _authState.value = AuthState.Error("email_password_cant_be_empty")
+            return
         }
 
         _authState.value = AuthState.Loading
 
-        val response = userService.create(UserRequest(email= email, name = userName, password = password))
+        val response = auth.signUp(email= email, name = userName, password = password)
 
-        //Maneja la respuesta del servidor
-        if (response != null) {
-            _authState.value = AuthState.Authenticated
-        } else {
-            _authState.value = AuthState.Error("Something went wrong")
 
     }
 
 
     fun singout(){
-        auth.signOut()
+
+        //Elimina los datos del logal storage
+
         _authState.value = AuthState.Unauthenticated
     }
 
-    fun getUserDataAndSave(email: String){
+    suspend fun getUserDataAndSave(token: String){
+        val response = auth.getAuthUser(token)
 
+        /*Guarda los datos del usuario
+        if (response != null) {
+        }
+
+
+        }
+
+         */
+
+    }
+
+    suspend fun refreshAndSaveToken(refreshToken: String){
+        val response = auth.doRefreshAccessToken(refreshToken)
+
+        //guarda el token
     }
 
 }

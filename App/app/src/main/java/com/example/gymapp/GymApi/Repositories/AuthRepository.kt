@@ -15,50 +15,41 @@ import kotlinx.coroutines.withContext
 
 class AuthRepository() {
 
-    suspend fun doRefreshAccessToken(token:String):TokenResponse{
-        return withContext(Dispatchers.IO){
-            val response = authService.refreshAccessToken(RefreshTokenRequest(
-                token = token
-            ))
-            TokenResponse(response.body()?.token ?:"")
-        }
+    suspend fun doRefreshAccessToken(token:String):TokenResponse?{
+        val response = authService.refreshAccessToken(RefreshTokenRequest(
+            token = token
+        ))
+
+        return response.body()
     }
 
-    suspend fun getAuthUser(token:String): UserResponse{
-        return withContext(Dispatchers.IO){
-            val response = userService.getAuthUser("Bearer $token")
-            UserResponse(
-                response.body()?.id ?:"",
-                response.body()?.name ?:"",
-                response.body()?.email ?:"")
-        }
+    suspend fun getAuthUser(token:String): UserResponse?{
+        val response = userService.getAuthUser("Bearer $token")
+
+        return response.body()
     }
 
-    suspend fun login(email:String, password:String):AuthenticationResponse {
-        return withContext(Dispatchers.IO){
-            val response = authService.authenticate(AuthenticationRequest(
+    suspend fun login(email: String, password: String): AuthenticationResponse? {
+        val response = authService.authenticate(
+            AuthenticationRequest(
                 email = email,
                 password = password
-            ))
-            AuthenticationResponse(
-                response.body()?.accessToken?:"",
-                response.body()?.refreshToken?:"")
-        }
+            )
+        )
+
+        return response.body()
     }
 
-    suspend fun signUp(name:String, email:String, password:String):UserResponse{
 
-        return withContext(Dispatchers.IO){
-            val response = userService.create(UserRequest(
-                name = name,
-                email = email,
-                password = password
-            ))
-            UserResponse(
-                response.body()?.id?:"",
-                response.body()?.name?:"",
-                response.body()?.email?:"")
-        }
+    suspend fun signUp(name:String, email:String, password:String):UserResponse?{
+
+        val response = userService.create(UserRequest(
+            name = name,
+            email = email,
+            password = password
+        ))
+
+        return response.body()
     }
 
 }
