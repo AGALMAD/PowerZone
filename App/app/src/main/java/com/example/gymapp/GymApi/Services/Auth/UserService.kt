@@ -28,4 +28,5 @@ interface UserService {
     @GET("/api/user/all")
     suspend fun getAll(): Response<UserResponse>
 
+
 }

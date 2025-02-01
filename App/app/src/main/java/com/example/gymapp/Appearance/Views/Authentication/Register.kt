@@ -27,8 +27,8 @@ import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.InsertTitle
 import com.example.gymapp.Appearance.Themes.misFormas
-import com.example.gymapp.GymApi.ViewModels.AuthState
-import com.example.gymapp.GymApi.ViewModels.AuthViewModel
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import com.example.gymapp.R
 
 @Composable
