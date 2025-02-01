@@ -10,7 +10,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.gymapp.GymApi.Data.dataStoreName
 import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
 import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
 import com.example.gymapp.GymApi.Models.AuthenticationInstance
@@ -51,7 +50,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
     val getUserName: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[userName] ?: application.baseContext.getString(R.string.name_label)
+            preferences[userName] ?: ""
         }
 
     suspend fun setUserName(newUserName : String) {
@@ -62,7 +61,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
     val getEmail: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[email] ?: "application.baseContext.getString(R.string.emailWord)"
+            preferences[email] ?: ""
         }
 
     suspend fun setEmail(newEmail : String) {
@@ -120,14 +119,14 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         val response = auth.login(email,password)
 
         if (response != null){
-            getUserDataAndSave(response.accessToken)
+            getUserDataAndSave(response.accessToken,response.refreshToken)
         }
 
     }
 
 
 
-    suspend fun singup(userName:String, email : String, password : String){
+    suspend fun signup(userName:String, email : String, password : String){
 
         if (userName.isEmpty()|| email.isEmpty() || password.isEmpty()){
             _authState.value = AuthState.Error("email_password_cant_be_empty")
@@ -142,31 +141,37 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
     }
 
 
-    fun singout(){
+    suspend fun signout(){
 
-        //Elimina los datos del logal storage
+        setUserName("")
+        setEmail("")
+        setAccessToken("")
+        setRefreshToken("")
 
         _authState.value = AuthState.Unauthenticated
     }
 
-    suspend fun getUserDataAndSave(token: String){
-        val response = auth.getAuthUser(token)
+    suspend fun getUserDataAndSave(accessToken: String, refreshToken: String){
+        val response = auth.getAuthUser(accessToken)
 
-        /*Guarda los datos del usuario
         if (response != null) {
+            setUserName(response.name ?: "")
+            setEmail(response.email ?: "")
+            setAccessToken(accessToken)
+            setRefreshToken(refreshToken)
+
         }
 
 
-        }
-
-         */
 
     }
 
     suspend fun refreshAndSaveToken(refreshToken: String){
         val response = auth.doRefreshAccessToken(refreshToken)
 
-        //guarda el token
+        if (response != null) {
+            setAccessToken(response.token ?: "")
+        }
     }
 
 }
