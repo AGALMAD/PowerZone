@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -35,9 +36,9 @@ import com.example.gymapp.R
 fun Register(navController: NavHostController, authViewModel: AuthViewModel){
     val context = LocalContext.current
 
-    /*var name by remember {
+    var name by remember {
         mutableStateOf("")
-    }*/
+    }
 
     var email by remember {
         mutableStateOf("")
@@ -51,7 +52,7 @@ fun Register(navController: NavHostController, authViewModel: AuthViewModel){
         mutableStateOf("")
     }*/
 
-    val authState = authViewModel.authState.observeAsState()
+    val authState = authViewModel.authState.collectAsState()
 
     LaunchedEffect(authState.value) {
         when(authState.value){
@@ -76,7 +77,7 @@ fun Register(navController: NavHostController, authViewModel: AuthViewModel){
 
         Spacer( modifier = Modifier.height(20.dp))
 
-        /*OutlinedTextField(
+        OutlinedTextField(
             value = name,
             onValueChange = {
                 name = it
@@ -86,7 +87,7 @@ fun Register(navController: NavHostController, authViewModel: AuthViewModel){
             }
         )
 
-        Spacer( modifier = Modifier.height(12.dp))*/
+        Spacer( modifier = Modifier.height(12.dp))
 
         OutlinedTextField(
             value = email,
@@ -115,7 +116,7 @@ fun Register(navController: NavHostController, authViewModel: AuthViewModel){
         // Botón para registrarse
         Button(
             onClick = {
-                authViewModel.singup(email,password)
+                authViewModel.signup(name,email,password)
             },
             shape = misFormas.medium,
         ) {

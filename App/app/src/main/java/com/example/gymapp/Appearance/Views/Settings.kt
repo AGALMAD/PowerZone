@@ -34,6 +34,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
@@ -61,7 +62,7 @@ import kotlinx.coroutines.launch
 fun SettingsContent(navController: NavHostController, authViewModel : AuthViewModel){
 
     val context = LocalContext.current
-    val authState = authViewModel.authState.observeAsState()
+    val authState = authViewModel.authState.collectAsState()
 
     //Necesita sesión iniciada para poder acceder a la configuración
     LaunchedEffect (authState.value){
