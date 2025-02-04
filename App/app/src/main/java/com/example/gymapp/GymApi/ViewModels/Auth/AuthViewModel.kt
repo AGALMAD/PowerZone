@@ -10,6 +10,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.room.util.query
 import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
 import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
 import com.example.gymapp.GymApi.Models.AuthenticationInstance
@@ -39,10 +40,10 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         )
 
         //Datos del usuario
-        val userName = stringPreferencesKey("userName")
-        val email = stringPreferencesKey("email")
-        val accessToken = stringPreferencesKey("accessToken")
-        val refreshToken = stringPreferencesKey("refreshToken")
+        val userNameSaved = stringPreferencesKey("userName")
+        val emailSaved = stringPreferencesKey("email")
+        val accessTokenSaved = stringPreferencesKey("accessToken")
+        val refreshTokenSaved = stringPreferencesKey("refreshToken")
 
 
     }
@@ -52,45 +53,45 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
     val getUserName: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[userName] ?: ""
+            preferences[userNameSaved] ?: ""
         }
 
     suspend fun setUserName(newUserName : String) {
         application.baseContext.authDataStore.edit { preferences ->
-            preferences[userName] = newUserName
+            preferences[userNameSaved] = newUserName
         }
     }
 
     val getEmail: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[email] ?: ""
+            preferences[emailSaved] ?: ""
         }
 
     suspend fun setEmail(newEmail : String) {
         application.baseContext.authDataStore.edit { preferences ->
-            preferences[email] = newEmail
+            preferences[emailSaved] = newEmail
         }
     }
 
     val getAccessToken: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[accessToken] ?: ""
+            preferences[accessTokenSaved] ?: ""
         }
 
     suspend fun setAccessToken(newAccessToken : String) {
         application.baseContext.authDataStore.edit { preferences ->
-            preferences[accessToken] = newAccessToken
+            preferences[accessTokenSaved] = newAccessToken
         }
     }
 
     val getRefreshToken: Flow<String?> = application.baseContext.authDataStore.data
         .map { preferences ->
-            preferences[refreshToken] ?: ""
+            preferences[refreshTokenSaved] ?: ""
         }
 
     suspend fun setRefreshToken(newRefreshToken : String) {
         application.baseContext.authDataStore.edit { preferences ->
-            preferences[refreshToken] = newRefreshToken
+            preferences[refreshTokenSaved] = newRefreshToken
         }
     }
 
@@ -102,12 +103,28 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
     //Variable para poder verlos en las vistas
     val authState: StateFlow<AuthState> = _authState
 
+    private val _userName = MutableStateFlow<String?>("")
+    val userName: StateFlow<String?> = _userName
+    private val _email = MutableStateFlow<String?>("")
+    val email: StateFlow<String?> = _email
+    private val _accessToken = MutableStateFlow<String?>("")
+    val accessToken: StateFlow<String?> = _accessToken
+    private val _refreshToken = MutableStateFlow<String?>("")
+    val refreshToken: StateFlow<String?> = _refreshToken
+
+
 
     init {
+        loadData()
     }
 
 
-
+    private fun loadData(){
+        _userName.value = getUserName.toString()
+        _email.value = getEmail.toString()
+        _refreshToken.value = getRefreshToken.toString()
+        _accessToken.value = getAccessToken.toString()
+    }
 
     suspend fun login(email : String, password : String){
 
@@ -138,8 +155,6 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         _authState.value = AuthState.Loading
 
         val response = auth.signUp(email= email, name = userName, password = password)
-
-
     }
 
 
@@ -161,7 +176,6 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
             setEmail(response.email ?: "")
             setAccessToken(accessToken)
             setRefreshToken(refreshToken)
-
         }
 
 
@@ -180,8 +194,6 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
 
 
 }
-
-
 
 sealed class AuthState{
     object Authenticated : AuthState()
