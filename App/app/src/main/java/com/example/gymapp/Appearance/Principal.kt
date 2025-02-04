@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,7 +66,7 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
 @Composable
 fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: NavHostController){
 
-    val authState = authViewModel.authState.observeAsState()
+    val authState = authViewModel.authState.collectAsState()
 
     Row(
         horizontalArrangement = Arrangement.End,
@@ -86,7 +87,7 @@ fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: 
                 )
 
                 TextButton(
-                    onClick = { authViewModel.singout() },
+                    onClick = { authViewModel.signout() },
                 ) {
                     Text(
                         text = context.getString(R.string.singoutTitle),

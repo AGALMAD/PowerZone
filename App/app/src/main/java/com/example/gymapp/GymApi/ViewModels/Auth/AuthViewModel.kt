@@ -1,4 +1,5 @@
 package com.example.gymapp.GymApi.ViewModels.Auth
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -10,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.room.util.query
 import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
 import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
@@ -22,17 +24,20 @@ import com.example.gymapp.GymApi.Services.Auth.AuthService
 import com.example.gymapp.GymApi.Services.Auth.UserService
 import com.example.gymapp.R
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 
 private val dataStoreName = "gym_app_authentication";
 
-class AuthViewModel(val application:Application) : AndroidViewModel(application) {
+class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
-
+    @SuppressLint("StaticFieldLeak")
+    val context = application.baseContext
 
     companion object {
         private val Context.authDataStore: DataStore<Preferences> by preferencesDataStore(
@@ -57,7 +62,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         }
 
     suspend fun setUserName(newUserName : String) {
-        application.baseContext.authDataStore.edit { preferences ->
+        context.authDataStore.edit { preferences ->
             preferences[userNameSaved] = newUserName
         }
     }
@@ -68,7 +73,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         }
 
     suspend fun setEmail(newEmail : String) {
-        application.baseContext.authDataStore.edit { preferences ->
+        context.authDataStore.edit { preferences ->
             preferences[emailSaved] = newEmail
         }
     }
@@ -79,7 +84,7 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         }
 
     suspend fun setAccessToken(newAccessToken : String) {
-        application.baseContext.authDataStore.edit { preferences ->
+        context.authDataStore.edit { preferences ->
             preferences[accessTokenSaved] = newAccessToken
         }
     }
@@ -90,12 +95,14 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         }
 
     suspend fun setRefreshToken(newRefreshToken : String) {
-        application.baseContext.authDataStore.edit { preferences ->
+        context.authDataStore.edit { preferences ->
             preferences[refreshTokenSaved] = newRefreshToken
         }
     }
 
 
+
+    //Repositorio
     val auth = AuthRepository()
 
     //Variable para poder cambiar los estados
@@ -126,46 +133,54 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
         _accessToken.value = getAccessToken.toString()
     }
 
-    suspend fun login(email : String, password : String){
+     fun login(email : String, password : String){
+        viewModelScope.launch {
+            if (email.isEmpty() || password.isEmpty()){
+                _authState.value = AuthState.Error("email_password_cant_be_empty")
+                return@launch
+            }
 
-        if (email.isEmpty() || password.isEmpty()){
-             _authState.value = AuthState.Error("email_password_cant_be_empty")
-            return
-        }
+            _authState.value = AuthState.Loading
 
-        _authState.value = AuthState.Loading
+            val response = auth.login(email,password)
 
-        val response = auth.login(email,password)
-
-        if (response != null){
-            getUserDataAndSave(response.accessToken,response.refreshToken)
+            if (response != null){
+                getUserDataAndSave(response.accessToken,response.refreshToken)
+            }
         }
 
     }
 
 
 
-    suspend fun signup(userName:String, email : String, password : String){
+     fun signup(userName:String, email : String, password : String){
 
-        if (userName.isEmpty()|| email.isEmpty() || password.isEmpty()){
-            _authState.value = AuthState.Error("email_password_cant_be_empty")
-            return
+        viewModelScope.launch {
+            if (userName.isEmpty()|| email.isEmpty() || password.isEmpty()){
+                _authState.value = AuthState.Error("email_password_cant_be_empty")
+                return@launch
+            }
+
+            _authState.value = AuthState.Loading
+
+            val response = auth.signUp(email= email, name = userName, password = password)
         }
 
-        _authState.value = AuthState.Loading
-
-        val response = auth.signUp(email= email, name = userName, password = password)
     }
 
 
-    suspend fun signout(){
+    fun signout(){
 
-        setUserName("")
-        setEmail("")
-        setAccessToken("")
-        setRefreshToken("")
+        viewModelScope.launch {
 
-        _authState.value = AuthState.Unauthenticated
+            setUserName("")
+            setEmail("")
+            setAccessToken("")
+            setRefreshToken("")
+
+            _authState.value = AuthState.Unauthenticated
+        }
+
     }
 
     suspend fun getUserDataAndSave(accessToken: String, refreshToken: String){
@@ -189,7 +204,6 @@ class AuthViewModel(val application:Application) : AndroidViewModel(application)
             setAccessToken(response.token ?: "")
         }
     }
-
 
 
 
