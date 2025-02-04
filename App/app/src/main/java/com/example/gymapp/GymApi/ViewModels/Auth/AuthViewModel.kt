@@ -110,6 +110,8 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
     //Variable para poder verlos en las vistas
     val authState: StateFlow<AuthState> = _authState
 
+    private val _userId = MutableStateFlow<String?>("")
+    val userId: StateFlow<String?> = _userId
     private val _userName = MutableStateFlow<String?>("")
     val userName: StateFlow<String?> = _userName
     private val _email = MutableStateFlow<String?>("")
@@ -146,6 +148,8 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
             if (response != null){
                 getUserDataAndSave(response.accessToken,response.refreshToken)
+                _accessToken.value = response.accessToken
+                _refreshToken.value = response.refreshToken
             }
         }
 
@@ -164,6 +168,12 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
             _authState.value = AuthState.Loading
 
             val response = auth.signUp(email= email, name = userName, password = password)
+
+            if(response != null){
+                _email.value = response.email
+                _userName.value = response.name
+                _userId.value = response.id
+            }
         }
 
     }
@@ -185,7 +195,9 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
     suspend fun getUserDataAndSave(accessToken: String, refreshToken: String){
         val response = auth.getAuthUser(accessToken)
-
+        _userId.value = response?.id ?: ""
+        _userName.value = response?.name ?: ""
+        _email.value = response?.email ?: ""
         if (response != null) {
             setUserName(response.name ?: "")
             setEmail(response.email ?: "")
@@ -199,9 +211,9 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
     suspend fun refreshAndSaveToken(refreshToken: String){
         val response = auth.doRefreshAccessToken(refreshToken)
-
         if (response != null) {
             setAccessToken(response.token ?: "")
+            _accessToken.value = response.token
         }
     }
 
