@@ -56,7 +56,7 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
     /*********** Funciones para obtener y cambiar los datos *************/
 
-    val getUserName: Flow<String?> = application.baseContext.authDataStore.data
+    val getUserName: Flow<String?> = context.authDataStore.data
         .map { preferences ->
             preferences[userNameSaved] ?: ""
         }
@@ -67,7 +67,7 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         }
     }
 
-    val getEmail: Flow<String?> = application.baseContext.authDataStore.data
+    val getEmail: Flow<String?> = context.authDataStore.data
         .map { preferences ->
             preferences[emailSaved] ?: ""
         }
@@ -78,7 +78,7 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         }
     }
 
-    val getAccessToken: Flow<String?> = application.baseContext.authDataStore.data
+    val getAccessToken: Flow<String?> = context.authDataStore.data
         .map { preferences ->
             preferences[accessTokenSaved] ?: ""
         }
@@ -89,7 +89,7 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         }
     }
 
-    val getRefreshToken: Flow<String?> = application.baseContext.authDataStore.data
+    val getRefreshToken: Flow<String?> = context.authDataStore.data
         .map { preferences ->
             preferences[refreshTokenSaved] ?: ""
         }
@@ -146,6 +146,10 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
             if (response != null){
                 getUserDataAndSave(response.accessToken,response.refreshToken)
+                _authState.value = AuthState.Authenticated
+
+            } else {
+                _authState.value = AuthState.Error("login_failed")
             }
         }
 
