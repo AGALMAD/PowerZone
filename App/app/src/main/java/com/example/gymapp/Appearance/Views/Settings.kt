@@ -34,6 +34,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
@@ -52,8 +53,8 @@ import com.example.gymapp.R
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Data.SettingsDataStore
 import com.example.gymapp.Appearance.Themes.misFormas
-import com.example.gymapp.GymApi.ViewModels.AuthState
-import com.example.gymapp.GymApi.ViewModels.AuthViewModel
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
 
 
@@ -61,7 +62,7 @@ import kotlinx.coroutines.launch
 fun SettingsContent(navController: NavHostController, authViewModel : AuthViewModel){
 
     val context = LocalContext.current
-    val authState = authViewModel.authState.observeAsState()
+    val authState = authViewModel.authState.collectAsState()
 
     //Necesita sesión iniciada para poder acceder a la configuración
     LaunchedEffect (authState.value){

@@ -1,8 +1,7 @@
-package com.example.gymapp.GymApi.Services
+package com.example.gymapp.GymApi.Services.Exercises
 
-import com.example.gymapp.GymApi.Models.Exercise
+import com.example.gymapp.GymApi.Models.Exercises.Exercise
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 interface ExercisesService {
 

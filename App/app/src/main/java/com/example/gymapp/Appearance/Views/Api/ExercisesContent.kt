@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Generics.CreateCard
-import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.ExercisesViewModel
 
 @Composable
 fun ExercisesContent(navController: NavHostController, viewModel: ExercisesViewModel){

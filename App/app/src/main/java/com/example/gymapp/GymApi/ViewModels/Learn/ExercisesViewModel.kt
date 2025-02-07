@@ -1,9 +1,9 @@
-package com.example.gymapp.GymApi.ViewModels
+package com.example.gymapp.GymApi.ViewModels.Learn
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.gymapp.GymApi.Models.Exercise
+import com.example.gymapp.GymApi.Models.Exercises.Exercise
 import com.example.gymapp.GymApi.Repositories.ExercisesRepository
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch

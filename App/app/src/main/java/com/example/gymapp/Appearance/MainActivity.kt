@@ -6,14 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.room.Room
 import com.example.compose.AppTheme
 import com.example.gymapp.Appearance.Navegationdrawer.NavigationDrawer
-import com.example.gymapp.GymApi.ViewModels.AuthViewModel
-import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
-import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
-import com.example.gymapp.Room.Daos.TasksDao
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.BodyPartsViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.ExercisesViewModel
 import com.example.gymapp.Room.Databases.TasksDatabase
 import com.example.gymapp.Room.Repositories.TasksRepository
 import com.example.gymapp.Room.ViewModels.TasksViewModel
@@ -26,6 +24,7 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 val bodyPartsViewModel: BodyPartsViewModel by viewModels()
                 val exercisesViewModel: ExercisesViewModel by viewModels()
+
                 val authViewModel: AuthViewModel by viewModels()
                 
                 //Variables necesarias para task view model

@@ -61,9 +61,9 @@ import com.example.gymapp.Appearance.Views.Authentication.Login
 import com.example.gymapp.Appearance.Views.Authentication.Register
 import com.example.gymapp.Appearance.Views.Room.TasksManager
 import com.example.gymapp.Appearance.Views.SettingsContent
-import com.example.gymapp.GymApi.ViewModels.AuthViewModel
-import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
-import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
+import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.BodyPartsViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.ExercisesViewModel
 import com.example.gymapp.R
 import com.example.gymapp.Room.ViewModels.TasksViewModel
 import kotlinx.coroutines.launch
