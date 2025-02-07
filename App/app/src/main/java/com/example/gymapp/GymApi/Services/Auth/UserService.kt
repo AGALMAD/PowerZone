@@ -19,7 +19,8 @@ interface UserService {
 
     //Método solo disponible con token
     @GET("/api/user")
-    suspend fun getAuthUser(@Header("Authentication")token:String): Response<UserResponse>
+    suspend fun getAuthUser(@Header("Authorization") token: String): Response<UserResponse>
+
 
     //Métodos solo disponibles para usuarios administradores
     @GET("/api/user/{email}")
