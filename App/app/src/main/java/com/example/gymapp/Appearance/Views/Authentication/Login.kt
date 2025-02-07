@@ -55,7 +55,8 @@ fun Login(navController: NavHostController, authViewModel: AuthViewModel){
         when(authState.value){
             is AuthState.Authenticated -> navController.navigate(Routes.Principal.route)
             is AuthState.Error -> {val messageResId = ToastMessage.getStringResourceId((authState.value as AuthState.Error).errorType)
-                                    Toast.makeText(context, getString(context,messageResId), Toast.LENGTH_SHORT).show()}
+                                    Toast.makeText(context, getString(context,messageResId), Toast.LENGTH_SHORT).show()
+                                    authViewModel.signout()}
             else -> Unit
         }
     }

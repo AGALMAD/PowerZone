@@ -132,11 +132,15 @@ fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: 
 
             }
             is AuthState.Error ->{
-                Toast.makeText(
-                    context,
-                    getString(context,1),
-                    Toast.LENGTH_SHORT
-                ).show()
+                TextButton(
+                    onClick = { navController.navigate(Routes.Login.route) },
+                ) {
+                    Text(
+                        text = context.getString(R.string.loginTitle),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
             }
             else -> Unit
         }
