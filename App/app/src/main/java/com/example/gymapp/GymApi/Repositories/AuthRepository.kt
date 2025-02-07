@@ -5,13 +5,8 @@ import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
 import com.example.gymapp.GymApi.Models.Auth.TokenResponse
 import com.example.gymapp.GymApi.Models.AuthenticationInstance.authService
 import com.example.gymapp.GymApi.Models.AuthenticationInstance.userService
-import com.example.gymapp.GymApi.Models.Exercises.RetrofitInstance
-import com.example.gymapp.GymApi.Models.User.UserRequest
-import com.example.gymapp.GymApi.Models.User.UserResponse
-import com.example.gymapp.GymApi.Services.Auth.AuthService
-import com.example.gymapp.GymApi.Services.Auth.UserService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.example.gymapp.GymApi.Models.Auth.UserRequest
+import com.example.gymapp.GymApi.Models.Auth.UserResponse
 
 class AuthRepository() {
 
@@ -41,13 +36,15 @@ class AuthRepository() {
     }
 
 
-    suspend fun signUp(name:String, email:String, password:String):UserResponse?{
+    suspend fun signUp(name:String, email:String, password:String): UserResponse?{
 
-        val response = userService.create(UserRequest(
+        val response = userService.create(
+            UserRequest(
             name = name,
             email = email,
             password = password
-        ))
+        )
+        )
 
         return response.body()
     }

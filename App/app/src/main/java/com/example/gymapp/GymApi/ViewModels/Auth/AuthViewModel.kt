@@ -8,29 +8,11 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.util.query
 import com.example.gymapp.Appearance.Views.Dialog.AuthErrorType
-import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
-import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
-import com.example.gymapp.GymApi.Models.AuthenticationInstance
-import com.example.gymapp.GymApi.Models.Exercises.RetrofitInstance
-import com.example.gymapp.GymApi.Models.User.UserRequest
-import com.example.gymapp.GymApi.Models.User.UserResponse
 import com.example.gymapp.GymApi.Repositories.AuthRepository
-import com.example.gymapp.GymApi.Services.Auth.AuthService
-import com.example.gymapp.GymApi.Services.Auth.UserService
-import com.example.gymapp.R
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -95,8 +77,13 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // Guarda los datos en data store
     suspend fun saveData(userName: String, email: String, accessToken: String, refreshToken: String) {
+
+        _userName.value = userName
+        _email.value = email
+        _accessToken.value = accessToken
+        _refreshToken.value = refreshToken
+
         context.authDataStore.edit { preferences ->
             preferences[userNameSaved] = userName
             preferences[emailSaved] = email
@@ -165,7 +152,6 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
 
             saveData("", "", "", "")
-
             _authState.value = AuthState.Unauthenticated
         }
 
