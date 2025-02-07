@@ -28,9 +28,12 @@ import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.InsertTitle
 import com.example.gymapp.Appearance.Themes.misFormas
+import com.example.gymapp.Appearance.Views.Dialog.ToastMessage
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import com.example.gymapp.R
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
+import android.content.Context
+import androidx.core.content.ContextCompat.getString
 
 @Composable
 fun Login(navController: NavHostController, authViewModel: AuthViewModel){
@@ -51,7 +54,8 @@ fun Login(navController: NavHostController, authViewModel: AuthViewModel){
     LaunchedEffect (authState.value){
         when(authState.value){
             is AuthState.Authenticated -> navController.navigate(Routes.Principal.route)
-            is AuthState.Error -> Toast.makeText(context, (authState.value as AuthState.Error).mesagge, Toast.LENGTH_SHORT).show()
+            is AuthState.Error -> {val messageResId = ToastMessage.getStringResourceId((authState.value as AuthState.Error).errorType)
+                                    Toast.makeText(context, getString(context,messageResId), Toast.LENGTH_SHORT).show()}
             else -> Unit
         }
     }

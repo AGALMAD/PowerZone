@@ -1,6 +1,7 @@
 package com.example.gymapp.Appearance
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.getString
 import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Themes.misFormas
@@ -68,7 +70,7 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
         Spacer(modifier = Modifier.height(70.dp))
         InsertHeader(context, authViewModel, navController)
 
-        InsertTitle(context.getString(R.string.appTitle),)
+        InsertTitle(context.getString(R.string.appTitle))
         Spacer(modifier = Modifier.height(26.dp))
 
         InsertLogoImage()
@@ -96,11 +98,10 @@ fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: 
     ) {
         when(authState.value){
             is AuthState.Authenticated -> {
-
-
                 Text(
                     color = MaterialTheme.colorScheme.primary,
                     text = context.getString(R.string.welcomeText) + " " + (userName ?: "Usuario"),
+
                     style = MaterialTheme.typography.bodyLarge,
                 )
 
@@ -130,7 +131,13 @@ fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: 
                 }
 
             }
-
+            is AuthState.Error ->{
+                Toast.makeText(
+                    context,
+                    getString(context,1),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
             else -> Unit
         }
 
