@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.util.query
+import com.example.gymapp.Appearance.Views.Dialog.AuthErrorType
 import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
 import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
 import com.example.gymapp.GymApi.Models.AuthenticationInstance
@@ -30,6 +31,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 
 private val dataStoreName = "gym_app_authentication";
@@ -138,18 +140,23 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
      fun login(email : String, password : String){
         viewModelScope.launch {
             if (email.isEmpty() || password.isEmpty()){
-                _authState.value = AuthState.Error("email_password_cant_be_empty")
+                _authState.value = AuthState.Error(AuthErrorType.INVALID_CREDENTIALS)
                 return@launch
             }
 
-            _authState.value = AuthState.Loading
+            try {
+                val response = auth.login(email, password)
 
-            val response = auth.login(email,password)
-
-            if (response != null){
-                getUserDataAndSave(response.accessToken,response.refreshToken)
-                _accessToken.value = response.accessToken
-                _refreshToken.value = response.refreshToken
+                if (response != null) {
+                    getUserDataAndSave(response.accessToken, response.refreshToken)
+                    _accessToken.value = response.accessToken
+                    _refreshToken.value = response.refreshToken
+                    _authState.value = AuthState.Authenticated
+                }
+            } catch (e: IOException) {  // Error de red
+                _authState.value = AuthState.Error(AuthErrorType.NETWORK_ERROR)
+            } catch (e: Exception) {  // Otro tipo de error inesperado
+                _authState.value = AuthState.Error(AuthErrorType.UNKNOWN_ERROR)
             }
         }
 
@@ -161,18 +168,24 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
         viewModelScope.launch {
             if (userName.isEmpty()|| email.isEmpty() || password.isEmpty()){
-                _authState.value = AuthState.Error("email_password_cant_be_empty")
+                _authState.value = AuthState.Error(AuthErrorType.INVALID_CREDENTIALS)
                 return@launch
             }
 
             _authState.value = AuthState.Loading
 
-            val response = auth.signUp(email= email, name = userName, password = password)
+            try {
+                val response = auth.signUp(email = email, name = userName, password = password)
 
-            if(response != null){
-                _email.value = response.email
-                _userName.value = response.name
-                _userId.value = response.id
+                if (response != null) {
+                    _email.value = response.email
+                    _userName.value = response.name
+                    _userId.value = response.id
+                }
+            }catch (e: IOException) {  // Error de red
+                _authState.value = AuthState.Error(AuthErrorType.NETWORK_ERROR)
+            } catch (e: Exception) {  // Otro tipo de error inesperado
+                _authState.value = AuthState.Error(AuthErrorType.UNKNOWN_ERROR)
             }
         }
 
@@ -204,9 +217,6 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
             setAccessToken(accessToken)
             setRefreshToken(refreshToken)
         }
-
-
-
     }
 
     suspend fun refreshAndSaveToken(refreshToken: String){
@@ -225,5 +235,5 @@ sealed class AuthState{
     object Authenticated : AuthState()
     object Unauthenticated : AuthState()
     object Loading : AuthState()
-    data class Error(val mesagge : String) : AuthState()
+    data class Error(val errorType: AuthErrorType) : AuthState()
 }
