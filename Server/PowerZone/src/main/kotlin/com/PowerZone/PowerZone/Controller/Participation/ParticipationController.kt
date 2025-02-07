@@ -28,7 +28,7 @@ class ParticipationController(
             participationService.findAllParticipationsByUserId(userId)
 
     @GetMapping("/details/{userId}")
-    fun getAllActivitiesByUserId(@PathVariable userId: String): List<Optional<Activity>> =
+    fun getAllTargetedActivities(@PathVariable userId: String): List<Optional<Activity>> =
         participationService.findAllActivitiesByUserId(userId)
 
     @DeleteMapping
