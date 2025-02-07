@@ -1,10 +1,7 @@
 package com.example.gymapp.GymApi.Services.Auth
 
-import android.provider.ContactsContract.CommonDataKinds.Email
-import com.example.gymapp.GymApi.Models.Auth.AuthenticationRequest
-import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
-import com.example.gymapp.GymApi.Models.User.UserRequest
-import com.example.gymapp.GymApi.Models.User.UserResponse
+import com.example.gymapp.GymApi.Models.Auth.UserRequest
+import com.example.gymapp.GymApi.Models.Auth.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

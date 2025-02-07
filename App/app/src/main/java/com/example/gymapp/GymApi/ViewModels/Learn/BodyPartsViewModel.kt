@@ -1,4 +1,4 @@
-package com.example.gymapp.GymApi.ViewModels
+package com.example.gymapp.GymApi.ViewModels.Learn
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
