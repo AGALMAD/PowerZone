@@ -55,54 +55,6 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
     }
 
 
-    /*********** Funciones para obtener y cambiar los datos *************/
-
-    val getUserName: Flow<String?> = context.authDataStore.data
-        .map { preferences ->
-            preferences[userNameSaved] ?: ""
-        }
-
-    suspend fun setUserName(newUserName : String) {
-        context.authDataStore.edit { preferences ->
-            preferences[userNameSaved] = newUserName
-        }
-    }
-
-    val getEmail: Flow<String?> = context.authDataStore.data
-        .map { preferences ->
-            preferences[emailSaved] ?: ""
-        }
-
-    suspend fun setEmail(newEmail : String) {
-        context.authDataStore.edit { preferences ->
-            preferences[emailSaved] = newEmail
-        }
-    }
-
-    val getAccessToken: Flow<String?> = context.authDataStore.data
-        .map { preferences ->
-            preferences[accessTokenSaved] ?: ""
-        }
-
-    suspend fun setAccessToken(newAccessToken : String) {
-        context.authDataStore.edit { preferences ->
-            preferences[accessTokenSaved] = newAccessToken
-        }
-    }
-
-    val getRefreshToken: Flow<String?> = context.authDataStore.data
-        .map { preferences ->
-            preferences[refreshTokenSaved] ?: ""
-        }
-
-    suspend fun setRefreshToken(newRefreshToken : String) {
-        context.authDataStore.edit { preferences ->
-            preferences[refreshTokenSaved] = newRefreshToken
-        }
-    }
-
-
-
     //Repositorio
     val auth = AuthRepository()
 
@@ -126,12 +78,27 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         loadData()
     }
 
+    //Obtiene los datos del Data Store
     private fun loadData() {
         viewModelScope.launch {
-            getUserName.collect { _userName.value = it ?: "" }
-            getEmail.collect { _email.value = it ?: "" }
-            getRefreshToken.collect { _refreshToken.value = it ?: "" }
-            getAccessToken.collect { _accessToken.value = it ?: "" }
+            // Recuperar los datos del DataStore
+            context.authDataStore.data
+                .collect { preferences ->
+                    _userName.value = preferences[userNameSaved]
+                    _email.value = preferences[emailSaved]
+                    _accessToken.value = preferences[accessTokenSaved]
+                    _refreshToken.value = preferences[refreshTokenSaved]
+                }
+        }
+    }
+
+    // Guarda los datos en data store
+    suspend fun saveData(userName: String, email: String, accessToken: String, refreshToken: String) {
+        context.authDataStore.edit { preferences ->
+            preferences[userNameSaved] = userName
+            preferences[emailSaved] = email
+            preferences[accessTokenSaved] = accessToken
+            preferences[refreshTokenSaved] = refreshToken
         }
     }
 
@@ -185,12 +152,7 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
         viewModelScope.launch {
 
-            setUserName("")
-            setEmail("")
-            setAccessToken("")
-            setRefreshToken("")
-
-            loadData()
+            saveData("", "", "", "")
 
             _authState.value = AuthState.Unauthenticated
         }
@@ -201,12 +163,10 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         val response = auth.getAuthUser(accessToken)
 
         if (response != null) {
-            setUserName(response.name ?: "")
-            setEmail(response.email ?: "")
-            setAccessToken(accessToken)
-            setRefreshToken(refreshToken)
-
-            loadData()
+            saveData(response.name,
+                response.email,
+                accessToken,
+                refreshToken)
         }
     }
 
@@ -215,13 +175,15 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         val response = auth.doRefreshAccessToken(refreshToken)
 
         if (response != null) {
-            setAccessToken(response.token ?: "")
+            context.authDataStore.edit { preferences ->
+                preferences[accessTokenSaved] = response.token
+            }
 
             _authState.value = AuthState.Authenticated
 
         }
-    }
 
+    }
 
 
 }
