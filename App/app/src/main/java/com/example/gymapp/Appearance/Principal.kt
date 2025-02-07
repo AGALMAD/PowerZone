@@ -54,11 +54,6 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
             authViewModel.refreshAndSaveToken(it)
         }
 
-        // Luego, obtiene los datos del usuario y los guarda
-        authViewModel.getUserDataAndSave(
-            authViewModel.accessToken.value ?: "",
-            refreshToken = authViewModel.refreshToken.value ?: ""
-        )
     }
 
     Column(

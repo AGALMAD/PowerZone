@@ -77,8 +77,13 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // Guarda los datos en data store
     suspend fun saveData(userName: String, email: String, accessToken: String, refreshToken: String) {
+
+        _userName.value = userName
+        _email.value = email
+        _accessToken.value = accessToken
+        _refreshToken.value = refreshToken
+
         context.authDataStore.edit { preferences ->
             preferences[userNameSaved] = userName
             preferences[emailSaved] = email
@@ -147,7 +152,6 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
 
             saveData("", "", "", "")
-
             _authState.value = AuthState.Unauthenticated
         }
 
