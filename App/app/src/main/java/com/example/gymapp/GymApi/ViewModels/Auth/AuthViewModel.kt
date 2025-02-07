@@ -177,29 +177,27 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
                 return@launch
             }
 
-            _authState.value = AuthState.Loading
-
             try {
+                _authState.value = AuthState.Loading
+
                 val response = auth.signUp(email = email, name = userName, password = password)
 
                 if (response != null) {
                     _email.value = response.email
                     _userName.value = response.name
                     _userId.value = response.id
-                }
+                    //Inicia sesión automaticamente cuando se registra
+                    login(email, password)
+                }else {
+                    _authState.value = AuthState.Error(AuthErrorType.INVALID_CREDENTIALS)
+                 }
             }catch (e: IOException) {  // Error de red
                 _authState.value = AuthState.Error(AuthErrorType.NETWORK_ERROR)
             } catch (e: Exception) {  // Otro tipo de error inesperado
                 _authState.value = AuthState.Error(AuthErrorType.UNKNOWN_ERROR)
             }
-        }
 
-            //Inicia sesión automaticamente cuando se registra
-            if (response != null) {
-                login(email, password)
-            } else {
-                _authState.value = AuthState.Error("signup_failed")
-            }
+
         }
     }
 
