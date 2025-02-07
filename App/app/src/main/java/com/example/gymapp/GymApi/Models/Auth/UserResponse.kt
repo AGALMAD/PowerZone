@@ -1,4 +1,4 @@
-package com.example.gymapp.GymApi.Models.User
+package com.example.gymapp.GymApi.Models.Auth
 
 data class UserResponse (
     val id: String,

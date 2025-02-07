@@ -13,7 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavHostController
-import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.BodyPartsViewModel
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.gymapp.Appearance.Generics.CreateCard

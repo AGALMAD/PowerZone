@@ -1,6 +1,5 @@
 package com.example.gymapp.Appearance
 
-import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,8 +10,8 @@ import androidx.room.Room
 import com.example.compose.AppTheme
 import com.example.gymapp.Appearance.Navegationdrawer.NavigationDrawer
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
-import com.example.gymapp.GymApi.ViewModels.BodyPartsViewModel
-import com.example.gymapp.GymApi.ViewModels.ExercisesViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.BodyPartsViewModel
+import com.example.gymapp.GymApi.ViewModels.Learn.ExercisesViewModel
 import com.example.gymapp.Room.Databases.TasksDatabase
 import com.example.gymapp.Room.Repositories.TasksRepository
 import com.example.gymapp.Room.ViewModels.TasksViewModel
