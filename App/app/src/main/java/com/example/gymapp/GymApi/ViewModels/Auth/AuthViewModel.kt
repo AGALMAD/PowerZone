@@ -133,17 +133,27 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
                 _authState.value = AuthState.Error("email_password_cant_be_empty")
                 return@launch
             }
+            try {
+                _authState.value = AuthState.Loading
 
-            _authState.value = AuthState.Loading
+                val response = auth.signUp(email = email, name = userName, password = password)
 
-            val response = auth.signUp(email = email, name = userName, password = password)
-
-            //Inicia sesión automaticamente cuando se registra
-            if (response != null) {
-                login(email, password)
-            } else {
-                _authState.value = AuthState.Error("signup_failed")
+                if (response != null) {
+                    _email.value = response.email
+                    _userName.value = response.name
+                    _userId.value = response.id
+                    //Inicia sesión automaticamente cuando se registra
+                    login(email, password)
+                }else {
+                    _authState.value = AuthState.Error(AuthErrorType.INVALID_CREDENTIALS)
+                 }
+            }catch (e: IOException) {  // Error de red
+                _authState.value = AuthState.Error(AuthErrorType.NETWORK_ERROR)
+            } catch (e: Exception) {  // Otro tipo de error inesperado
+                _authState.value = AuthState.Error(AuthErrorType.UNKNOWN_ERROR)
             }
+
+
         }
     }
 
