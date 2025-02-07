@@ -16,7 +16,7 @@ interface ActivityService {
 
 
     @POST("/api/participations")
-    suspend fun newParticipation(@Path("participationId") participationId: String): Response<Participation>
+    suspend fun newParticipation(@Body participation: Participation): Response<Participation>
 
 
     @GET("/api/participations")
