@@ -19,8 +19,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -34,13 +35,29 @@ import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import com.example.gymapp.R
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+
 
 
 @Composable
 fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
     val context = LocalContext.current
+
+    // Recoge el token de refreso
+    val refreshToken by authViewModel.refreshToken.collectAsState()
+
+    // Cuando la pantalla se abre, intenta refrescar el token y guardar el nuevo
+    LaunchedEffect(refreshToken) {
+        // Si hay un refresh token, intenta refrescar el token de acceso
+        refreshToken?.let {
+            authViewModel.refreshAndSaveToken(it)
+        }
+
+        // Luego, obtiene los datos del usuario y los guarda
+        authViewModel.getUserDataAndSave(
+            authViewModel.accessToken.value ?: "",
+            refreshToken = authViewModel.refreshToken.value ?: ""
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -67,6 +84,7 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
 fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: NavHostController){
 
     val authState = authViewModel.authState.collectAsState()
+    val userName by authViewModel.userName.collectAsState()
 
     Row(
         horizontalArrangement = Arrangement.End,
@@ -78,11 +96,11 @@ fun InsertHeader(context: Context, authViewModel: AuthViewModel, navController: 
     ) {
         when(authState.value){
             is AuthState.Authenticated -> {
-                val user = Firebase.auth.currentUser
+
 
                 Text(
                     color = MaterialTheme.colorScheme.primary,
-                    text = context.getString(R.string.welcomeText) + " " + user!!.email!!,
+                    text = context.getString(R.string.welcomeText) + " " + (userName ?: "Usuario"),
                     style = MaterialTheme.typography.bodyLarge,
                 )
 

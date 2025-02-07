@@ -28,6 +28,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -125,15 +126,17 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
         loadData()
     }
 
-
-    private fun loadData(){
-        _userName.value = getUserName.toString()
-        _email.value = getEmail.toString()
-        _refreshToken.value = getRefreshToken.toString()
-        _accessToken.value = getAccessToken.toString()
+    private fun loadData() {
+        viewModelScope.launch {
+            getUserName.collect { _userName.value = it ?: "" }
+            getEmail.collect { _email.value = it ?: "" }
+            getRefreshToken.collect { _refreshToken.value = it ?: "" }
+            getAccessToken.collect { _accessToken.value = it ?: "" }
+        }
     }
 
-     fun login(email : String, password : String){
+
+    fun login(email : String, password : String){
         viewModelScope.launch {
             if (email.isEmpty() || password.isEmpty()){
                 _authState.value = AuthState.Error("email_password_cant_be_empty")
@@ -157,19 +160,24 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
 
 
-     fun signup(userName:String, email : String, password : String){
-
+    fun signup(userName: String, email: String, password: String) {
         viewModelScope.launch {
-            if (userName.isEmpty()|| email.isEmpty() || password.isEmpty()){
+            if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 _authState.value = AuthState.Error("email_password_cant_be_empty")
                 return@launch
             }
 
             _authState.value = AuthState.Loading
 
-            val response = auth.signUp(email= email, name = userName, password = password)
-        }
+            val response = auth.signUp(email = email, name = userName, password = password)
 
+            //Inicia sesión automaticamente cuando se registra
+            if (response != null) {
+                login(email, password)
+            } else {
+                _authState.value = AuthState.Error("signup_failed")
+            }
+        }
     }
 
 
@@ -182,12 +190,14 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
             setAccessToken("")
             setRefreshToken("")
 
+            loadData()
+
             _authState.value = AuthState.Unauthenticated
         }
 
     }
 
-    suspend fun getUserDataAndSave(accessToken: String, refreshToken: String){
+    suspend fun getUserDataAndSave(accessToken: String, refreshToken: String) {
         val response = auth.getAuthUser(accessToken)
 
         if (response != null) {
@@ -195,17 +205,20 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
             setEmail(response.email ?: "")
             setAccessToken(accessToken)
             setRefreshToken(refreshToken)
+
+            loadData()
         }
-
-
-
     }
+
 
     suspend fun refreshAndSaveToken(refreshToken: String){
         val response = auth.doRefreshAccessToken(refreshToken)
 
         if (response != null) {
             setAccessToken(response.token ?: "")
+
+            _authState.value = AuthState.Authenticated
+
         }
     }
 
