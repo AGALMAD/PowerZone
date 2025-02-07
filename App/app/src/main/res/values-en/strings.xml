@@ -59,4 +59,7 @@
     <string name="task_description_text">Task description</string>
     <string name="task_text">"Task list "</string>
     <string name="select_priority_text">Select priority</string>
+    <string name="error_invalid_credentials">Invalid credentials</string>
+    <string name="error_network">Connection error. Please check your internet connection.</string>
+    <string name="error_unknown">An unknown error occurred</string>
 </resources>
