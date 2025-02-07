@@ -63,7 +63,7 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
     //Variable para poder cambiar los estados
     private val _authState = MutableStateFlow<AuthState>(AuthState.Unauthenticated)
     //Variable para poder verlos en las vistas
-    val authState: StateFlow<AuthState> = _authState
+    var authState: StateFlow<AuthState> = _authState
     private val _userId = MutableStateFlow<String?>("")
     val userId: StateFlow<String?> = _userId
     private val _userName = MutableStateFlow<String?>("")
@@ -107,12 +107,11 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
 
     fun login(email : String, password : String){
+        if (email.isEmpty() || password.isEmpty()){
+            _authState.value = AuthState.Error(AuthErrorType.EMPTY_CREDENTIALS)
+            return
+        }
         viewModelScope.launch {
-            if (email.isEmpty() || password.isEmpty()){
-                _authState.value = AuthState.Error(AuthErrorType.INVALID_CREDENTIALS)
-                return@launch
-            }
-
             _authState.value = AuthState.Loading
 
             val response = auth.login(email,password)
@@ -131,11 +130,11 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
 
 
     fun signup(userName: String, email: String, password: String) {
+        if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            _authState.value = AuthState.Error(AuthErrorType.EMPTY_CREDENTIALS)
+            return
+        }
         viewModelScope.launch {
-            if (userName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                _authState.value = AuthState.Error(AuthErrorType.INVALID_CREDENTIALS)
-                return@launch
-            }
             try {
                 _authState.value = AuthState.Loading
 
