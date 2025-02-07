@@ -57,4 +57,8 @@
     <string name="task_description_text">Descripción de la tarea</string>
     <string name="task_text">Lista de tareas</string>
     <string name="select_priority_text">Selecciona prioridad</string>
+    <string name="error_invalid_credentials">Credenciales inválidas</string>
+    <string name="error_network">Error de conexión. Verifique su conexión a internet.</string>
+    <string name="error_unknown">Ocurrió un error desconocido</string>
+    <string name="error_empty_credentials">No puedes dejar vacios los campos</string>
 </resources>

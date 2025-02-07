@@ -1,5 +1,6 @@
 package com.example.gymapp.Appearance
 
+import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 val bodyPartsViewModel: BodyPartsViewModel by viewModels()
                 val exercisesViewModel: ExercisesViewModel by viewModels()
+
                 val authViewModel: AuthViewModel by viewModels()
                 
                 //Variables necesarias para task view model
