@@ -32,11 +32,22 @@ class ParticipationController(
 
 
         if (currentUser != null) {
-             if (participationService.notExistParticipation(Participation(currentUser.id,participationRequest.activityId))) {
+            if (participationService.notExistParticipation(
+                    Participation(
+                        currentUser.id,
+                        participationRequest.activityId
+                    )
+                )
+            ) {
 
-                 val activity = activityService.findById(participationRequest.activityId)
+                val activity = activityService.findById(participationRequest.activityId)
 
-                return participationService.newParticipation(Participation(currentUser.id,participationRequest.activityId))
+                return participationService.newParticipation(
+                    Participation(
+                        currentUser.id,
+                        participationRequest.activityId
+                    )
+                )
                     ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create participation.")
             } else {
                 throw ResponseStatusException(HttpStatus.BAD_REQUEST, "participation already created.")
@@ -51,16 +62,24 @@ class ParticipationController(
         val currentUser = userService.findByEmail(auth.name)
 
         if (currentUser != null) {
-            participationService.findAllParticipationsByUserId(currentUser.id)
+            return participationService.findAllParticipationsByUserId(currentUser.id)
         }
 
         return null
     }
 
     @GetMapping("/details")
-    fun getAllTargetedActivities(auth: Authentication): List<Optional<Activity>>? =
-        userService.findByEmail(auth.name)?.id?.let { participationService.findAllActivitiesByUserId(it) }
+    fun getAllTargetedActivities(auth: Authentication): List<Optional<Activity>>? {
+        val currentUser = userService.findByEmail(auth.name)
 
+        if (currentUser != null)
+        {
+            return participationService.findAllActivitiesByUserId(currentUser.id)
+        }
+
+        return null
+    }
+    
     @DeleteMapping("/{activityId}")
     fun delete(
         auth: Authentication,
