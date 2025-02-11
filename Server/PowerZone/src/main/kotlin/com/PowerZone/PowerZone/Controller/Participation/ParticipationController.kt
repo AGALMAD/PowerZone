@@ -1,9 +1,13 @@
 package com.PowerZone.PowerZone.Controller.Participation
 
+import com.PowerZone.PowerZone.Controller.User.UserResponse
 import com.PowerZone.PowerZone.Models.Activity
 import com.PowerZone.PowerZone.Models.Participation
+import com.PowerZone.PowerZone.Models.User
 import com.PowerZone.PowerZone.Services.ParticipationService
+import com.PowerZone.PowerZone.Services.UserService
 import org.springframework.http.HttpStatus
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
 import java.util.*
@@ -11,7 +15,8 @@ import java.util.*
 @RestController
 @RequestMapping("/api/participations")
 class ParticipationController(
-    private val participationService: ParticipationService
+    private val participationService: ParticipationService,
+    private val userService: UserService
 ) {
 
     @PostMapping
@@ -27,14 +32,16 @@ class ParticipationController(
     fun getAllParticipationsByUserId(@PathVariable userId: String): List<Participation> =
             participationService.findAllParticipationsByUserId(userId)
 
-    @GetMapping("/details/{userId}")
-    fun getAllTargetedActivities(@PathVariable userId: String): List<Optional<Activity>> =
-        participationService.findAllActivitiesByUserId(userId)
+    @GetMapping("/details")
+    fun getAllTargetedActivities(auth: Authentication): List<Optional<Activity>>? =
+        userService.findByEmail(auth.name)?.id?.let { participationService.findAllActivitiesByUserId(it) }
 
-    @DeleteMapping
-    fun delete(@RequestBody participation: Participation): Participation =
-        participationService.deleteParticipation(participation)
+    @DeleteMapping("/{activityId}")
+    fun delete(
+        auth: Authentication,
+        @PathVariable activityId: String): Participation =
+        userService.findByEmail(auth.name)?.id?.let {
+            participationService.deleteParticipation(Participation(it,activityId)) }
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot delete participation.")
-
 
 }
