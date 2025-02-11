@@ -51,7 +51,7 @@ class ParticipationController(
         val currentUser = userService.findByEmail(auth.name)
 
         if (currentUser != null) {
-            participationService.findAllParticipationsByUserId(currentUser.id)
+            return participationService.findAllParticipationsByUserId(currentUser.id)
         }
 
         return null
