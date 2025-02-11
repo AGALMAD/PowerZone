@@ -19,7 +19,7 @@ interface ActivityService {
 
 
     @POST("/api/participations")
-    suspend fun newParticipation(@Body participation: Participation): Response<Participation>
+    suspend fun newParticipation(@Header("Authorization") token: String, @Body participationId: String): Response<Participation>
 
 
     @GET("/api/participations")
