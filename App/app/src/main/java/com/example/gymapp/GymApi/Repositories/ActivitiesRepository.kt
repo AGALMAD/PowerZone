@@ -25,8 +25,8 @@ class ActivitiesRepository {
         return response.body()
     }
 
-    suspend fun authenticate(participationId: String): Participation?{
-        val response = activityService.authenticate(participationId)
+    suspend fun authenticate(token: String,participationId: String): Participation?{
+        val response = activityService.authenticate("Bearer $token",participationId)
         return response.body()
     }
 

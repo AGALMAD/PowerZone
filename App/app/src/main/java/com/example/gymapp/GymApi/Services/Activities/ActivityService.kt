@@ -31,6 +31,6 @@ interface ActivityService {
 
 
     @DELETE("/api/participations")
-    suspend fun authenticate(@Path("participationId") participationId: String): Response<Participation>
+    suspend fun authenticate(@Header("Authorization") token: String,@Path("participationId") participationId: String): Response<Participation>
 
 }
