@@ -1,9 +1,8 @@
 package com.example.gymapp.GymApi.Services.Activities
 
 import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
-import com.example.gymapp.GymApi.Models.Activities.Participation
-import com.example.gymapp.GymApi.Models.Auth.AuthenticationRequest
-import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
+import com.example.gymapp.GymApi.Models.Activities.ParticipationRequest
+import com.example.gymapp.GymApi.Models.Activities.ParticipationResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -15,15 +14,15 @@ import retrofit2.http.Path
 interface ActivityService {
 
     @GET("/api/activities")
-    suspend fun getAllActivities(): Response<List<ActivityResponse>>
+    suspend fun getAllActivities(@Header("Authorization") token: String): Response<List<ActivityResponse>>
 
 
     @POST("/api/participations")
-    suspend fun newParticipation(@Body participation: Participation): Response<Participation>
+    suspend fun newParticipation(@Header("Authorization") token: String, @Body participation: ParticipationRequest): Response<ParticipationResponse>
 
 
     @GET("/api/participations")
-    suspend fun getAllParticipations(@Header("Authorization") token: String): Response<List<Participation>>
+    suspend fun getAllParticipations(@Header("Authorization") token: String): Response<List<ParticipationResponse>>
 
 
     @POST("/api/participations/details")
@@ -31,6 +30,6 @@ interface ActivityService {
 
 
     @DELETE("/api/participations")
-    suspend fun authenticate(@Path("participationId") participationId: String): Response<Participation>
+    suspend fun authenticate(@Header("Authorization") token: String,@Path("participationId") participationId: String): Response<ParticipationResponse>
 
 }
