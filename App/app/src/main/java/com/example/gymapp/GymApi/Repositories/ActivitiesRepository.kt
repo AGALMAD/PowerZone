@@ -10,8 +10,8 @@ class ActivitiesRepository {
         return response.body()
     }
 
-    suspend fun newParticipation(token:String, participationId: String): Participation?{
-        val response = activityService.newParticipation("Bearer $token",participationId)
+    suspend fun newParticipation(token:String, activityId: String): Participation?{
+        val response = activityService.newParticipation("Bearer $token",activityId)
         return response.body()
     }
 
