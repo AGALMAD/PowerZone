@@ -15,7 +15,7 @@ import retrofit2.http.Path
 interface ActivityService {
 
     @GET("/api/activities")
-    suspend fun getAllActivities(): Response<List<ActivityResponse>>
+    suspend fun getAllActivities(@Header("Authorization") token: String): Response<List<ActivityResponse>>
 
 
     @POST("/api/participations")

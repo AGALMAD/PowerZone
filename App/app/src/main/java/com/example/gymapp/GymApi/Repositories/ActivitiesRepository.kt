@@ -5,8 +5,8 @@ import com.example.gymapp.GymApi.Models.Activities.Participation
 import com.example.gymapp.GymApi.Models.RetrofitApiInstance.activityService
 
 class ActivitiesRepository {
-    suspend fun getAllActivities(): List<ActivityResponse>?{
-        val response = activityService.getAllActivities()
+    suspend fun getAllActivities(token:String): List<ActivityResponse>?{
+        val response = activityService.getAllActivities("Bearer $token")
         return response.body()
     }
 
