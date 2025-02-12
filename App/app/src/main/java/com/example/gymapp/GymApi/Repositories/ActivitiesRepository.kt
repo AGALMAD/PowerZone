@@ -26,8 +26,8 @@ class ActivitiesRepository {
         return response.body()
     }
 
-    suspend fun authenticate(token: String,participationId: String): ParticipationResponse?{
-        val response = activityService.authenticate("Bearer $token",participationId)
+    suspend fun delete(token: String,participationId: String): ParticipationResponse?{
+        val response = activityService.deleteParticipation("Bearer $token",participationId)
         return response.body()
     }
 
