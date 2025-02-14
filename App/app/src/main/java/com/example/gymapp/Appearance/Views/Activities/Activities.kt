@@ -37,12 +37,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
+import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun Activities(navController: NavHostController, authViewModel: AuthViewModel){
+fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
     val authState = authViewModel.authState.collectAsState()
 
     val pagerState = rememberPagerState(pageCount = { 2 })
@@ -55,6 +56,12 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel){
             is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
             else -> Unit
         }
+
+    }
+
+    LaunchedEffect (activitiesViewModel.accessToken){
+        activitiesViewModel.getAllActivities()
+        activitiesViewModel.getUserActivities()
     }
 
     Scaffold( topBar = {

@@ -42,6 +42,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
 
     init {
         loadData()
+
     }
 
     private fun loadData() {
