@@ -117,7 +117,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
         ) { page ->
             when (page) { // Poner las paginas necesarias
                 0 -> AllActivitiesScreen(activitiesViewModel)
-                1 -> AllUserActivitiesScreen()
+                1 -> AllUserActivitiesScreen(activitiesViewModel)
             }
         }
     }
@@ -149,13 +149,19 @@ fun AllActivitiesScreen( activitiesViewModel: ActivitiesViewModel) {
     }
 }
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllUserActivitiesScreen() {
+fun AllUserActivitiesScreen(activitiesViewModel: ActivitiesViewModel) {
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Mis actividades", fontSize = 25.sp)
+        if(activitiesViewModel.userActivities.value.isNullOrEmpty()){
+            CircularProgressIndicator()
+        }else{
+            
+        }
     }
 }
