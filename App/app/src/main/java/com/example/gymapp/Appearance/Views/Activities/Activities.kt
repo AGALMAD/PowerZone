@@ -1,5 +1,6 @@
 package com.example.gymapp.Appearance.Views.Activities
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +14,7 @@ import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -109,7 +111,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
         ) { page ->
             when (page) { // Poner las paginas necesarias
                 0 -> AllActivitiesScreen()
-                1 -> AllUserActivitiesScreen()
+                1 -> AllUserActivitiesScreen(activitiesViewModel)
             }
         }
     }
@@ -126,13 +128,19 @@ fun AllActivitiesScreen() {
     }
 }
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllUserActivitiesScreen() {
+fun AllUserActivitiesScreen(activitiesViewModel: ActivitiesViewModel) {
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Mis actividades", fontSize = 25.sp)
+        if(activitiesViewModel.userActivities.value.isNullOrEmpty()){
+            CircularProgressIndicator()
+        }else{
+            
+        }
     }
 }
