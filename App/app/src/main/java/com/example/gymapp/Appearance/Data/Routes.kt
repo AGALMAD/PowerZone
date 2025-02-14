@@ -9,6 +9,8 @@ sealed class Routes(val route : String) {
     data object Login : Routes("Login");
     data object Register : Routes("Register");
     data object TasksManager : Routes("TasksManager");
+    data object Activities : Routes("Activities");
+
     //data object UserAccount : Routes("UserAccount");
 
 }

@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.ExitToApp
@@ -14,6 +16,8 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.AddCircle
+import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.ExitToApp
@@ -55,12 +59,14 @@ import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Generics.AlertDialog
 import com.example.gymapp.Appearance.Principal
 import com.example.gymapp.Appearance.Views.AboutUsContent
+import com.example.gymapp.Appearance.Views.Activities.Activities
 import com.example.gymapp.Appearance.Views.Api.BodyPartsContent
 import com.example.gymapp.Appearance.Views.Api.ExercisesContent
 import com.example.gymapp.Appearance.Views.Authentication.Login
 import com.example.gymapp.Appearance.Views.Authentication.Register
 import com.example.gymapp.Appearance.Views.Room.TasksManager
 import com.example.gymapp.Appearance.Views.SettingsContent
+import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import com.example.gymapp.GymApi.ViewModels.Learn.BodyPartsViewModel
 import com.example.gymapp.GymApi.ViewModels.Learn.ExercisesViewModel
@@ -75,7 +81,8 @@ fun NavigationDrawer(
     bodyPartsViewModel: BodyPartsViewModel,
     exercisesViewModel: ExercisesViewModel,
     authViewModel: AuthViewModel,
-    tasksViewModel: TasksViewModel
+    tasksViewModel: TasksViewModel,
+    activitiesViewModel: ActivitiesViewModel,
 ){
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -98,14 +105,20 @@ fun NavigationDrawer(
         ),
         NavigationItems(
             title = context.getString(R.string.bodyPartsButtonTitle),
-            selectedIcon = Icons.Filled.Star,
-            unselectedIcon = Icons.Outlined.Star,
+            selectedIcon = Icons.Filled.AddCircle,
+            unselectedIcon = Icons.Outlined.AddCircle,
             route = Routes.BodyPartsScreen.route
         ),
         NavigationItems(
-            title = context.getString(R.string.settingsTitle),
+            title = "Activities",
             selectedIcon = Icons.Filled.DateRange,
             unselectedIcon = Icons.Outlined.DateRange,
+            route = Routes.Activities.route
+        ),
+        NavigationItems(
+            title = context.getString(R.string.settingsTitle),
+            selectedIcon = Icons.Filled.Build,
+            unselectedIcon = Icons.Outlined.Build,
             route = Routes.Settings.route
         ),
         NavigationItems(
@@ -126,6 +139,7 @@ fun NavigationDrawer(
             unselectedIcon = Icons.Outlined.ExitToApp,
             route = null
         )
+
     )
 
     //Remember Clicked item state
@@ -169,7 +183,7 @@ fun NavigationDrawer(
                             )
                         },
                         badge = {
-                            if(index == 5){
+                            if(index == 6){
                                 if(tasknotfinished>0){
                                     Badge(
                                         modifier = Modifier.padding(5.dp),
@@ -215,19 +229,27 @@ fun NavigationDrawer(
             NavHost(navController = navController, startDestination = Routes.Principal.route) {
                 composable(Routes.Principal.route) { selectedItemIndex = 0
                     Principal(navController, authViewModel) }
-                composable(Routes.Settings.route) { selectedItemIndex = 3
-                    SettingsContent(navController, authViewModel) }
-                composable(Routes.AboutUs.route) { selectedItemIndex = 4
-                    AboutUsContent(navController) }
-                composable(Routes.BodyPartsScreen.route) { selectedItemIndex = 2
-                    BodyPartsContent(navController, bodyPartsViewModel) }
-                composable(Routes.ExercisesScreen.route) { selectedItemIndex = 2
-                    ExercisesContent(navController, exercisesViewModel) }
+
                 composable(Routes.Login.route) { selectedItemIndex = 1
                     Login(navController, authViewModel) }
                 composable(Routes.Register.route) { selectedItemIndex = 1
                     Register(navController, authViewModel) }
-                composable(Routes.TasksManager.route) { selectedItemIndex = 5
+
+                composable(Routes.BodyPartsScreen.route) { selectedItemIndex = 2
+                    BodyPartsContent(navController, bodyPartsViewModel) }
+                composable(Routes.ExercisesScreen.route) { selectedItemIndex = 2
+                    ExercisesContent(navController, exercisesViewModel) }
+
+                composable(Routes.Activities.route) { selectedItemIndex = 2
+                    Activities(navController, authViewModel, activitiesViewModel) }
+
+                composable(Routes.Settings.route) { selectedItemIndex = 4
+                    SettingsContent(navController, authViewModel) }
+
+                composable(Routes.AboutUs.route) { selectedItemIndex = 5
+                    AboutUsContent(navController) }
+
+                composable(Routes.TasksManager.route) { selectedItemIndex = 6
                     TasksManager(navController,tasksViewModel)
                 }
             }
