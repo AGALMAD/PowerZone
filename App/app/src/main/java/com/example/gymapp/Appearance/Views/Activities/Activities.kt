@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
@@ -39,6 +41,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
+import com.example.gymapp.Appearance.Generics.CreateCard
+import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
 import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
@@ -47,6 +51,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
     val authState = authViewModel.authState.collectAsState()
+    val accessToken by activitiesViewModel.accessToken.collectAsState()
+    val activities by activitiesViewModel.activities.collectAsState()
+
 
     val pagerState = rememberPagerState(pageCount = { 2 })
     val coroutineScope = rememberCoroutineScope()
@@ -61,9 +68,11 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
 
     }
 
-    LaunchedEffect (activitiesViewModel.accessToken){
-        activitiesViewModel.getAllActivities()
-        activitiesViewModel.getUserActivities()
+    LaunchedEffect(accessToken) {
+        accessToken?.let {
+            activitiesViewModel.getAllActivities()
+            activitiesViewModel.getUserActivities()
+        }
     }
 
     Scaffold( topBar = {
@@ -110,21 +119,35 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
                 .padding(paddingValues)
         ) { page ->
             when (page) { // Poner las paginas necesarias
-                0 -> AllActivitiesScreen()
+                0 -> AllActivitiesScreen(activitiesViewModel)
                 1 -> AllUserActivitiesScreen(activitiesViewModel)
             }
         }
     }
 }
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllActivitiesScreen() {
+fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Todas las actividades", fontSize = 25.sp)
+
+        if (activitiesViewModel.activities.value.isEmpty()) {
+            // Muestra una barra circular mientras cargan actividades
+            CircularProgressIndicator()
+        } else {
+            //Muestra todas las actividades
+            LazyColumn {
+                items(activities) { activity ->
+                    showActivityWithSignUpButton(activity)
+                }
+            }
+        }
+
     }
 }
 
@@ -143,4 +166,10 @@ fun AllUserActivitiesScreen(activitiesViewModel: ActivitiesViewModel) {
             
         }
     }
+}
+
+
+@Composable
+fun showActivityWithSignUpButton(activity: ActivityResponse){
+    Text(activity.title)
 }
