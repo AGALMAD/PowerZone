@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
 import com.example.gymapp.Appearance.Generics.CreateCard
+import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
 import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
@@ -51,6 +52,8 @@ import kotlinx.coroutines.launch
 fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
     val authState = authViewModel.authState.collectAsState()
     val accessToken by activitiesViewModel.accessToken.collectAsState()
+    val activities by activitiesViewModel.activities.collectAsState()
+
 
     val pagerState = rememberPagerState(pageCount = { 2 })
     val coroutineScope = rememberCoroutineScope()
@@ -125,7 +128,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllActivitiesScreen( activitiesViewModel: ActivitiesViewModel) {
+fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -139,9 +142,8 @@ fun AllActivitiesScreen( activitiesViewModel: ActivitiesViewModel) {
         } else {
             //Muestra todas las actividades
             LazyColumn {
-                items(activitiesViewModel.activities.value) { activity ->
-                    activity.title
-
+                items(activities) { activity ->
+                    showActivityWithSignUpButton(activity)
                 }
             }
         }
@@ -164,4 +166,10 @@ fun AllUserActivitiesScreen(activitiesViewModel: ActivitiesViewModel) {
             
         }
     }
+}
+
+
+@Composable
+fun showActivityWithSignUpButton(activity: ActivityResponse){
+    Text(activity.title)
 }
