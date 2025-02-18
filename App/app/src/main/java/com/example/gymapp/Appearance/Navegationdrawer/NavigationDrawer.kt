@@ -240,7 +240,7 @@ fun NavigationDrawer(
                 composable(Routes.ExercisesScreen.route) { selectedItemIndex = 2
                     ExercisesContent(navController, exercisesViewModel) }
 
-                composable(Routes.Activities.route) { selectedItemIndex = 2
+                composable(Routes.Activities.route) { selectedItemIndex = 3
                     Activities(navController, authViewModel, activitiesViewModel) }
 
                 composable(Routes.Settings.route) { selectedItemIndex = 4

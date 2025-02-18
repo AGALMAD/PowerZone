@@ -50,7 +50,6 @@ import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
 import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @Composable
@@ -138,7 +137,10 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
     val coroutineScope = rememberCoroutineScope()
 
     Column(
-        Modifier.fillMaxSize(),
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+        ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -151,7 +153,7 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
             //Muestra todas las actividades
             LazyColumn {
                 items(activities) { activity ->
-                    showActivityWithSignUpButton(
+                    ShowActivityWithSignUpButton(
                         activity,
                         Icons.Default.Star
                     ) {
@@ -185,7 +187,7 @@ fun AllUserActivitiesScreen(activitiesViewModel: ActivitiesViewModel) {
 
 
 @Composable
-fun showActivityWithSignUpButton(
+fun ShowActivityWithSignUpButton(
     activity: ActivityResponse,
     buttonIcon: ImageVector,
     onClickAction: () -> Unit
@@ -255,7 +257,7 @@ fun showActivityWithSignUpButton(
             Button(
                 onClick = onClickAction
             ) {
-                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.secondary)
+                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.onSecondary)
             }
 
         }
