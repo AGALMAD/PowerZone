@@ -162,7 +162,7 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
                         Icons.Default.Star
                     ) {
                         coroutineScope.launch {
-                            activitiesViewModel.createParticipation(activity.id)
+                            activitiesViewModel.createParticipation(activity.id.toString())
                         }
                     }
                 }
@@ -305,7 +305,7 @@ fun ShowActivityWithDeleteButton(activity: ActivityResponse, activitiesViewModel
             Button(onClick =
             {
                 coroutineScope.launch {
-                    activitiesViewModel.deleteParticipation(activity.id)
+                    activitiesViewModel.deleteParticipation(activity.id.toString())
                 }
             },
                 shape = misFormas.small,
