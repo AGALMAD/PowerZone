@@ -1,11 +1,9 @@
 package com.example.gymapp.Appearance.Views.Activities
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +19,6 @@ import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -44,26 +41,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.example.gymapp.Appearance.Data.Routes
-import com.example.gymapp.Appearance.Generics.CreateCard
 import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
 import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
-import com.example.gymapp.R
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @Composable
@@ -153,7 +141,10 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
     val coroutineScope = rememberCoroutineScope()
 
     Column(
-        Modifier.fillMaxSize(),
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+        ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -166,7 +157,7 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
             //Muestra todas las actividades
             LazyColumn {
                 items(activities) { activity ->
-                    showActivityWithSignUpButton(
+                    ShowActivityWithSignUpButton(
                         activity,
                         Icons.Default.Star
                     ) {
@@ -195,7 +186,7 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
         }else{
             LazyColumn {
                 items(userActivities) { activity ->
-                    showActivityWithDeleteButton(activity,activitiesViewModel)
+                    ShowActivityWithDeleteButton(activity,activitiesViewModel)
                 }
             }
         }
@@ -204,7 +195,7 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
 
 
 @Composable
-fun showActivityWithSignUpButton(
+fun ShowActivityWithSignUpButton(
     activity: ActivityResponse,
     buttonIcon: ImageVector,
     onClickAction: () -> Unit
@@ -274,7 +265,7 @@ fun showActivityWithSignUpButton(
             Button(
                 onClick = onClickAction
             ) {
-                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.secondary)
+                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.onSecondary)
             }
 
         }
@@ -285,27 +276,7 @@ fun showActivityWithSignUpButton(
 
 
 @Composable
-fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesViewModel: ActivitiesViewModel) {
-    Column(
-        Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Mis actividades", fontSize = 25.sp)
-        if(activitiesViewModel.userActivities.value.isNullOrEmpty()){
-            CircularProgressIndicator()
-        }else{
-            LazyColumn {
-                items(userActivities) { activity ->
-                    showActivityWithDeleteButton(activity,activitiesViewModel)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun showActivityWithDeleteButton(activity: ActivityResponse, activitiesViewModel: ActivitiesViewModel){
+fun ShowActivityWithDeleteButton(activity: ActivityResponse, activitiesViewModel: ActivitiesViewModel){
     val coroutineScope = rememberCoroutineScope()
     Card(
         elevation = CardDefaults.cardElevation(
