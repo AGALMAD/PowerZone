@@ -25,7 +25,7 @@ interface ActivityService {
     suspend fun getAllParticipations(@Header("Authorization") token: String): Response<List<ParticipationResponse>>
 
 
-    @POST("/api/participations/details")
+    @GET("/api/participations/details")
     suspend fun getAllTargetedActivities(@Header("Authorization") token: String): Response<List<ActivityResponse>>
 
 

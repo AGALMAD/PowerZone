@@ -17,6 +17,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Star
@@ -82,53 +83,58 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
         }
     }
 
-    Scaffold( topBar = {
-        TabRow(
-            selectedTabIndex = pagerState.currentPage,
-            modifier = Modifier,
-            containerColor = Color.Blue,
-            contentColor = Color.White,
-            indicator = { tabPositions ->
-                TabRowDefaults.apply {
-                    HorizontalDivider(Modifier
-                        .height(2.dp)
-                        .padding(horizontal = 16.dp)
-                        .tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                }
-            },
-            divider ={}
-        ) {
-            tabs.forEachIndexed { index, title ->
-                Tab(text = { Text(title) },
-                    selected = pagerState.currentPage == index,
-                    onClick = {
-                        // Para sincronizar el tabRow con el horizontal pager
-                        coroutineScope.launch {
-                            pagerState.animateScrollToPage(index)
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            Column {
+                TabRow(
+                    selectedTabIndex = pagerState.currentPage,
+                    modifier = Modifier.fillMaxWidth(),
+                    containerColor = Color.Blue,
+                    contentColor = Color.White,
+                    indicator = { tabPositions ->
+                        TabRowDefaults.apply {
+                            HorizontalDivider(
+                                Modifier
+                                    .height(2.dp)
+                                    .padding(horizontal = 16.dp)
+                                    .tabIndicatorOffset(tabPositions[pagerState.currentPage]),
+                                color = MaterialTheme.colorScheme.primary
+                            )
                         }
                     },
-                    icon = {
-                        when (index) { // Iconos de cada pagina
-                            0 -> Icon(imageVector = Icons.Default.Home, contentDescription = null)
-                            1 -> Icon(imageVector = Icons.AutoMirrored.Filled.List, contentDescription = null)
-                        }
+                    divider = {}
+                ) {
+                    tabs.forEachIndexed { index, title ->
+                        Tab(
+                            text = { Text(title) },
+                            selected = pagerState.currentPage == index,
+                            onClick = {
+                                coroutineScope.launch {
+                                    pagerState.animateScrollToPage(index)
+                                }
+                            },
+                            icon = {
+                                when (index) {
+                                    0 -> Icon(imageVector = Icons.Default.Home, contentDescription = null)
+                                    1 -> Icon(imageVector = Icons.AutoMirrored.Filled.List, contentDescription = null)
+                                }
+                            }
+                        )
                     }
-                )
+                }
             }
         }
-    }) { paddingValues ->
+    ) { paddingValues ->
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) { page ->
-            when (page) { // Poner las paginas necesarias
+            when (page) {
                 0 -> AllActivitiesScreen(activities, activitiesViewModel)
-                1 -> AllUserActivitiesScreen(userActivities!!,activitiesViewModel)
-
+                1 -> AllUserActivitiesScreen(userActivities!!, activitiesViewModel)
             }
         }
     }
@@ -175,6 +181,7 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesViewModel: ActivitiesViewModel) {
+    val coroutineScope = rememberCoroutineScope()
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -186,7 +193,14 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
         }else{
             LazyColumn {
                 items(userActivities) { activity ->
-                    ShowActivityWithDeleteButton(activity,activitiesViewModel)
+                    ShowActivityWithSignUpButton(
+                        activity,
+                        Icons.Default.Delete
+                    ) {
+                        coroutineScope.launch {
+                            activitiesViewModel.deleteParticipation(activity.id)
+                        }
+                    }
                 }
             }
         }
@@ -229,7 +243,7 @@ fun ShowActivityWithSignUpButton(
             )
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = Icons.Default.List, contentDescription = "Description Icon", tint = MaterialTheme.colorScheme.secondary)
+                Icon(imageVector = Icons.AutoMirrored.Filled.List, contentDescription = "Description Icon", tint = MaterialTheme.colorScheme.secondary)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = activity.description,
@@ -268,55 +282,6 @@ fun ShowActivityWithSignUpButton(
                 Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.onSecondary)
             }
 
-        }
-    }
-}
-
-
-
-
-@Composable
-fun ShowActivityWithDeleteButton(activity: ActivityResponse, activitiesViewModel: ActivitiesViewModel){
-    val coroutineScope = rememberCoroutineScope()
-    Card(
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 12.dp
-        ),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        shape = misFormas.medium,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp) // Espaciado entre elementos
-
-    ) {
-        Row(Modifier.fillMaxSize(),)
-        {
-            Text(
-                text = activity.title,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 4.dp)
-            )
-            Button(onClick =
-            {
-                coroutineScope.launch {
-                    activitiesViewModel.deleteParticipation(activity.id)
-                }
-            },
-                shape = misFormas.small,
-                modifier = Modifier.width(250.dp)
-
-            ) {
-                Text(
-                    text = "Dejar actividad",
-                    style = MaterialTheme.typography.headlineSmall,
-                )
-            }
         }
     }
 }

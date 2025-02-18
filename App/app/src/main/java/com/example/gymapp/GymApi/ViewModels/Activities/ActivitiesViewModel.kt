@@ -2,6 +2,7 @@ package com.example.gymapp.GymApi.ViewModels.Activities
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
@@ -87,6 +88,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
     }
 
     suspend fun deleteParticipation (activityId: String){
+        Log.d("Mi activity id: ",activityId)
         val response = _accessToken.value?.let { activitiesRepository.delete(it,activityId) }
         if (response != null)
         {
