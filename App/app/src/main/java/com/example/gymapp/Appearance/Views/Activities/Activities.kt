@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -54,6 +55,13 @@ import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.ButtonDefaults
 
 @Composable
 fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
@@ -169,7 +177,7 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
                         Icons.Default.Star
                     ) {
                         coroutineScope.launch {
-                            activitiesViewModel.createParticipation(activity.id)
+                            activitiesViewModel.createParticipation(activity.id.toString())
                         }
                     }
                 }
@@ -217,72 +225,127 @@ fun ShowActivityWithSignUpButton(
 ) {
     Card(
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 12.dp
+            defaultElevation = 8.dp
         ),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = MaterialTheme.colorScheme.background
         ),
-        shape = CardDefaults.shape,
+        shape = RoundedCornerShape(12.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp) // Espaciado entre elementos
-
+            .padding(8.dp)
     ) {
         Column(
             Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
                 text = activity.title,
-                style = MaterialTheme.typography.displayMedium,
-                color = MaterialTheme.colorScheme.secondary,
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
             )
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = Icons.AutoMirrored.Filled.List, contentDescription = "Description Icon", tint = MaterialTheme.colorScheme.secondary)
+
+                Icon(imageVector = Icons.Default.Description, contentDescription = "Description Icon", tint = MaterialTheme.colorScheme.primary)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = activity.description,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.fillMaxWidth()
                 )
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = Icons.Default.DateRange, contentDescription = "Start Date Icon", tint = MaterialTheme.colorScheme.secondary)
+                Icon(imageVector = Icons.Default.DateRange, contentDescription = "Start Date Icon", tint = MaterialTheme.colorScheme.primary)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = activity.startDateTime,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.fillMaxWidth()
                 )
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = Icons.Default.DateRange, contentDescription = "End Date Icon", tint = MaterialTheme.colorScheme.secondary)
+                Icon(imageVector = Icons.Default.DateRange, contentDescription = "End Date Icon", tint = MaterialTheme.colorScheme.primary)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = activity.endDateTime,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.fillMaxWidth()
                 )
             }
 
+            Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = onClickAction
+                onClick = onClickAction,
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
-                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.onSecondary)
+                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = Color.White)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = "Sign Up", color = Color.White)
             }
+        }
+    }
 
+}
+
+
+
+
+@Composable
+fun ShowActivityWithDeleteButton(activity: ActivityResponse, activitiesViewModel: ActivitiesViewModel){
+    val coroutineScope = rememberCoroutineScope()
+    Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 12.dp
+        ),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        shape = misFormas.medium,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp) // Espaciado entre elementos
+
+    ) {
+        Row(Modifier.fillMaxSize(),)
+        {
+            Text(
+                text = activity.title,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 4.dp)
+            )
+            Button(onClick =
+            {
+                coroutineScope.launch {
+                    activitiesViewModel.deleteParticipation(activity.id.toString())
+                }
+            },
+                shape = misFormas.small,
+                modifier = Modifier.width(250.dp)
+
+            ) {
+                Text(
+                    text = "Dejar actividad",
+                    style = MaterialTheme.typography.headlineSmall,
+                )
+            }
         }
     }
 }
