@@ -87,6 +87,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
         modifier = Modifier.fillMaxSize(),
         topBar = {
             Column {
+                Spacer(modifier = Modifier.height(90.dp))
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
                     modifier = Modifier.fillMaxWidth(),

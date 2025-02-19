@@ -72,6 +72,9 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         val token = _accessToken.value
         if (token != null) {
             val userActivitiesList = activitiesRepository.getAllTargetedActivities(token)
+            userActivitiesList!!.forEach{ activity ->
+                Log.d("Mi id de actividad: ",activity.id)
+            }
             _userActivities.value = userActivitiesList ?: emptyList()
         } else {
             throw IllegalStateException("Access token is null")
