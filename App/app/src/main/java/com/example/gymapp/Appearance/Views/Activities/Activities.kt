@@ -157,7 +157,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
         ) { page ->
             when (page) {
                 0 -> AllActivitiesScreen(snackbarHostState, activities, activitiesViewModel)
-                1 -> AllUserActivitiesScreen(userActivities!!, activitiesViewModel)
+                1 -> AllUserActivitiesScreen(snackbarHostState, userActivities!!, activitiesViewModel)
             }
         }
     }
@@ -195,7 +195,7 @@ fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<A
                         coroutineScope.launch {
                             snackbarHostState.showSnackbar(
                                 "Te has apuntado a " + activity.title ,
-                                duration = SnackbarDuration.Indefinite
+                                duration = SnackbarDuration.Long
                             )
                             activitiesViewModel.createParticipation(activity.id.toString())
                         }
@@ -209,7 +209,7 @@ fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<A
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllUserActivitiesScreen(userActivities: List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
+fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities: List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -237,10 +237,16 @@ fun AllUserActivitiesScreen(userActivities: List<ActivityResponse>, activitiesVi
                         ) {
                             coroutineScope.launch {
                                 activity.id?.let {
+
                                     isVisible = false
                                     delay(500)
                                     isVisible = true
                                     activitiesViewModel.deleteParticipation(it)
+
+                                    snackbarHostState.showSnackbar(
+                                        "Te has borrado de " + activity.title ,
+                                        duration = SnackbarDuration.Long
+                                    )
 
                                 }
                             }
