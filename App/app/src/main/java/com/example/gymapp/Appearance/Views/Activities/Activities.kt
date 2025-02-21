@@ -1,6 +1,9 @@
 package com.example.gymapp.Appearance.Views.Activities
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -55,8 +58,12 @@ import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import com.example.gymapp.R
+import kotlinx.coroutines.delay
 
 @Composable
 fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
@@ -189,28 +196,41 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesViewModel: ActivitiesViewModel) {
+fun AllUserActivitiesScreen(userActivities: List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
     val context = LocalContext.current
-
     val coroutineScope = rememberCoroutineScope()
+
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = context.getString(R.string.my_activities_word), fontSize = 25.sp)
-        if(activitiesViewModel.userActivities.value.isNullOrEmpty()){
+        if (activitiesViewModel.userActivities.value.isNullOrEmpty()) {
             CircularProgressIndicator()
-        }else{
+        } else {
             LazyColumn {
                 items(userActivities) { activity ->
-                    ShowActivity(
-                        activity,
-                        Icons.Default.Delete,
-                        context.getString(R.string.delete_word),
+                    var isVisible by remember { mutableStateOf(true) }
+
+                    AnimatedVisibility(
+                        visible = isVisible,
+                        exit = fadeOut(animationSpec = tween(durationMillis = 500))
+                    ) {
+                        ShowActivity(
+                            activity,
+                            Icons.Default.Delete,
+                            context.getString(R.string.delete_word),
                         ) {
-                        coroutineScope.launch {
-                            activity.id?.let { activitiesViewModel.deleteParticipation(it) }
+                            coroutineScope.launch {
+                                activity.id?.let {
+                                    isVisible = false
+                                    delay(500)
+                                    isVisible = true
+                                    activitiesViewModel.deleteParticipation(it)
+
+                                }
+                            }
                         }
                     }
                 }
@@ -218,7 +238,6 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
         }
     }
 }
-
 
 @Composable
 fun ShowActivity(

@@ -88,14 +88,13 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         {
             getUserActivities()
         }
+
     }
 
-    suspend fun deleteParticipation (activityId: String){
-        Log.d("Mi activity id: ",activityId)
-        val response = accessToken.value?.let { activitiesRepository.delete(it,activityId) }
-        if (response != null)
-        {
-            getUserActivities()
+    suspend fun deleteParticipation(activityId: String) {
+        val response = accessToken.value?.let { activitiesRepository.delete(it, activityId) }
+        if (response != null) {
+            _userActivities.value = _userActivities.value?.filterNot { it.id == activityId }
         }
     }
 
