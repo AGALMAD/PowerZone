@@ -162,12 +162,12 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = context.getString(R.string.all_activities_word ), fontSize = 25.sp)
+        Text(text = context.getString(R.string.all_activities_word), fontSize = 25.sp)
 
         if (activitiesViewModel.activities.value.isEmpty()) {
             // Muestra una barra circular mientras cargan actividades
             CircularProgressIndicator()
-        } else {
+        }else {
             //Muestra todas las actividades
             LazyColumn {
                 items(activities) { activity ->
@@ -199,8 +199,10 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = context.getString(R.string.my_activities_word), fontSize = 25.sp)
-        if(activitiesViewModel.userActivities.value.isNullOrEmpty()){
+        if (activitiesViewModel.userActivities.value == null) {
             CircularProgressIndicator()
+        }else if(activitiesViewModel.userActivities.value!!.isEmpty()){
+            Text("No tienes actividades")
         }else{
             LazyColumn {
                 items(userActivities) { activity ->
