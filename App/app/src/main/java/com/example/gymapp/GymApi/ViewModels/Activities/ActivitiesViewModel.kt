@@ -92,7 +92,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
 
     suspend fun deleteParticipation (activityId: String){
         Log.d("Mi activity id: ",activityId)
-        val response = _accessToken.value?.let { activitiesRepository.delete(it,activityId) }
+        val response = accessToken.value?.let { activitiesRepository.delete(it,activityId) }
         if (response != null)
         {
             getUserActivities()

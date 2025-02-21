@@ -29,7 +29,7 @@ interface ActivityService {
     suspend fun getAllTargetedActivities(@Header("Authorization") token: String): Response<List<ActivityResponse>>
 
 
-    @DELETE("/api/participations")
+    @DELETE("/api/participations/")
     suspend fun deleteParticipation(@Header("Authorization") token: String, @Path("activityId") activityId: String): Response<ParticipationResponse>
 
 }

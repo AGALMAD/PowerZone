@@ -54,9 +54,14 @@ import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.ui.platform.LocalContext
+import com.example.gymapp.R
 
 @Composable
 fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
+
+    val context = LocalContext.current
+    
     val authState = authViewModel.authState.collectAsState()
     val accessToken by activitiesViewModel.accessToken.collectAsState()
     val activities by activitiesViewModel.activities.collectAsState()
@@ -66,7 +71,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
     val pagerState = rememberPagerState(pageCount = { 2 })
     val coroutineScope = rememberCoroutineScope()
     // Titulos de las paginas
-    val tabs = listOf("Activites", "My activities")
+    val tabs = listOf( context.getString(R.string.all_activities_word), context.getString(R.string.my_activities_word))
 
     LaunchedEffect (authState.value){
         when(authState.value){
@@ -144,6 +149,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
 @SuppressLint("StateFlowValueCalledInComposition", "CoroutineCreationDuringComposition")
 @Composable
 fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
+    val context = LocalContext.current
 
     val coroutineScope = rememberCoroutineScope()
 
@@ -155,7 +161,7 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Todas las actividades", fontSize = 25.sp)
+        Text(text = context.getString(R.string.all_activities_word ), fontSize = 25.sp)
 
         if (activitiesViewModel.activities.value.isEmpty()) {
             // Muestra una barra circular mientras cargan actividades
@@ -166,7 +172,8 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
                 items(activities) { activity ->
                     ShowActivity(
                         activity,
-                        Icons.Default.Star
+                        Icons.Default.Star,
+                        context.getString(R.string.signup_word ),
                     ) {
                         coroutineScope.launch {
                             activitiesViewModel.createParticipation(activity.id.toString())
@@ -182,13 +189,15 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesViewModel: ActivitiesViewModel) {
+    val context = LocalContext.current
+
     val coroutineScope = rememberCoroutineScope()
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Mis actividades", fontSize = 25.sp)
+        Text(text = context.getString(R.string.my_activities_word), fontSize = 25.sp)
         if(activitiesViewModel.userActivities.value.isNullOrEmpty()){
             CircularProgressIndicator()
         }else{
@@ -196,8 +205,9 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
                 items(userActivities) { activity ->
                     ShowActivity(
                         activity,
-                        Icons.Default.Delete
-                    ) {
+                        Icons.Default.Delete,
+                        context.getString(R.string.delete_word),
+                        ) {
                         coroutineScope.launch {
                             activity.id?.let { activitiesViewModel.deleteParticipation(it) }
                         }
@@ -213,6 +223,7 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
 fun ShowActivity(
     activity: ActivityResponse,
     buttonIcon: ImageVector,
+    textButton: String,
     onClickAction: () -> Unit
 ) {
     Card(
@@ -287,7 +298,7 @@ fun ShowActivity(
             ) {
                 Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.onPrimary)
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Sign Up", color = Color.White)
+                Text(text = textButton, color = MaterialTheme.colorScheme.onPrimary)
             }
         }
     }
