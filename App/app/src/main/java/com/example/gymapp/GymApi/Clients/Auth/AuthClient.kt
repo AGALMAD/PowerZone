@@ -1,16 +1,14 @@
-package com.example.gymapp.GymApi.Services.Auth
+package com.example.gymapp.GymApi.Clients.Auth
 
 import com.example.gymapp.GymApi.Models.Auth.AuthenticationRequest
 import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
 import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
 import com.example.gymapp.GymApi.Models.Auth.TokenResponse
-import com.example.gymapp.GymApi.Models.Exercises.BodyPart
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface AuthService {
+interface AuthClient {
 
     @POST("/api/auth")
     suspend fun authenticate(@Body authRequest: AuthenticationRequest): Response<AuthenticationResponse>
