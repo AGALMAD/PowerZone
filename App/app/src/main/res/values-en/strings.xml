@@ -63,4 +63,8 @@
     <string name="error_network">Connection error. Please check your internet connection.</string>
     <string name="error_unknown">An unknown error occurred</string>
     <string name="error_empty_credentials">You cannot leave the fields empty</string>
+    <string name="delete_word">Delete</string>
+    <string name="signup_word">Sing Up</string>
+    <string name="all_activities_word">Activities</string>
+    <string name="my_activities_word">My Activities</string>
 </resources>

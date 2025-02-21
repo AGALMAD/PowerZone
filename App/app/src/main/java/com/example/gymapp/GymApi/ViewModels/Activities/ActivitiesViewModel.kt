@@ -73,7 +73,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         if (token != null) {
             val userActivitiesList = activitiesRepository.getAllTargetedActivities(token)
             userActivitiesList!!.forEach{ activity ->
-                Log.d("Mi id de actividad: ",activity.id)
+                activity.id?.let { Log.d("Mi id de actividad: ", it) }
             }
             _userActivities.value = userActivitiesList ?: emptyList()
         } else {
@@ -92,7 +92,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
 
     suspend fun deleteParticipation (activityId: String){
         Log.d("Mi activity id: ",activityId)
-        val response = _accessToken.value?.let { activitiesRepository.delete(it,activityId) }
+        val response = accessToken.value?.let { activitiesRepository.delete(it,activityId) }
         if (response != null)
         {
             getUserActivities()
