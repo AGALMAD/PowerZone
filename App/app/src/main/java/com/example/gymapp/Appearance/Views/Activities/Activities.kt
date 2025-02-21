@@ -165,7 +165,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
 
 @SuppressLint("StateFlowValueCalledInComposition", "CoroutineCreationDuringComposition")
 @Composable
-fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
+fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<ActivityResponse>?, activitiesViewModel: ActivitiesViewModel) {
     val context = LocalContext.current
 
     val coroutineScope = rememberCoroutineScope()
@@ -180,13 +180,17 @@ fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<A
     ) {
         Text(text = context.getString(R.string.all_activities_word ), fontSize = 25.sp)
 
-        if (activitiesViewModel.activities.value.isEmpty()) {
+        if (activitiesViewModel.activities.value == null) {
             // Muestra una barra circular mientras cargan actividades
             CircularProgressIndicator()
-        } else {
+        }
+        else if (activitiesViewModel.activities.value!!.isEmpty()) {
+            Text(context.getString(R.string.not_activities_in_list_message))
+        }
+        else {
             //Muestra todas las actividades
             LazyColumn {
-                items(activities) { activity ->
+                items(activities!!) { activity ->
                     ShowActivity(
                         activity,
                         Icons.Default.Star,
@@ -194,7 +198,7 @@ fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<A
                     ) {
                         coroutineScope.launch {
                             snackbarHostState.showSnackbar(
-                                "Te has apuntado a " + activity.title ,
+                                context.getString(R.string.sing_up_activity_message) + activity.title ,
                                 duration = SnackbarDuration.Long
                             )
                             activitiesViewModel.createParticipation(activity.id.toString())
@@ -209,7 +213,7 @@ fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<A
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities: List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
+fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities: List<ActivityResponse>?, activitiesViewModel: ActivitiesViewModel) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -223,7 +227,7 @@ fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities:
             CircularProgressIndicator()
         } else {
             LazyColumn {
-                items(userActivities) { activity ->
+                items(userActivities!!) { activity ->
                     var isVisible by remember { mutableStateOf(true) }
 
                     AnimatedVisibility(
@@ -244,7 +248,7 @@ fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities:
                                     activitiesViewModel.deleteParticipation(it)
 
                                     snackbarHostState.showSnackbar(
-                                        "Te has borrado de " + activity.title ,
+                                        context.getString(R.string.delete_activity_message) + activity.title ,
                                         duration = SnackbarDuration.Long
                                     )
 
