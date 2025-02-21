@@ -232,7 +232,7 @@ fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities:
         if (activitiesViewModel.userActivities.value == null) {
             CircularProgressIndicator()
         }else if(activitiesViewModel.userActivities.value!!.isEmpty()){
-            Text("No tienes actividades")
+            Text(context.getString(R.string.not_activities_in_list_message))
         }else{
             LazyColumn {
                 items(userActivities!!) { activity ->
