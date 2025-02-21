@@ -1,4 +1,4 @@
-package com.example.gymapp.GymApi.Services.Activities
+package com.example.gymapp.GymApi.Clients.Activities
 
 import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
 import com.example.gymapp.GymApi.Models.Activities.ParticipationRequest
@@ -11,7 +11,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface ActivityService {
+interface ActivityClient {
 
     @GET("/api/activities")
     suspend fun getAllActivities(@Header("Authorization") token: String): Response<List<ActivityResponse>>

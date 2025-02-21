@@ -1,8 +1,5 @@
-package com.example.gymapp.GymApi.Repositories
+package com.example.gymapp.GymApi.Models.Activities
 
-import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
-import com.example.gymapp.GymApi.Models.Activities.ParticipationRequest
-import com.example.gymapp.GymApi.Models.Activities.ParticipationResponse
 import com.example.gymapp.GymApi.Models.RetrofitApiInstance.activityService
 
 class ActivitiesRepository {

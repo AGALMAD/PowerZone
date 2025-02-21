@@ -2,17 +2,14 @@ package com.example.gymapp.GymApi.ViewModels.Activities
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
-import com.example.gymapp.GymApi.Repositories.ActivitiesRepository
-import com.example.gymapp.GymApi.Repositories.AuthRepository
+import com.example.gymapp.GymApi.Models.Activities.ActivitiesRepository
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel.Companion.accessTokenSaved
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel.Companion.authDataStore
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel.Companion.emailSaved
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel.Companion.refreshTokenSaved
-import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel.Companion.userNameSaved
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -37,7 +34,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
     private val _activities = MutableStateFlow<List<ActivityResponse>?>(null)
     val activities: StateFlow<List<ActivityResponse>?> = _activities
     //Todas las actividades a las que el usuario está apuntado
-    private val _userActivities = MutableStateFlow<List<ActivityResponse>?>(emptyList())
+    private val _userActivities = MutableStateFlow<List<ActivityResponse>?>(null)
     val userActivities: StateFlow<List<ActivityResponse>?> = _userActivities
 
 
@@ -72,7 +69,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         val token = _accessToken.value
         if (token != null) {
             val userActivitiesList = activitiesRepository.getAllTargetedActivities(token)
-            _userActivities.value = userActivitiesList ?: emptyList()
+            _userActivities.value = userActivitiesList
         } else {
             throw IllegalStateException("Access token is null")
         }
