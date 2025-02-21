@@ -1,6 +1,7 @@
 package com.example.gymapp.Appearance.Views.Activities
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -61,7 +62,7 @@ import com.example.gymapp.R
 fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
 
     val context = LocalContext.current
-    
+
     val authState = authViewModel.authState.collectAsState()
     val accessToken by activitiesViewModel.accessToken.collectAsState()
     val activities by activitiesViewModel.activities.collectAsState()
@@ -228,8 +229,9 @@ fun ShowActivity(
 ) {
     Card(
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp
+            defaultElevation = 12.dp,
         ),
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.onBackground),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background
         ),
