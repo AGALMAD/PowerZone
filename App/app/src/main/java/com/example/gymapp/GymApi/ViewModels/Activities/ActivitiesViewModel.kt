@@ -34,8 +34,8 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
     val refreshToken: StateFlow<String?> = _refreshToken
 
     //Todas las actividades disponibles
-    private val _activities = MutableStateFlow<List<ActivityResponse>>(emptyList())
-    val activities: StateFlow<List<ActivityResponse>> = _activities
+    private val _activities = MutableStateFlow<List<ActivityResponse>?>(null)
+    val activities: StateFlow<List<ActivityResponse>?> = _activities
     //Todas las actividades a las que el usuario está apuntado
     private val _userActivities = MutableStateFlow<List<ActivityResponse>?>(emptyList())
     val userActivities: StateFlow<List<ActivityResponse>?> = _userActivities
@@ -62,7 +62,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         val token = _accessToken.value
         if (token != null) {
             val activitiesList = activitiesRepository.getAllActivities(token)
-            _activities.value = activitiesList ?: emptyList()
+            _activities.value = activitiesList
         } else {
             throw IllegalStateException("Access token is null")
         }
@@ -72,9 +72,6 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         val token = _accessToken.value
         if (token != null) {
             val userActivitiesList = activitiesRepository.getAllTargetedActivities(token)
-            userActivitiesList!!.forEach{ activity ->
-                activity.id?.let { Log.d("Mi id de actividad: ", it) }
-            }
             _userActivities.value = userActivitiesList ?: emptyList()
         } else {
             throw IllegalStateException("Access token is null")
@@ -88,14 +85,13 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         {
             getUserActivities()
         }
+
     }
 
-    suspend fun deleteParticipation (activityId: String){
-        Log.d("Mi activity id: ",activityId)
-        val response = accessToken.value?.let { activitiesRepository.delete(it,activityId) }
-        if (response != null)
-        {
-            getUserActivities()
+    suspend fun deleteParticipation(activityId: String) {
+        val response = accessToken.value?.let { activitiesRepository.delete(it, activityId) }
+        if (response != null) {
+            _userActivities.value = _userActivities.value?.filterNot { it.id == activityId }
         }
     }
 
