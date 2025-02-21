@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.room.Room
 import com.example.compose.AppTheme
 import com.example.gymapp.Appearance.Navegationdrawer.NavigationDrawer
+import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import com.example.gymapp.GymApi.ViewModels.Learn.BodyPartsViewModel
 import com.example.gymapp.GymApi.ViewModels.Learn.ExercisesViewModel
@@ -24,9 +25,10 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 val bodyPartsViewModel: BodyPartsViewModel by viewModels()
                 val exercisesViewModel: ExercisesViewModel by viewModels()
-
                 val authViewModel: AuthViewModel by viewModels()
-                
+                val activitiesViewModel: ActivitiesViewModel by viewModels()
+
+
                 //Variables necesarias para task view model
                 val context = LocalContext.current
                 val db = Room.databaseBuilder(context, TasksDatabase::class.java, "tasks2").build()
@@ -34,7 +36,8 @@ class MainActivity : ComponentActivity() {
                 val tasksRepository = TasksRepository(tasksDao)
                 val tasksViewModel = TasksViewModel(tasksRepository)
 
-                NavigationDrawer(bodyPartsViewModel,exercisesViewModel,authViewModel, tasksViewModel)
+                NavigationDrawer(bodyPartsViewModel,exercisesViewModel,
+                    authViewModel, tasksViewModel, activitiesViewModel)
 
             }
         }

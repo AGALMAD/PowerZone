@@ -25,11 +25,15 @@ interface ActivityService {
     suspend fun getAllParticipations(@Header("Authorization") token: String): Response<List<ParticipationResponse>>
 
 
-    @POST("/api/participations/details")
+    @GET("/api/participations/details")
     suspend fun getAllTargetedActivities(@Header("Authorization") token: String): Response<List<ActivityResponse>>
 
 
-    @DELETE("/api/participations")
-    suspend fun deleteParticipation(@Header("Authorization") token: String, @Path("activityId") activityId: String): Response<ParticipationResponse>
+    @DELETE("/api/participations/{activityId}")
+    suspend fun deleteParticipation(
+        @Header("Authorization") token: String,
+        @Path("activityId") activityId: String
+    ): Response<ParticipationResponse>
+
 
 }

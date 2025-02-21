@@ -23,11 +23,12 @@ class ActivitiesRepository {
 
     suspend fun getAllTargetedActivities(token: String): List<ActivityResponse>?{
         val response = activityService.getAllTargetedActivities("Bearer $token")
+
         return response.body()
     }
 
-    suspend fun delete(token: String,participationId: String): ParticipationResponse?{
-        val response = activityService.deleteParticipation("Bearer $token",participationId)
+    suspend fun delete(token: String,activityId: String): ParticipationResponse?{
+        val response = activityService.deleteParticipation("Bearer $token",activityId)
         return response.body()
     }
 
