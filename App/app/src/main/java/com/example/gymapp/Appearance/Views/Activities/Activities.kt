@@ -1,6 +1,7 @@
 package com.example.gymapp.Appearance.Views.Activities
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
@@ -65,6 +66,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat.getString
+import com.example.gymapp.Appearance.Views.Dialog.ToastMessage
 import com.example.gymapp.R
 import kotlinx.coroutines.delay
 
@@ -87,6 +90,9 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
     LaunchedEffect (authState.value){
         when(authState.value){
             is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
+            is AuthState.Error -> {val messageResId = ToastMessage.getStringResourceId((authState.value as AuthState.Error).errorType)
+                Toast.makeText(context, getString(context,messageResId), Toast.LENGTH_SHORT).show()
+                authViewModel.signout()}
             else -> Unit
         }
 
