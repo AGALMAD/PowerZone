@@ -1,4 +1,4 @@
-package com.example.gymapp.GymApi.Services.Auth
+package com.example.gymapp.GymApi.Clients.Auth
 
 import com.example.gymapp.GymApi.Models.Auth.UserRequest
 import com.example.gymapp.GymApi.Models.Auth.UserResponse
@@ -9,7 +9,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface UserService {
+interface UserClient {
 
     @POST("/api/user")
     suspend fun create(@Body userRequest: UserRequest): Response<UserResponse>
