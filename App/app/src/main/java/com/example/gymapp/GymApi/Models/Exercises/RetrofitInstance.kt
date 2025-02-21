@@ -1,7 +1,7 @@
 package com.example.gymapp.GymApi.Models.Exercises
 
-import com.example.gymapp.GymApi.Services.Exercises.BodyPartsService
-import com.example.gymapp.GymApi.Services.Exercises.ExercisesService
+import com.example.gymapp.GymApi.Clients.Exercises.BodyPartsClient
+import com.example.gymapp.GymApi.Clients.Exercises.ExercisesClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -15,11 +15,11 @@ object RetrofitInstance {
             .build()
     }
 
-    val bodyPartsService: BodyPartsService by lazy {
-        retrofit.create(BodyPartsService::class.java)
+    val bodyPartsService: BodyPartsClient by lazy {
+        retrofit.create(BodyPartsClient::class.java)
     }
 
-    val exercisesService: ExercisesService by lazy {
-        retrofit.create(ExercisesService::class.java)
+    val exercisesService: ExercisesClient by lazy {
+        retrofit.create(ExercisesClient::class.java)
     }
 }

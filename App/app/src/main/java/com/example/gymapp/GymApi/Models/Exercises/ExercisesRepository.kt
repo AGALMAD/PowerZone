@@ -1,7 +1,4 @@
-package com.example.gymapp.GymApi.Repositories
-
-import com.example.gymapp.GymApi.Models.Exercises.Exercise
-import com.example.gymapp.GymApi.Models.Exercises.RetrofitInstance
+package com.example.gymapp.GymApi.Models.Exercises
 
 class ExercisesRepository() {
     private val exercisesService = RetrofitInstance.exercisesService

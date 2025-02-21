@@ -10,7 +10,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymapp.Appearance.Views.Dialog.AuthErrorType
-import com.example.gymapp.GymApi.Repositories.AuthRepository
+import com.example.gymapp.GymApi.Models.Auth.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

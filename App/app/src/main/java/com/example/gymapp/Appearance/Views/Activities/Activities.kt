@@ -203,10 +203,13 @@ fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<A
                         context.getString(R.string.signup_word ),
                     ) {
                         coroutineScope.launch {
-                            snackbarHostState.showSnackbar(
-                                context.getString(R.string.sing_up_activity_message) + activity.title ,
-                                duration = SnackbarDuration.Long
-                            )
+                            coroutineScope.launch {
+                                snackbarHostState.showSnackbar(
+                                    context.getString(R.string.sing_up_activity_message) + activity.title ,
+                                    duration = SnackbarDuration.Long
+                                )
+                            }
+
                             activitiesViewModel.createParticipation(activity.id.toString())
                         }
                     }
@@ -250,15 +253,19 @@ fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities:
                             coroutineScope.launch {
                                 activity.id?.let {
 
+                                    coroutineScope.launch {
+
+                                        snackbarHostState.showSnackbar(
+                                            context.getString(R.string.delete_activity_message) + activity.title ,
+                                            duration = SnackbarDuration.Long
+                                        )
+                                    }
+
                                     isVisible = false
                                     delay(500)
                                     isVisible = true
                                     activitiesViewModel.deleteParticipation(it)
 
-                                    snackbarHostState.showSnackbar(
-                                        context.getString(R.string.delete_activity_message) + activity.title ,
-                                        duration = SnackbarDuration.Long
-                                    )
 
                                 }
                             }
