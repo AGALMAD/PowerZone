@@ -1,6 +1,10 @@
 package com.example.gymapp.Appearance.Views.Activities
 
 import android.annotation.SuppressLint
+import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -55,8 +59,17 @@ import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat.getString
+import com.example.gymapp.Appearance.Views.Dialog.ToastMessage
 import com.example.gymapp.R
+import kotlinx.coroutines.delay
 
 @Composable
 fun Activities(navController: NavHostController, authViewModel: AuthViewModel, activitiesViewModel: ActivitiesViewModel){
@@ -77,6 +90,9 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
     LaunchedEffect (authState.value){
         when(authState.value){
             is AuthState.Unauthenticated -> navController.navigate(Routes.Login.route)
+            is AuthState.Error -> {val messageResId = ToastMessage.getStringResourceId((authState.value as AuthState.Error).errorType)
+                Toast.makeText(context, getString(context,messageResId), Toast.LENGTH_SHORT).show()
+                authViewModel.signout()}
             else -> Unit
         }
 
@@ -89,7 +105,13 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
         }
     }
 
+    val snackbarHostState = remember { SnackbarHostState() }
+
+
     Scaffold(
+        snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState)
+        },
         modifier = Modifier.fillMaxSize(),
         topBar = {
             Column {
@@ -97,8 +119,8 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
                     modifier = Modifier.fillMaxWidth(),
-                    containerColor = Color.Blue,
-                    contentColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.background,
+                    contentColor = MaterialTheme.colorScheme.onBackground,
                     indicator = { tabPositions ->
                         TabRowDefaults.apply {
                             HorizontalDivider(
@@ -140,8 +162,8 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
                 .padding(paddingValues)
         ) { page ->
             when (page) {
-                0 -> AllActivitiesScreen(activities, activitiesViewModel)
-                1 -> AllUserActivitiesScreen(userActivities!!, activitiesViewModel)
+                0 -> AllActivitiesScreen(snackbarHostState, activities, activitiesViewModel)
+                1 -> AllUserActivitiesScreen(snackbarHostState, userActivities!!, activitiesViewModel)
             }
         }
     }
@@ -149,7 +171,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
 
 @SuppressLint("StateFlowValueCalledInComposition", "CoroutineCreationDuringComposition")
 @Composable
-fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
+fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<ActivityResponse>?, activitiesViewModel: ActivitiesViewModel) {
     val context = LocalContext.current
 
     val coroutineScope = rememberCoroutineScope()
@@ -162,21 +184,29 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = context.getString(R.string.all_activities_word ), fontSize = 25.sp)
+        Text(text = context.getString(R.string.all_activities_word), fontSize = 25.sp)
 
-        if (activitiesViewModel.activities.value.isEmpty()) {
+        if (activitiesViewModel.activities.value == null) {
             // Muestra una barra circular mientras cargan actividades
             CircularProgressIndicator()
-        } else {
+        }
+        else if (activitiesViewModel.activities.value!!.isEmpty()) {
+            Text(context.getString(R.string.not_activities_in_list_message))
+        }
+        else {
             //Muestra todas las actividades
             LazyColumn {
-                items(activities) { activity ->
+                items(activities!!) { activity ->
                     ShowActivity(
                         activity,
                         Icons.Default.Star,
                         context.getString(R.string.signup_word ),
                     ) {
                         coroutineScope.launch {
+                            snackbarHostState.showSnackbar(
+                                context.getString(R.string.sing_up_activity_message) + activity.title ,
+                                duration = SnackbarDuration.Long
+                            )
                             activitiesViewModel.createParticipation(activity.id.toString())
                         }
                     }
@@ -189,28 +219,49 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesViewModel: ActivitiesViewModel) {
+fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities: List<ActivityResponse>?, activitiesViewModel: ActivitiesViewModel) {
     val context = LocalContext.current
-
     val coroutineScope = rememberCoroutineScope()
+
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = context.getString(R.string.my_activities_word), fontSize = 25.sp)
-        if(activitiesViewModel.userActivities.value.isNullOrEmpty()){
+        if (activitiesViewModel.userActivities.value == null) {
             CircularProgressIndicator()
+        }else if(activitiesViewModel.userActivities.value!!.isEmpty()){
+            Text(context.getString(R.string.not_activities_in_list_message))
         }else{
             LazyColumn {
-                items(userActivities) { activity ->
-                    ShowActivity(
-                        activity,
-                        Icons.Default.Delete,
-                        context.getString(R.string.delete_word),
+                items(userActivities!!) { activity ->
+                    var isVisible by remember { mutableStateOf(true) }
+
+                    AnimatedVisibility(
+                        visible = isVisible,
+                        exit = fadeOut(animationSpec = tween(durationMillis = 500))
+                    ) {
+                        ShowActivity(
+                            activity,
+                            Icons.Default.Delete,
+                            context.getString(R.string.delete_word),
                         ) {
-                        coroutineScope.launch {
-                            activity.id?.let { activitiesViewModel.deleteParticipation(it) }
+                            coroutineScope.launch {
+                                activity.id?.let {
+
+                                    isVisible = false
+                                    delay(500)
+                                    isVisible = true
+                                    activitiesViewModel.deleteParticipation(it)
+
+                                    snackbarHostState.showSnackbar(
+                                        context.getString(R.string.delete_activity_message) + activity.title ,
+                                        duration = SnackbarDuration.Long
+                                    )
+
+                                }
+                            }
                         }
                     }
                 }
@@ -218,7 +269,6 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
         }
     }
 }
-
 
 @Composable
 fun ShowActivity(
