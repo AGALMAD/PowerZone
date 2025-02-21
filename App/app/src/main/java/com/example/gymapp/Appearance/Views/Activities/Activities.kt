@@ -1,6 +1,7 @@
 package com.example.gymapp.Appearance.Views.Activities
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +20,6 @@ import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -38,29 +38,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.gymapp.Appearance.Data.Routes
-import com.example.gymapp.Appearance.Themes.misFormas
 import com.example.gymapp.GymApi.Models.Activities.ActivityResponse
 import com.example.gymapp.GymApi.ViewModels.Activities.ActivitiesViewModel
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthState
 import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.List
-import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Description
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.ButtonDefaults
 
 @Composable
@@ -172,7 +164,7 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
             //Muestra todas las actividades
             LazyColumn {
                 items(activities) { activity ->
-                    ShowActivityWithSignUpButton(
+                    ShowActivity(
                         activity,
                         Icons.Default.Star
                     ) {
@@ -202,12 +194,12 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
         }else{
             LazyColumn {
                 items(userActivities) { activity ->
-                    ShowActivityWithSignUpButton(
+                    ShowActivity(
                         activity,
                         Icons.Default.Delete
                     ) {
                         coroutineScope.launch {
-                            activitiesViewModel.deleteParticipation(activity.id)
+                            activity.id?.let { activitiesViewModel.deleteParticipation(it) }
                         }
                     }
                 }
@@ -218,7 +210,7 @@ fun AllUserActivitiesScreen(userActivities : List<ActivityResponse>,activitiesVi
 
 
 @Composable
-fun ShowActivityWithSignUpButton(
+fun ShowActivity(
     activity: ActivityResponse,
     buttonIcon: ImageVector,
     onClickAction: () -> Unit
@@ -244,7 +236,7 @@ fun ShowActivityWithSignUpButton(
             Text(
                 text = activity.title,
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.primary,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
@@ -288,11 +280,12 @@ fun ShowActivityWithSignUpButton(
 
             Button(
                 onClick = onClickAction,
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                modifier =  Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .background(MaterialTheme.colorScheme.primary),
                 shape = RoundedCornerShape(8.dp),
-                modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
-                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = Color.White)
+                Icon(imageVector = buttonIcon, contentDescription = "Button Icon", tint = MaterialTheme.colorScheme.onPrimary)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = "Sign Up", color = Color.White)
             }
@@ -302,50 +295,3 @@ fun ShowActivityWithSignUpButton(
 }
 
 
-
-
-@Composable
-fun ShowActivityWithDeleteButton(activity: ActivityResponse, activitiesViewModel: ActivitiesViewModel){
-    val coroutineScope = rememberCoroutineScope()
-    Card(
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 12.dp
-        ),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        shape = misFormas.medium,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp) // Espaciado entre elementos
-
-    ) {
-        Row(Modifier.fillMaxSize(),)
-        {
-            Text(
-                text = activity.title,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 4.dp)
-            )
-            Button(onClick =
-            {
-                coroutineScope.launch {
-                    activitiesViewModel.deleteParticipation(activity.id.toString())
-                }
-            },
-                shape = misFormas.small,
-                modifier = Modifier.width(250.dp)
-
-            ) {
-                Text(
-                    text = "Dejar actividad",
-                    style = MaterialTheme.typography.headlineSmall,
-                )
-            }
-        }
-    }
-}

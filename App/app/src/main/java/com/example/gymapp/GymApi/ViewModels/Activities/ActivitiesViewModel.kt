@@ -73,7 +73,7 @@ class ActivitiesViewModel( application: Application) : AndroidViewModel(applicat
         if (token != null) {
             val userActivitiesList = activitiesRepository.getAllTargetedActivities(token)
             userActivitiesList!!.forEach{ activity ->
-                Log.d("Mi id de actividad: ",activity.id)
+                activity.id?.let { Log.d("Mi id de actividad: ", it) }
             }
             _userActivities.value = userActivitiesList ?: emptyList()
         } else {
