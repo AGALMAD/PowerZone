@@ -119,8 +119,8 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
                     modifier = Modifier.fillMaxWidth(),
-                    containerColor = Color.Blue,
-                    contentColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.background,
+                    contentColor = MaterialTheme.colorScheme.onBackground,
                     indicator = { tabPositions ->
                         TabRowDefaults.apply {
                             HorizontalDivider(
@@ -184,7 +184,7 @@ fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<A
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = context.getString(R.string.all_activities_word ), fontSize = 25.sp)
+        Text(text = context.getString(R.string.all_activities_word), fontSize = 25.sp)
 
         if (activitiesViewModel.activities.value == null) {
             // Muestra una barra circular mientras cargan actividades
@@ -229,9 +229,11 @@ fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities:
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = context.getString(R.string.my_activities_word), fontSize = 25.sp)
-        if (activitiesViewModel.userActivities.value.isNullOrEmpty()) {
+        if (activitiesViewModel.userActivities.value == null) {
             CircularProgressIndicator()
-        } else {
+        }else if(activitiesViewModel.userActivities.value!!.isEmpty()){
+            Text("No tienes actividades")
+        }else{
             LazyColumn {
                 items(userActivities!!) { activity ->
                     var isVisible by remember { mutableStateOf(true) }
