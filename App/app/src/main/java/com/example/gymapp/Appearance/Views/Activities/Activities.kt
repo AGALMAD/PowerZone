@@ -97,8 +97,8 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
                     modifier = Modifier.fillMaxWidth(),
-                    containerColor = Color.Blue,
-                    contentColor = Color.White,
+                    containerColor = MaterialTheme.colorScheme.background,
+                    contentColor = MaterialTheme.colorScheme.onBackground,
                     indicator = { tabPositions ->
                         TabRowDefaults.apply {
                             HorizontalDivider(
