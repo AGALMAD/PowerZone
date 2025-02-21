@@ -3,8 +3,8 @@ import com.example.gymapp.GymApi.Models.Auth.AuthenticationRequest
 import com.example.gymapp.GymApi.Models.Auth.AuthenticationResponse
 import com.example.gymapp.GymApi.Models.Auth.RefreshTokenRequest
 import com.example.gymapp.GymApi.Models.Auth.TokenResponse
-import com.example.gymapp.GymApi.Models.AuthenticationInstance.authService
-import com.example.gymapp.GymApi.Models.AuthenticationInstance.userService
+import com.example.gymapp.GymApi.Models.RetrofitApiInstance.authService
+import com.example.gymapp.GymApi.Models.RetrofitApiInstance.userService
 import com.example.gymapp.GymApi.Models.Auth.UserRequest
 import com.example.gymapp.GymApi.Models.Auth.UserResponse
 

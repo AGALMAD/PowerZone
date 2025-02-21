@@ -40,6 +40,14 @@ val AppTypography = Typography(
         fontSize = 40.sp,
         fontWeight = FontWeight.Bold,
     ),
+
+    // Tamaño para Títulos
+    displayMedium = TextStyle(
+        fontFamily = displayFontFamily,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold,
+    ),
+
     // Tamaño Subtítulos
     headlineSmall = TextStyle(
         fontFamily = displayFontFamily,

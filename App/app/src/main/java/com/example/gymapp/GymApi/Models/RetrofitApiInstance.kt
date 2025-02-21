@@ -1,20 +1,18 @@
 package com.example.gymapp.GymApi.Models
 
-import com.example.gymapp.GymApi.Models.Exercises.RetrofitInstance
+import com.example.gymapp.GymApi.Services.Activities.ActivityService
 import com.example.gymapp.GymApi.Services.Auth.AuthService
 import com.example.gymapp.GymApi.Services.Auth.UserService
-import com.example.gymapp.GymApi.Services.Exercises.BodyPartsService
-import com.example.gymapp.GymApi.Services.Exercises.ExercisesService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object AuthenticationInstance {
+object RetrofitApiInstance {
 
     private const val BASE_URL = "http://10.0.2.2:8080"
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(AuthenticationInstance.BASE_URL)
+            .baseUrl(RetrofitApiInstance.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -26,4 +24,11 @@ object AuthenticationInstance {
     val userService: UserService by lazy {
         retrofit.create(UserService::class.java)
     }
+
+
+    val activityService: ActivityService by lazy {
+        retrofit.create(ActivityService::class.java)
+    }
+
+
 }

@@ -39,7 +39,10 @@ android {
     buildFeatures {
         compose = true
     }
-}
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.6"
+
+    }
 
 dependencies {
 
@@ -73,4 +76,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-}
+
+    implementation (libs.androidx.material.icons.extended.v154)
+
+
+}}

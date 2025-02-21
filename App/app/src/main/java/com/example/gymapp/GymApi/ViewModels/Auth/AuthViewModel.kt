@@ -25,7 +25,7 @@ class AuthViewModel( application: Application) : AndroidViewModel(application) {
     val context = application.baseContext
 
     companion object {
-        private val Context.authDataStore: DataStore<Preferences> by preferencesDataStore(
+        val Context.authDataStore: DataStore<Preferences> by preferencesDataStore(
             dataStoreName
         )
 

@@ -61,4 +61,11 @@
     <string name="error_network">Error de conexión. Verifique su conexión a internet.</string>
     <string name="error_unknown">Ocurrió un error desconocido</string>
     <string name="error_empty_credentials">No puedes dejar vacios los campos</string>
+    <string name="delete_word">Eliminar</string>
+    <string name="signup_word">Apuntarse</string>
+    <string name="all_activities_word">Actividades</string>
+    <string name="my_activities_word">Mis Actividades</string>
+    <string name="not_activities_in_list_message">No hay actividades</string>
+    <string name="sing_up_activity_message">Te has apuntado a</string>
+    <string name="delete_activity_message">Te has borrado de</string>
 </resources>

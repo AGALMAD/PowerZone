@@ -60,16 +60,16 @@ fun Principal(navController: NavHostController, authViewModel: AuthViewModel) {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Spacer(modifier = Modifier.height(70.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         InsertHeader(context, authViewModel, navController)
 
         InsertTitle(context.getString(R.string.appTitle))
-        Spacer(modifier = Modifier.height(26.dp))
 
         InsertLogoImage()
-        Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(70.dp))
 
         InsertButtos(context, navController, authViewModel)
 
@@ -203,6 +203,21 @@ fun InsertButtos(context: Context, navController: NavHostController, authViewMod
 
     Spacer(modifier = Modifier.height(20.dp))
 
+    // Botón para ir a las actividades
+    Button(
+        onClick = { navController.navigate(Routes.Activities.route) },
+        shape = misFormas.small,
+        modifier = Modifier.width(250.dp)
+
+    ) {
+        Text(
+            text = context.getString(R.string.all_activities_word),
+            style = MaterialTheme.typography.headlineSmall,
+        )
+    }
+
+    Spacer(modifier = Modifier.height(20.dp))
+
     // Botón para ir a About Us
     Button(
         onClick = { navController.navigate(Routes.AboutUs.route) },
@@ -216,7 +231,7 @@ fun InsertButtos(context: Context, navController: NavHostController, authViewMod
         )
     }
 
-    Spacer(modifier = Modifier.height(20.dp))
+    Spacer(modifier = Modifier.height(30.dp))
 
 
 }
