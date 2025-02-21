@@ -58,6 +58,9 @@ import com.example.gymapp.GymApi.ViewModels.Auth.AuthViewModel
 import kotlinx.coroutines.launch
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -96,7 +99,13 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
         }
     }
 
+    val snackbarHostState = remember { SnackbarHostState() }
+
+
     Scaffold(
+        snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState)
+        },
         modifier = Modifier.fillMaxSize(),
         topBar = {
             Column {
@@ -147,7 +156,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
                 .padding(paddingValues)
         ) { page ->
             when (page) {
-                0 -> AllActivitiesScreen(activities, activitiesViewModel)
+                0 -> AllActivitiesScreen(snackbarHostState, activities, activitiesViewModel)
                 1 -> AllUserActivitiesScreen(userActivities!!, activitiesViewModel)
             }
         }
@@ -156,7 +165,7 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
 
 @SuppressLint("StateFlowValueCalledInComposition", "CoroutineCreationDuringComposition")
 @Composable
-fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
+fun AllActivitiesScreen(snackbarHostState:SnackbarHostState, activities : List<ActivityResponse>, activitiesViewModel: ActivitiesViewModel) {
     val context = LocalContext.current
 
     val coroutineScope = rememberCoroutineScope()
@@ -184,6 +193,10 @@ fun AllActivitiesScreen(activities : List<ActivityResponse>, activitiesViewModel
                         context.getString(R.string.signup_word ),
                     ) {
                         coroutineScope.launch {
+                            snackbarHostState.showSnackbar(
+                                "Te has apuntado a " + activity.title ,
+                                duration = SnackbarDuration.Indefinite
+                            )
                             activitiesViewModel.createParticipation(activity.id.toString())
                         }
                     }
