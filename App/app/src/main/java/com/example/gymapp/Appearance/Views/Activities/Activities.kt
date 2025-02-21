@@ -63,6 +63,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -104,12 +105,16 @@ fun Activities(navController: NavHostController, authViewModel: AuthViewModel, a
 
     }
 
+
+
     LaunchedEffect(accessToken) {
         accessToken?.let {
             activitiesViewModel.getAllActivities()
             activitiesViewModel.getUserActivities()
         }
     }
+
+
 
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -245,38 +250,40 @@ fun AllUserActivitiesScreen(snackbarHostState:SnackbarHostState, userActivities:
         }else{
             LazyColumn {
                 items(userActivities!!) { activity ->
-                    var isVisible by remember { mutableStateOf(true) }
+                    key(activity) {
+                        var isVisible by remember { mutableStateOf(true) }
 
-                    AnimatedVisibility(
-                        visible = isVisible,
-                        exit = fadeOut(animationSpec = tween(durationMillis = 500))
-                    ) {
-                        ShowActivity(
-                            activity,
-                            Icons.Default.Delete,
-                            context.getString(R.string.delete_word),
+                        AnimatedVisibility(
+                            visible = isVisible,
+                            exit = fadeOut(animationSpec = tween(durationMillis = 500))
                         ) {
-                            coroutineScope.launch {
-                                activity.id?.let {
+                            ShowActivity(
+                                activity,
+                                Icons.Default.Delete,
+                                context.getString(R.string.delete_word),
+                            ) {
+                                coroutineScope.launch {
+                                    activity.id?.let {
 
-                                    coroutineScope.launch {
+                                        coroutineScope.launch {
 
-                                        snackbarHostState.showSnackbar(
-                                            context.getString(R.string.delete_activity_message) + " " + activity.title ,
-                                            duration = SnackbarDuration.Long
-                                        )
+                                            snackbarHostState.showSnackbar(
+                                                context.getString(R.string.delete_activity_message) + " " + activity.title ,
+                                                duration = SnackbarDuration.Long
+                                            )
+                                        }
+
+                                        isVisible = false
+                                        delay(500)
+                                        activitiesViewModel.deleteParticipation(it)
+
+
                                     }
-
-                                    isVisible = false
-                                    delay(500)
-                                    isVisible = true
-                                    activitiesViewModel.deleteParticipation(it)
-
-
                                 }
                             }
                         }
                     }
+
                 }
             }
         }
